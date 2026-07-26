@@ -67,10 +67,11 @@ async function main() {
     if (!entry) continue;
 
     const withTax = muniParcels.filter((p) => p.assessedTotalValue != null);
+    const withOwner = muniParcels.filter((p) => p.ownerName != null && p.ownerName !== "");
     const territoryType = String(muniParcels[0]?.territoryType ?? "");
 
     entry.hasParcelGeometry = muniParcels.length > 0;
-    entry.hasOwnership = withTax.length > 0;
+    entry.hasOwnership = withOwner.length > 0;
     entry.hasTaxAssessment = withTax.length > 0;
     entry.parcelCount = muniParcels.length;
     entry.taxParseRate =
@@ -81,10 +82,16 @@ async function main() {
         muniId === "lubec"
           ? " GIS uses -000 lot padding; 2024 commitment book used (2025 PDF not text-extractable)."
           : "";
-      entry.notes =
-        withTax.length > 0
-          ? `Organized town; tax from commitment book (${withTax.length}/${muniParcels.length} joined).${noteExtra}`
-          : `Organized parcel geometry available; tax join pending.${noteExtra}`;
+      if (withTax.length > 0) {
+        entry.notes = `Organized town; tax from commitment book (${withTax.length}/${muniParcels.length} joined).${noteExtra}`;
+      } else if (withOwner.length > 0) {
+        entry.notes =
+          muniId === "robbinston"
+            ? `owner index + transfer overrides from 2024/08 and 24-25 PDFs (${withOwner.length}/${muniParcels.length} owner joins; assessments not published)`
+            : `Organized town; owner-only joins (${withOwner.length}/${muniParcels.length}); assessments not published.${noteExtra}`;
+      } else {
+        entry.notes = `Organized parcel geometry available; tax join pending.${noteExtra}`;
+      }
       continue;
     }
 

@@ -22,7 +22,10 @@ export interface ParsedCommitmentRow {
 }
 
 const MAP_LOT_LINE_RE =
-  /^\s*((?:\d{2,3}-\d{2,3}(?:-\d{2,3})?(?:-[A-Z][A-Z0-9-]*)?)|(?:[A-Z]\d-0[A-Z]\d-[A-Z0-9]+(?:\/[A-Z0-9]+)?))\s*$/i;
+  /^\s*((?:\d{2,3}-\d{2,3}(?:-\d{2,3})?(?:-[A-Z][A-Z0-9-]*)?)|(?:\d{2}-\d{2}-\d{1,3}(?:-[A-Z])?)|(?:[A-Z]\d-0[A-Z]\d-[A-Z0-9]+(?:\/[A-Z0-9]+)?))\s*$/i;
+
+const CUTLER_HEADER_RE =
+  /^(\d{2}-\d{2}-\d{1,3}(?:-[A-Z])?)\s+(\d{2,4})\s+(.+)$/i;
 
 const DEED_REF_RE = /^B\d+/i;
 const MONEY_TOKEN_RE = /^[\d,]+(?:\.\d+)?$/;
@@ -31,6 +34,7 @@ interface AccountBlock {
   accountNumber: string;
   headerLine: string;
   headerRest: string;
+  leadingMapLot: string | null;
   ownerRaw: string | null;
   headerLand: string | null;
   headerBuilding: string | null;
@@ -94,12 +98,13 @@ function extractOwnerFromHeaderRest(rest: string): string | null {
 }
 
 function parseHeaderLine(accountNumber: string, rest: string): Omit<AccountBlock, "bodyLines"> {
-  const inline = rest.match(/^(.+?)\s+([\d,]+)\s+([\d,]+)\s+([\d,]+)\s+([\d,]+)\s*$/);
+  const inline = rest.match(/^(.+?)\s+([\d,]+)\s+([\d,]+)\s+([\d,]+)\s+([\d,]+)\b/);
   const ownerRaw = extractOwnerFromHeaderRest(rest);
   return {
     accountNumber,
     headerLine: `${accountNumber}  ${rest}`,
     headerRest: rest,
+    leadingMapLot: null,
     ownerRaw,
     headerLand: inline ? cleanMoney(inline[2]) : null,
     headerBuilding: inline ? cleanMoney(inline[3]) : null,
@@ -137,6 +142,20 @@ function segmentAccountBlocks(text: string): AccountBlock[] {
     const trimmed = line.trim();
     if (!trimmed) continue;
 
+    const cutlerHeaderMatch = trimmed.match(CUTLER_HEADER_RE);
+    if (
+      cutlerHeaderMatch &&
+      isValidAccountHeader(cutlerHeaderMatch[2]!, cutlerHeaderMatch[3]!)
+    ) {
+      if (current) blocks.push(current);
+      current = {
+        ...parseHeaderLine(cutlerHeaderMatch[2]!, cutlerHeaderMatch[3]!),
+        leadingMapLot: cutlerHeaderMatch[1]!.trim(),
+        bodyLines: [],
+      };
+      continue;
+    }
+
     const headerMatch =
       trimmed.match(/^(\d{2,4})[\t ]+(.+)$/) ??
       trimmed.match(/^[\d,]+[\t ]+(\d{2,4})[\t ]+(.+)$/);
@@ -170,6 +189,12 @@ function segmentAccountBlocks(text: string): AccountBlock[] {
 
 function findMapLotsInBlock(block: AccountBlock): Array<{ raw: string; normalized: string; index: number }> {
   const lots: Array<{ raw: string; normalized: string; index: number }> = [];
+  if (block.leadingMapLot) {
+    const normalized = normalizeMapBkLot(block.leadingMapLot);
+    if (normalized) {
+      lots.push({ raw: block.leadingMapLot, normalized, index: -1 });
+    }
+  }
   for (let i = 0; i < block.bodyLines.length; i++) {
     const line = block.bodyLines[i]!;
     const match = line.match(MAP_LOT_LINE_RE);

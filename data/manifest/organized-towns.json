@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-26T15:43:40.812Z",
+  "updatedAt": "2026-07-26T20:53:05.847Z",
   "towns": [
     {
       "id": "addison",
@@ -8,17 +8,17 @@
       "geocode": "29010",
       "wave": "d2d",
       "tier": 2,
-      "status": "pending",
+      "status": "joined",
       "geometryParcelCount": 1419,
       "sources": {
         "assessorPageUrl": "https://addisonmaine.org/property-taxes-%26-maps",
-        "commitmentPdfUrl": null,
+        "commitmentPdfUrl": "https://img1.wsimg.com/blobby/go/c37fbb81-4fa6-4a11-81ae-0e342f96f7c9/downloads/26462ec2-5c6c-449f-affa-27410bec8e1c/2025%20Commitment%20Book.pdf?ver=1783441054203",
         "taxMapsUrl": "https://addisonmaine.org/property-taxes-%26-maps",
         "mapLotIndexUrl": null
       },
       "taxYear": 2025,
       "asOfDate": "2025-04-01",
-      "notes": null
+      "notes": "1306/1419 owner joins; 1072/1419 quality joins from commitment book."
     },
     {
       "id": "alexander",
@@ -62,7 +62,7 @@
       "geocode": "29050",
       "wave": "d2d",
       "tier": 2,
-      "status": "pending",
+      "status": "failed",
       "geometryParcelCount": 707,
       "sources": {
         "assessorPageUrl": null,
@@ -72,7 +72,7 @@
       },
       "taxYear": 2025,
       "asOfDate": "2025-04-01",
-      "notes": null
+      "notes": "No town website or public commitment book PDF."
     },
     {
       "id": "beddington",
@@ -116,17 +116,17 @@
       "geocode": "29090",
       "wave": "d2d",
       "tier": 1,
-      "status": "pending",
+      "status": "joined",
       "geometryParcelCount": 466,
       "sources": {
-        "assessorPageUrl": null,
-        "commitmentPdfUrl": null,
+        "assessorPageUrl": "https://charlotteme.org/property-tax/",
+        "commitmentPdfUrl": "https://charlotteme.org/wp-content/uploads/2025/03/RECommitmentBook2024.pdf",
         "taxMapsUrl": null,
         "mapLotIndexUrl": null
       },
       "taxYear": 2025,
       "asOfDate": "2025-04-01",
-      "notes": null
+      "notes": "412/466 owner joins; 360/466 quality joins from commitment book."
     },
     {
       "id": "cherryfield",
@@ -188,17 +188,17 @@
       "geocode": "29140",
       "wave": "d2d",
       "tier": 1,
-      "status": "pending",
+      "status": "joined",
       "geometryParcelCount": 370,
       "sources": {
-        "assessorPageUrl": null,
-        "commitmentPdfUrl": null,
+        "assessorPageUrl": "http://www.coopermaine.com/taxes-and-exemptions.html",
+        "commitmentPdfUrl": "http://www.coopermaine.com/uploads/5/3/1/6/53167845/cooper_2022_re_com_bk.pdf",
         "taxMapsUrl": null,
         "mapLotIndexUrl": null
       },
-      "taxYear": 2025,
-      "asOfDate": "2025-04-01",
-      "notes": null
+      "taxYear": 2022,
+      "asOfDate": "2022-04-01",
+      "notes": "289/370 owner joins; 244/370 quality joins from commitment book."
     },
     {
       "id": "crawford",
@@ -224,17 +224,17 @@
       "geocode": "29160",
       "wave": "d2d",
       "tier": 1,
-      "status": "pending",
+      "status": "joined",
       "geometryParcelCount": 624,
       "sources": {
-        "assessorPageUrl": null,
-        "commitmentPdfUrl": null,
+        "assessorPageUrl": "https://www.cutlermaine.gov/tax-assessments",
+        "commitmentPdfUrl": "https://static1.squarespace.com/static/59ef8d4acd39c3f296519473/t/697f7069a0afa94a2cd3b18c/1769959529505/Cutler+2025+CommitmentBook.pdf",
         "taxMapsUrl": null,
         "mapLotIndexUrl": null
       },
       "taxYear": 2025,
       "asOfDate": "2025-04-01",
-      "notes": null
+      "notes": "542/624 owner joins; 448/624 quality joins from commitment book."
     },
     {
       "id": "danforth",
@@ -476,17 +476,17 @@
       "geocode": "29310",
       "wave": "d2d",
       "tier": 1,
-      "status": "pending",
+      "status": "joined",
       "geometryParcelCount": 1692,
       "sources": {
-        "assessorPageUrl": null,
-        "commitmentPdfUrl": null,
-        "taxMapsUrl": null,
+        "assessorPageUrl": "https://www.milbridgemaine.org/taxes/commitment-book",
+        "commitmentPdfUrl": "https://drive.google.com/uc?id=1GjmNvy4ngWvKxoZK4hCU6SzyjnKDj6V4&export=download",
+        "taxMapsUrl": "https://www.milbridgemaine.org/taxes/tax-maps",
         "mapLotIndexUrl": null
       },
       "taxYear": 2025,
       "asOfDate": "2025-04-01",
-      "notes": null
+      "notes": "731/1692 owner joins; 600/1692 quality joins from commitment book."
     },
     {
       "id": "northfield",
@@ -512,17 +512,17 @@
       "geocode": "29350",
       "wave": "d2d",
       "tier": 1,
-      "status": "pending",
+      "status": "joined",
       "geometryParcelCount": 1006,
       "sources": {
-        "assessorPageUrl": null,
-        "commitmentPdfUrl": null,
-        "taxMapsUrl": null,
+        "assessorPageUrl": "http://www.pembrokemaine.org/htmlfiles/tax_maps.html",
+        "commitmentPdfUrl": "http://www.pembrokemaine.org/CommitmentBook25.pdf",
+        "taxMapsUrl": "http://www.pembrokemaine.org/Web/link_map.html",
         "mapLotIndexUrl": null
       },
       "taxYear": 2025,
       "asOfDate": "2025-04-01",
-      "notes": null
+      "notes": "879/1006 owner joins; 785/1006 quality joins from commitment book."
     },
     {
       "id": "perry",
@@ -530,17 +530,17 @@
       "geocode": "29360",
       "wave": "d2d",
       "tier": 1,
-      "status": "pending",
+      "status": "joined",
       "geometryParcelCount": 1006,
       "sources": {
-        "assessorPageUrl": null,
-        "commitmentPdfUrl": null,
+        "assessorPageUrl": "https://perrymaine.org/",
+        "commitmentPdfUrl": "https://perrymaine.org/wordpress/wp-content/uploads/2025/12/2025-Real-Estate-Tax-Commitment-Book.pdf",
         "taxMapsUrl": null,
         "mapLotIndexUrl": null
       },
       "taxYear": 2025,
       "asOfDate": "2025-04-01",
-      "notes": null
+      "notes": "852/1006 owner joins; 703/1006 quality joins from commitment book."
     },
     {
       "id": "princeton",
@@ -566,17 +566,17 @@
       "geocode": "29380",
       "wave": "d2d",
       "tier": 1,
-      "status": "pending",
+      "status": "joined",
       "geometryParcelCount": 607,
       "sources": {
-        "assessorPageUrl": null,
+        "assessorPageUrl": "https://townofrobbinston.org/wordpress/?page_id=180",
         "commitmentPdfUrl": null,
-        "taxMapsUrl": null,
-        "mapLotIndexUrl": null
+        "taxMapsUrl": "https://townofrobbinston.org/wordpress/?page_id=180",
+        "mapLotIndexUrl": "https://townofrobbinston.org/wordpress/?page_id=180"
       },
       "taxYear": 2025,
-      "asOfDate": "2025-04-01",
-      "notes": null
+      "asOfDate": "2025-02-11",
+      "notes": "582/607 owner joins from map/lot index + transfer overrides (2024/08 Transfers.pdf and 2025/09 24-25-Transfers.pdf); no commitment book; assessments null."
     },
     {
       "id": "roque-bluffs",

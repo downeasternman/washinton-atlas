@@ -51,10 +51,18 @@ export function buildOrganizedTaxLookups(
 ) {
   const byMapJoinKey = new Map<string, (typeof records)[number]>();
   for (const record of records) {
-    const key = record.mapJoinKey.toUpperCase();
-    const existing = byMapJoinKey.get(key);
-    if (!existing || record.parseConfidence > existing.parseConfidence) {
-      byMapJoinKey.set(key, record);
+    const geocode = record.mapJoinKey.split("|")[0] ?? "";
+    const keys = mapLotJoinCandidates(record.mapLot)
+      .map((lot) => organizedMapJoinKey(geocode, lot)?.toUpperCase() ?? "")
+      .filter(Boolean);
+    if (keys.length === 0) {
+      keys.push(record.mapJoinKey.toUpperCase());
+    }
+    for (const key of keys) {
+      const existing = byMapJoinKey.get(key);
+      if (!existing || record.parseConfidence > existing.parseConfidence) {
+        byMapJoinKey.set(key, record);
+      }
     }
   }
   return { byMapJoinKey };

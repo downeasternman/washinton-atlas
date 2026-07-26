@@ -10,7 +10,7 @@ import {
 } from "@/lib/tax/organized-join";
 import { sanitizeOwnerName } from "@/lib/tax/owner-normalize";
 import { isValidOwnerName } from "@/lib/tax/owner-validate";
-import { normalizeMapBkLot, organizedMapJoinKey } from "@/lib/tax/map-lot-normalize";
+import { normalizeMapBkLot, organizedMapJoinKey, mapLotJoinCandidates } from "@/lib/tax/map-lot-normalize";
 
 const fixture = (name: string) =>
   readFileSync(path.join(process.cwd(), "tests", "fixtures", name), "utf8");
@@ -24,12 +24,17 @@ const lubecSubtotal = fixture("lubec-block-subtotal-trap.txt");
 const lubecMoneySuffix = fixture("lubec-block-money-suffix.txt");
 const lubecStreetTrap = fixture("lubec-block-street-header-trap.txt");
 const eastportCapen = fixture("eastport-block-capen.txt");
+const cutlerAbrams = fixture("cutler-block-abrams.txt");
 
 describe("normalizeMapBkLot", () => {
   it("preserves padded map-lot segments", () => {
     expect(normalizeMapBkLot("004-067")).toBe("004-067");
     expect(normalizeMapBkLot("016-046")).toBe("016-046");
     expect(normalizeMapBkLot("002-006-000")).toBe("002-006");
+  });
+
+  it("pads short Cutler-style map-lot segments for joins", () => {
+    expect(mapLotJoinCandidates("06-15-0")).toContain("006-015-000");
   });
 });
 
@@ -105,6 +110,14 @@ describe("parseCommitmentText", () => {
     const row = rows.find((r) => r.mapLot === "H7-0B4-10A");
     expect(row?.ownerName).toMatch(/CAPEN AVENUE, LLC/i);
     expect(row?.assessedTotalValue).toBe("105800");
+  });
+
+  it("parses Cutler map-lot-first account headers", () => {
+    const rows = parseCommitmentText(cutlerAbrams, "29160", 2025);
+    const abrams = rows.find((r) => r.mapLot === "06-15-0");
+    expect(abrams?.ownerName?.toUpperCase()).toContain("ABRAMS");
+    expect(abrams?.assessedTotalValue).toBe("177892");
+    expect(abrams?.accountNumber).toBe("658");
   });
 });
 

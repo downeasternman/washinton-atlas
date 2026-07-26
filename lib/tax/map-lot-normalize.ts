@@ -21,6 +21,13 @@ export function normalizeMapBkLot(raw: string | null | undefined): string | null
   return normalized || null;
 }
 
+function padMapLotSegments(normalized: string): string | null {
+  const parts = normalized.split("-");
+  if (parts.length < 2 || parts.length > 4) return null;
+  if (!parts.every((part) => /^\d+$/.test(part))) return null;
+  return parts.map((part) => part.padStart(3, "0")).join("-");
+}
+
 const GIS_LOT_SUFFIX_RE =
   /-(?:00[A-Z]|UIL|UI2|UI3|UB|MHL|PAR|BOL|MH)(?:-\d+)?$/i;
 
@@ -32,6 +39,14 @@ export function mapLotJoinCandidates(mapLot: string | null | undefined): string[
   if (!normalized) return [];
 
   const candidates: string[] = [normalized];
+  const padded = padMapLotSegments(normalized);
+  if (padded) {
+    candidates.push(padded);
+    if (padded.split("-").length === 2) {
+      candidates.push(`${padded}-000`);
+    }
+  }
+
   let cur = normalized;
 
   while (GIS_LOT_SUFFIX_RE.test(cur)) {

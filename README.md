@@ -6,7 +6,7 @@ An interactive geographic atlas for **Washington County, Maine** — combining p
 
 **Repository:** [downeasternman/washinton-atlas](https://github.com/downeasternman/washinton-atlas)
 
-**Current version:** `0.0.5` — see [CHANGELOG.md](./CHANGELOG.md)
+**Current version:** `0.0.6` — see [CHANGELOG.md](./CHANGELOG.md)
 
 ## Screenshots
 
@@ -18,11 +18,11 @@ An interactive geographic atlas for **Washington County, Maine** — combining p
 
 A hybrid atlas and parcel research tool: explore the county like a map, then inspect ownership and tax attributes where public data is available. Municipal boundaries are a primary browse/filter. Place-name search is the primary jump path.
 
-**Current coverage (v0.0.5):**
+**Current coverage (v0.0.6):**
 
-- **17,742 parcels** with geometry on the map (5,396 unorganized territory + 12,346 organized across seven towns)
+- **24,932 parcels** with geometry on the map (5,396 unorganized territory + 19,536 organized across fifteen towns)
 - **UT tax joins:** 3,172 / 5,396 parcels with owner and assessed values from Maine Revenue Services 2025 valuation books
-- **Organized towns (7 joined):**
+- **Organized towns (15 joined):**
 
 | Town | Parcels | Owner joins | Quality joins (owner + assessment) |
 |------|---------|-------------|-------------------------------------|
@@ -33,6 +33,14 @@ A hybrid atlas and parcel research tool: explore the county like a map, then ins
 | Baileyville | 1,361 | 1,236 (90.8%) | 1,040 (76.4%) |
 | Jonesport | 1,579 | 1,227 (77.7%) | 1,028 (65.1%) |
 | Steuben | 1,605 | 1,321 (82.3%) | 1,145 (71.3%) |
+| Addison | 1,419 | 1,306 (92.0%) | 1,072 (75.5%) |
+| Charlotte | 466 | 412 (88.4%) | 360 (77.3%) |
+| Cooper | 370 | 289 (78.1%) | 244 (65.9%) |
+| Cutler | 624 | 542 (86.9%) | 448 (71.8%) |
+| Milbridge | 1,692 | 731 (43.2%) | 600 (35.5%) |
+| Pembroke | 1,006 | 879 (87.4%) | 785 (78.0%) |
+| Perry | 1,006 | 852 (84.7%) | 703 (69.9%) |
+| Robbinston | 607 | 582 (95.9%) | — (owner-only; assessments not published) |
 
 ## Data policy
 
@@ -58,7 +66,8 @@ Work proceeds in gated phases. Each phase stops for review before the next begin
 | **D2a** | Lubec organized-town pilot + remediation (parser v3) | Complete |
 | **D2c** | Calais, Eastport, Machias organized towns | Complete |
 | **D2b** | Baileyville, Jonesport, Steuben organized towns | Complete |
-| **D2d–f** | Remaining organized towns (town-by-town rollout) | Planned |
+| **D2d** | Addison, Charlotte, Cooper, Cutler, Milbridge, Pembroke, Perry, Robbinston (+ Beals failed) | Complete |
+| **D2e–f** | Remaining organized towns (town-by-town rollout) | Planned |
 | **E** | Coverage honesty, polish, tests | Planned |
 
 ## Stack (v1)
@@ -98,6 +107,8 @@ pnpm phase:d1         # UT tax ETL + parcel tiles (requires raw PDFs downloaded)
 pnpm phase:d2a        # Lubec organized-town pilot
 pnpm phase:d2c        # Calais, Eastport, Machias organized towns
 pnpm phase:d2b        # Baileyville, Jonesport, Steuben organized towns
+pnpm phase:d2d        # D2d commitment-book towns
+pnpm phase:d2d-robbinston  # Robbinston owner index + transfer PDFs
 ```
 
 > Tile builds use a Node geojson-vt → MBTiles → PMTiles pipeline (Windows-friendly). Shell wrappers live under `scripts/tiles/`.
@@ -122,6 +133,8 @@ pnpm phase:d2b        # Baileyville, Jonesport, Steuben organized towns
 | `pnpm phase:d2a` | Lubec commitment PDF → join → merge → tiles |
 | `pnpm phase:d2c` | Calais, Eastport, Machias commitment PDFs → join → merge → tiles |
 | `pnpm phase:d2b` | Baileyville, Jonesport, Steuben commitment PDFs → join → merge → tiles |
+| `pnpm phase:d2d` | D2d commitment-book towns → join → merge → tiles |
+| `pnpm phase:d2d-robbinston` | Robbinston owner index + transfer PDFs → join → merge → tiles |
 
 ## Data sources (high level)
 
@@ -132,7 +145,7 @@ pnpm phase:d2b        # Baileyville, Jonesport, Steuben organized towns
 | UT parcel geometry | Maine Revenue Services GIS | WAP + Day Block layers |
 | UT tax | MRS 2025 valuation books (PDF) | Map/lot index crosswalk |
 | Organized geometry | Maine GeoLibrary parcels | 34,881 features county-wide |
-| Organized tax | Municipal RE commitment PDFs | Seven towns joined; see `data/manifest/tax-sources.json` |
+| Organized tax | Municipal RE commitment PDFs + Robbinston owner index/transfers | Fifteen towns joined; see `data/manifest/tax-sources.json` |
 
 ## Out of scope for v1
 

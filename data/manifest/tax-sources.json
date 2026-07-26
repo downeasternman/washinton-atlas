@@ -133,6 +133,112 @@
       "joinMethod": "map_lot",
       "asOfDate": "2025-04-01",
       "notes": "2025 real estate commitment book."
+    },
+    {
+      "id": "org-milbridge-commitment-2025",
+      "territoryType": "organized",
+      "municipalityId": "milbridge",
+      "name": "Town of Milbridge — 2025 Real Estate Tax Commitment",
+      "urls": [
+        "https://drive.google.com/uc?id=1GjmNvy4ngWvKxoZK4hCU6SzyjnKDj6V4&export=download"
+      ],
+      "parserId": "mrs-commitment-book-v3",
+      "joinMethod": "map_lot",
+      "asOfDate": "2025-04-01",
+      "notes": "2025 real estate commitment book (Google Drive)."
+    },
+    {
+      "id": "org-perry-commitment-2025",
+      "territoryType": "organized",
+      "municipalityId": "perry",
+      "name": "Town of Perry — 2025 Real Estate Tax Commitment",
+      "urls": [
+        "https://perrymaine.org/wordpress/wp-content/uploads/2025/12/2025-Real-Estate-Tax-Commitment-Book.pdf"
+      ],
+      "parserId": "mrs-commitment-book-v3",
+      "joinMethod": "map_lot",
+      "asOfDate": "2025-04-01",
+      "notes": "2025 real estate commitment book."
+    },
+    {
+      "id": "org-pembroke-commitment-2025",
+      "territoryType": "organized",
+      "municipalityId": "pembroke",
+      "name": "Town of Pembroke — 2025 Real Estate Tax Commitment",
+      "urls": [
+        "http://www.pembrokemaine.org/CommitmentBook25.pdf"
+      ],
+      "parserId": "mrs-commitment-book-v3",
+      "joinMethod": "map_lot",
+      "asOfDate": "2025-04-01",
+      "notes": "2025 real estate commitment book."
+    },
+    {
+      "id": "org-cutler-commitment-2025",
+      "territoryType": "organized",
+      "municipalityId": "cutler",
+      "name": "Town of Cutler — 2025 Real Estate Tax Commitment",
+      "urls": [
+        "https://static1.squarespace.com/static/59ef8d4acd39c3f296519473/t/697f7069a0afa94a2cd3b18c/1769959529505/Cutler+2025+CommitmentBook.pdf"
+      ],
+      "parserId": "mrs-commitment-book-v3",
+      "joinMethod": "map_lot",
+      "asOfDate": "2025-04-01",
+      "notes": "2025 real estate commitment book; short map-lot segments padded for join."
+    },
+    {
+      "id": "org-addison-commitment-2025",
+      "territoryType": "organized",
+      "municipalityId": "addison",
+      "name": "Town of Addison — 2025 Real Estate Tax Commitment",
+      "urls": [
+        "https://img1.wsimg.com/blobby/go/c37fbb81-4fa6-4a11-81ae-0e342f96f7c9/downloads/26462ec2-5c6c-449f-affa-27410bec8e1c/2025%20Commitment%20Book.pdf?ver=1783441054203"
+      ],
+      "parserId": "mrs-commitment-book-v3",
+      "joinMethod": "map_lot",
+      "asOfDate": "2025-04-01",
+      "notes": "2025 real estate commitment book."
+    },
+    {
+      "id": "org-charlotte-commitment-2025",
+      "territoryType": "organized",
+      "municipalityId": "charlotte",
+      "name": "Town of Charlotte — 2025 Real Estate Tax Commitment",
+      "urls": [
+        "https://charlotteme.org/wp-content/uploads/2025/03/RECommitmentBook2024.pdf"
+      ],
+      "parserId": "mrs-commitment-book-v3",
+      "joinMethod": "map_lot",
+      "asOfDate": "2025-04-01",
+      "notes": "2024 commitment book posted as 2025 tax commitment."
+    },
+    {
+      "id": "org-cooper-commitment-2022",
+      "territoryType": "organized",
+      "municipalityId": "cooper",
+      "name": "Town of Cooper — 2022 Real Estate Tax Commitment",
+      "urls": [
+        "http://www.coopermaine.com/uploads/5/3/1/6/53167845/cooper_2022_re_com_bk.pdf"
+      ],
+      "parserId": "mrs-commitment-book-v3",
+      "joinMethod": "map_lot",
+      "asOfDate": "2022-04-01",
+      "notes": "2022 RE commitment book; newest commitment PDF on town site."
+    },
+    {
+      "id": "org-robbinston-owner-index-2025",
+      "territoryType": "organized",
+      "municipalityId": "robbinston",
+      "name": "Town of Robbinston — Map/Lot Owner Index + Transfers",
+      "urls": [
+        "https://townofrobbinston.org/wordpress/?page_id=180",
+        "https://townofrobbinston.org/wordpress/wp-content/uploads/2024/08/Transfers.pdf",
+        "https://townofrobbinston.org/wordpress/wp-content/uploads/2025/09/24-25-Transfers.pdf"
+      ],
+      "parserId": "robbinston-owner-index-v1",
+      "joinMethod": "map_lot",
+      "asOfDate": "2025-02-11",
+      "notes": "Owner-only; no commitment book; assessments null; transfers overlay both published PDFs (2024/08 and 24-25)."
     }
   ]
 }

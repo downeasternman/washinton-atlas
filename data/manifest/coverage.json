@@ -1,15 +1,16 @@
 {
   "version": 1,
   "description": "Per-municipality coverage status for parcel geometry, ownership, and tax data",
-  "updatedAt": "2026-07-26T18:29:55.903Z",
+  "updatedAt": "2026-07-26T21:14:01.466Z",
   "municipalities": {
     "addison": {
       "name": "Addison",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 1419,
+      "notes": "Organized town; tax from commitment book (1072/1419 joined).",
+      "taxParseRate": 0.755461592670895
     },
     "alexander": {
       "name": "Alexander",
@@ -21,11 +22,12 @@
     },
     "beals": {
       "name": "Beals",
-      "hasParcelGeometry": false,
+      "hasParcelGeometry": true,
       "hasOwnership": false,
       "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "parcelCount": 707,
+      "notes": "Organized parcel geometry available; commitment PDF not publicly obtainable.",
+      "taxParseRate": null
     },
     "beddington": {
       "name": "Beddington",
@@ -91,11 +93,12 @@
     },
     "charlotte": {
       "name": "Charlotte",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 466,
+      "notes": "Organized town; tax from commitment book (360/466 joined).",
+      "taxParseRate": 0.7725321888412017
     },
     "cherryfield": {
       "name": "Cherryfield",
@@ -132,11 +135,12 @@
     },
     "cooper": {
       "name": "Cooper",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 370,
+      "notes": "Organized town; tax from commitment book (244/370 joined).",
+      "taxParseRate": 0.6594594594594595
     },
     "crawford": {
       "name": "Crawford",
@@ -148,11 +152,12 @@
     },
     "cutler": {
       "name": "Cutler",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 624,
+      "notes": "Organized town; tax from commitment book (448/624 joined).",
+      "taxParseRate": 0.717948717948718
     },
     "danforth": {
       "name": "Danforth",
@@ -306,7 +311,7 @@
       "hasOwnership": true,
       "hasTaxAssessment": true,
       "parcelCount": 1579,
-      "notes": "Organized town; mrs-commitment-book-v3. 1227/1579 owner joins; 1028/1579 quality joins. 2025 RE commitment book.",
+      "notes": "Organized town; tax from commitment book (1028/1579 joined).",
       "taxParseRate": 0.6510449651678277
     },
     "kossuth-twp": {
@@ -380,11 +385,12 @@
     },
     "milbridge": {
       "name": "Milbridge",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 1692,
+      "notes": "Organized town; tax from commitment book (600/1692 joined).",
+      "taxParseRate": 0.3546099290780142
     },
     "northfield": {
       "name": "Northfield",
@@ -396,19 +402,21 @@
     },
     "pembroke": {
       "name": "Pembroke",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 1006,
+      "notes": "Organized town; tax from commitment book (785/1006 joined).",
+      "taxParseRate": 0.7803180914512923
     },
     "perry": {
       "name": "Perry",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 1006,
+      "notes": "Organized town; tax from commitment book (703/1006 joined).",
+      "taxParseRate": 0.6988071570576541
     },
     "pleasant-point": {
       "name": "Pleasant Point",
@@ -428,11 +436,12 @@
     },
     "robbinston": {
       "name": "Robbinston",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
       "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "parcelCount": 607,
+      "notes": "owner index + transfer overrides from 2024/08 and 24-25 PDFs (582/607 owner joins; assessments not published)",
+      "taxParseRate": 0
     },
     "roque-bluffs": {
       "name": "Roque Bluffs",
@@ -457,7 +466,7 @@
       "hasOwnership": true,
       "hasTaxAssessment": true,
       "parcelCount": 1605,
-      "notes": "Organized town; mrs-commitment-book-v3. 1321/1605 owner joins; 1145/1605 quality joins. 2025 RE commitment book.",
+      "notes": "Organized town; tax from commitment book (1145/1605 joined).",
       "taxParseRate": 0.7133956386292835
     },
     "t11-r3-nbpp": {
@@ -692,7 +701,7 @@
       "hasOwnership": true,
       "hasTaxAssessment": true,
       "parcelCount": 1361,
-      "notes": "Organized town; mrs-commitment-book-v3. 1236/1361 owner joins; 1040/1361 quality joins. 2024-25 RE commitment book.",
+      "notes": "Organized town; tax from commitment book (1040/1361 joined).",
       "taxParseRate": 0.7641440117560617
     }
   }

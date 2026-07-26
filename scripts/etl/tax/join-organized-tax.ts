@@ -90,7 +90,15 @@ async function main() {
   const lookups = buildOrganizedTaxLookups(taxForJoin);
   const joined = joinOrganizedTaxToGeometry(geometry, lookups);
 
-  const sourceId = `org-${townId}-commitment-${town.taxYear ?? "unknown"}`;
+  let sourceId = `org-${townId}-commitment-${town.taxYear ?? "unknown"}`;
+  try {
+    const batches = await readJson<Array<{ sourceId?: string }>>(
+      organizedBatchesJson(townId),
+    );
+    if (batches[0]?.sourceId) sourceId = batches[0].sourceId;
+  } catch {
+    // use default commitment source id
+  }
   const geomById = new Map(geometry.map((g) => [g.id, g]));
   let joinedCount = 0;
   let ownerJoinCount = 0;

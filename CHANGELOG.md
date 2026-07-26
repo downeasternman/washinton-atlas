@@ -7,6 +7,36 @@ and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
 ## [Unreleased]
 
+## [0.0.6] - 2026-07-26
+
+### Added
+
+- Phase D2d: Addison, Charlotte, Cooper, Cutler, Milbridge, Pembroke, and Perry organized-town tax joins from municipal commitment PDFs
+- Robbinston owner-only join from town map/lot index plus RETTD transfer PDF overrides (`phase:d2d-robbinston`)
+- Cutler map-lot-first commitment header support and padded join-key indexing
+- Robbinston map-lot normalizer, index/transfers parsers, and ownership merge with date-ranked overrides
+- `phase:d2d` and `phase:d2d-robbinston` ETL scripts; tax source entries for D2d towns including Robbinston
+
+### Changed
+
+- Organized parcel count on map: 19,536 across fifteen towns
+- Total atlas parcels: 24,932 (5,396 UT + 19,536 organized)
+- Addison: 1,306 / 1,419 owner joins; 1,072 quality joins
+- Charlotte: 412 / 466 owner joins; 360 quality joins
+- Cooper: 289 / 370 owner joins; 244 quality joins
+- Cutler: 542 / 624 owner joins; 448 quality joins
+- Milbridge: 731 / 1,692 owner joins; 600 quality joins
+- Pembroke: 879 / 1,006 owner joins; 785 quality joins
+- Perry: 852 / 1,006 owner joins; 703 quality joins
+- Robbinston: 582 / 607 owner joins; assessments not published
+
+### Notes
+
+- Beals remains failed (no public owner list or commitment PDF)
+- Robbinston uses owner index + 2024/08 and 24-25 transfer PDFs; no invented assessments
+- Milbridge map-lot join rate remains lower (possible `R##` vs GeoLibrary key mismatch)
+- D2e–f organized-town rollout continues
+
 ## [0.0.5] - 2026-07-26
 
 ### Added
