@@ -7,6 +7,36 @@ and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
 ## [Unreleased]
 
+## [0.0.7] - 2026-07-26
+
+### Added
+
+- Phase D2e: Alexander, Cherryfield, Columbia Falls, Machiasport, Marshfield, Wesley, and Whiting organized-town tax joins
+- Cherryfield R/U map-lot normalization and land-first commitment header parsing
+- Wesley letter-grid map-lot join candidates (e.g. `G-0210` → bare GeoLibrary keys)
+- `phase:d2e` ETL script; tax source entries for D2e joined towns
+- `docs/STATE-OF-PROJECT.md` review snapshot
+
+### Changed
+
+- Organized towns with ownership joins: 22
+- Total atlas parcels: 30,688 (5,396 UT + 25,292 organized)
+- Alexander: 509 / 840 owner joins; 446 quality joins
+- Cherryfield: 1,015 / 1,018 owner joins; 949 quality joins
+- Columbia Falls: 460 / 515 owner joins; 408 quality joins
+- Machiasport: 1,131 / 1,226 owner joins; 1,002 quality joins
+- Marshfield: 419 / 425 owner joins; 395 quality joins
+- Wesley: 593 / 828 owner joins; 574 quality joins
+- Whiting: 903 / 904 owner joins; 745 quality joins
+
+### Notes
+
+- D2e failed (no usable public text commitment PDF): Beddington, Columbia, Danforth, East Machias, Harrington, Jonesboro, Northfield, Princeton, Roque Bluffs
+- Beals remains failed from D2d
+- Cherryfield uses 2020 commitment book (newest public PDF); Marshfield uses 2024 text book (2025 image-only)
+- Wesley 2025 text commitment book; prior Drive 2024 PDF was image-only
+- D2f organized-town rollout continues
+
 ## [0.0.6] - 2026-07-26
 
 ### Added

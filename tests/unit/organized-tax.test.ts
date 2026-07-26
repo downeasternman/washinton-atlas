@@ -25,6 +25,7 @@ const lubecMoneySuffix = fixture("lubec-block-money-suffix.txt");
 const lubecStreetTrap = fixture("lubec-block-street-header-trap.txt");
 const eastportCapen = fixture("eastport-block-capen.txt");
 const cutlerAbrams = fixture("cutler-block-abrams.txt");
+const cherryfieldRu = fixture("cherryfield-block-ru-lots.txt");
 
 describe("normalizeMapBkLot", () => {
   it("preserves padded map-lot segments", () => {
@@ -35,6 +36,19 @@ describe("normalizeMapBkLot", () => {
 
   it("pads short Cutler-style map-lot segments for joins", () => {
     expect(mapLotJoinCandidates("06-15-0")).toContain("006-015-000");
+  });
+
+  it("normalizes Cherryfield R/U map-lots to GeoLibrary form", () => {
+    expect(normalizeMapBkLot("R01-003-002")).toBe("0R1-003-002");
+    expect(normalizeMapBkLot("U05-007")).toBe("0U5-007");
+    expect(normalizeMapBkLot("U16-017")).toBe("U16-017");
+    expect(mapLotJoinCandidates("R01-003-002")).toContain("0R1-003");
+  });
+
+  it("joins Wesley letter-grid and short numeric map-lots", () => {
+    expect(mapLotJoinCandidates("G-0210")).toContain("210");
+    expect(mapLotJoinCandidates("06-054")).toContain("006-054-000");
+    expect(mapLotJoinCandidates("08-021-A")).toContain("008-021-000");
   });
 });
 
@@ -118,6 +132,19 @@ describe("parseCommitmentText", () => {
     expect(abrams?.ownerName?.toUpperCase()).toContain("ABRAMS");
     expect(abrams?.assessedTotalValue).toBe("177892");
     expect(abrams?.accountNumber).toBe("658");
+  });
+
+  it("parses Cherryfield R/U map-lot lines", () => {
+    const rows = parseCommitmentText(cherryfieldRu, "29100", 2020);
+    expect(rows.length).toBeGreaterThanOrEqual(3);
+    const r01 = rows.find((r) => r.mapLot === "0R1-003-002");
+    const u16 = rows.find((r) => r.mapLot === "U16-017");
+    const u05 = rows.find((r) => r.mapLot === "0U5-007");
+    expect(r01?.ownerName?.toUpperCase()).toContain("AFFENITA");
+    expect(u16?.ownerName?.toUpperCase()).toContain("ALBEE");
+    expect(u05?.ownerName?.toUpperCase()).toContain("FOSTER");
+    expect(u16?.assessedTotalValue).toBe("98350");
+    expect(u05?.assessedTotalValue).toBe("74200");
   });
 });
 

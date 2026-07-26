@@ -6,7 +6,7 @@ An interactive geographic atlas for **Washington County, Maine** — combining p
 
 **Repository:** [downeasternman/washinton-atlas](https://github.com/downeasternman/washinton-atlas)
 
-**Current version:** `0.0.6` — see [CHANGELOG.md](./CHANGELOG.md)
+**Current version:** `0.0.7` — see [CHANGELOG.md](./CHANGELOG.md)
 
 ## Screenshots
 
@@ -18,11 +18,11 @@ An interactive geographic atlas for **Washington County, Maine** — combining p
 
 A hybrid atlas and parcel research tool: explore the county like a map, then inspect ownership and tax attributes where public data is available. Municipal boundaries are a primary browse/filter. Place-name search is the primary jump path.
 
-**Current coverage (v0.0.6):**
+**Current coverage (v0.0.7):**
 
-- **24,932 parcels** with geometry on the map (5,396 unorganized territory + 19,536 organized across fifteen towns)
+- **30,688 parcels** with geometry on the map (5,396 unorganized territory + 25,292 organized)
 - **UT tax joins:** 3,172 / 5,396 parcels with owner and assessed values from Maine Revenue Services 2025 valuation books
-- **Organized towns (15 joined):**
+- **Organized towns (22 joined):**
 
 | Town | Parcels | Owner joins | Quality joins (owner + assessment) |
 |------|---------|-------------|-------------------------------------|
@@ -41,6 +41,13 @@ A hybrid atlas and parcel research tool: explore the county like a map, then ins
 | Pembroke | 1,006 | 879 (87.4%) | 785 (78.0%) |
 | Perry | 1,006 | 852 (84.7%) | 703 (69.9%) |
 | Robbinston | 607 | 582 (95.9%) | — (owner-only; assessments not published) |
+| Alexander | 840 | 509 (60.6%) | 446 (53.1%) |
+| Cherryfield | 1,018 | 1,015 (99.7%) | 949 (93.2%) |
+| Columbia Falls | 515 | 460 (89.3%) | 408 (79.2%) |
+| Machiasport | 1,226 | 1,131 (92.3%) | 1,002 (81.7%) |
+| Marshfield | 425 | 419 (98.6%) | 395 (92.9%) |
+| Wesley | 828 | 593 (71.6%) | 574 (69.3%) |
+| Whiting | 904 | 903 (99.9%) | 745 (82.4%) |
 
 ## Data policy
 
@@ -67,7 +74,8 @@ Work proceeds in gated phases. Each phase stops for review before the next begin
 | **D2c** | Calais, Eastport, Machias organized towns | Complete |
 | **D2b** | Baileyville, Jonesport, Steuben organized towns | Complete |
 | **D2d** | Addison, Charlotte, Cooper, Cutler, Milbridge, Pembroke, Perry, Robbinston (+ Beals failed) | Complete |
-| **D2e–f** | Remaining organized towns (town-by-town rollout) | Planned |
+| **D2e** | Alexander, Cherryfield, Columbia Falls, Machiasport, Marshfield, Wesley, Whiting (+ 9 failed) | Complete |
+| **D2f** | Remaining organized towns (town-by-town rollout) | Planned |
 | **E** | Coverage honesty, polish, tests | Planned |
 
 ## Stack (v1)
@@ -135,6 +143,7 @@ pnpm phase:d2d-robbinston  # Robbinston owner index + transfer PDFs
 | `pnpm phase:d2b` | Baileyville, Jonesport, Steuben commitment PDFs → join → merge → tiles |
 | `pnpm phase:d2d` | D2d commitment-book towns → join → merge → tiles |
 | `pnpm phase:d2d-robbinston` | Robbinston owner index + transfer PDFs → join → merge → tiles |
+| `pnpm phase:d2e` | D2e commitment-book towns → join → merge → tiles |
 
 ## Data sources (high level)
 
@@ -145,7 +154,7 @@ pnpm phase:d2d-robbinston  # Robbinston owner index + transfer PDFs
 | UT parcel geometry | Maine Revenue Services GIS | WAP + Day Block layers |
 | UT tax | MRS 2025 valuation books (PDF) | Map/lot index crosswalk |
 | Organized geometry | Maine GeoLibrary parcels | 34,881 features county-wide |
-| Organized tax | Municipal RE commitment PDFs + Robbinston owner index/transfers | Fifteen towns joined; see `data/manifest/tax-sources.json` |
+| Organized tax | Municipal RE commitment PDFs + Robbinston owner index/transfers | Twenty-two towns joined; see `data/manifest/tax-sources.json` |
 
 ## Out of scope for v1
 

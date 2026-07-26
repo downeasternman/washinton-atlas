@@ -239,6 +239,97 @@
       "joinMethod": "map_lot",
       "asOfDate": "2025-02-11",
       "notes": "Owner-only; no commitment book; assessments null; transfers overlay both published PDFs (2024/08 and 24-25)."
+    },
+    {
+      "id": "org-alexander-commitment-2025",
+      "territoryType": "organized",
+      "municipalityId": "alexander",
+      "name": "Town of Alexander — 2025 Real Estate Tax Commitment",
+      "urls": [
+        "https://www.alexandermaine.com/uploads/7/8/5/4/78548468/2025_re_tax_commitment_book_by_name_-_portrait__1_.pdf"
+      ],
+      "parserId": "mrs-commitment-book-v3",
+      "joinMethod": "map_lot",
+      "asOfDate": "2025-04-01",
+      "notes": "2025 RE commitment book by name."
+    },
+    {
+      "id": "org-cherryfield-commitment-2020",
+      "territoryType": "organized",
+      "municipalityId": "cherryfield",
+      "name": "Town of Cherryfield — 2020 Real Estate Tax Commitment",
+      "urls": [
+        "http://www.cherryfieldmaine.us/wp-content/uploads/2020/11/RECommitmentBook-2020.pdf"
+      ],
+      "parserId": "mrs-commitment-book-v3",
+      "joinMethod": "map_lot",
+      "asOfDate": "2020-04-01",
+      "notes": "2020 RE commitment book; newest public PDF on town site."
+    },
+    {
+      "id": "org-columbia-falls-commitment-2026",
+      "territoryType": "organized",
+      "municipalityId": "columbia-falls",
+      "name": "Town of Columbia Falls — 2026 Real Estate Tax Commitment",
+      "urls": [
+        "https://img1.wsimg.com/blobby/go/c2ec5918-6266-4033-b272-434a7a214384/downloads/83372c25-291a-4618-859d-c099bc9cde80/CommitmentBook%202026%20by%20Map-Lot.pdf?ver=1784557449089"
+      ],
+      "parserId": "mrs-commitment-book-v3",
+      "joinMethod": "map_lot",
+      "asOfDate": "2025-04-01",
+      "notes": "2026 RE commitment book by map/lot."
+    },
+    {
+      "id": "org-machiasport-commitment-2025",
+      "territoryType": "organized",
+      "municipalityId": "machiasport",
+      "name": "Town of Machiasport — 2025 Real Estate Tax Commitment",
+      "urls": [
+        "https://machiasport.org/wp-content/uploads/2025/10/2025-RE-by-Map-lot.pdf"
+      ],
+      "parserId": "mrs-commitment-book-v3",
+      "joinMethod": "map_lot",
+      "asOfDate": "2025-04-01",
+      "notes": "2025 RE commitment book by map/lot."
+    },
+    {
+      "id": "org-marshfield-commitment-2024",
+      "territoryType": "organized",
+      "municipalityId": "marshfield",
+      "name": "Town of Marshfield — 2024 Real Estate Tax Commitment",
+      "urls": [
+        "https://www.marshfieldmaine.gov/_files/ugd/7f26f6_7c99452fd8604803b1440286c5ecc94f.pdf"
+      ],
+      "parserId": "mrs-commitment-book-v3",
+      "joinMethod": "map_lot",
+      "asOfDate": "2024-04-01",
+      "notes": "2025 RE PDF not text-extractable; using 2024 text commitment book."
+    },
+    {
+      "id": "org-whiting-commitment-2025",
+      "territoryType": "organized",
+      "municipalityId": "whiting",
+      "name": "Town of Whiting — 2025 Real Estate Tax Commitment",
+      "urls": [
+        "https://www.whitingmaine.com/wp-content/uploads/2025/10/2025CommitmentBook.pdf"
+      ],
+      "parserId": "mrs-commitment-book-v3",
+      "joinMethod": "map_lot",
+      "asOfDate": "2025-04-01",
+      "notes": "2025 RE commitment book."
+    },
+    {
+      "id": "org-wesley-commitment-2025",
+      "territoryType": "organized",
+      "municipalityId": "wesley",
+      "name": "Town of Wesley — 2025 Real Estate Tax Commitment",
+      "urls": [
+        "https://sites.google.com/site/wesleyevents/wesley-community-events"
+      ],
+      "parserId": "mrs-commitment-book-v3",
+      "joinMethod": "map_lot",
+      "asOfDate": "2025-10-13",
+      "notes": "2025 RE commitment book (text); letter-grid IDs join to bare GeoLibrary keys."
     }
   ]
 }

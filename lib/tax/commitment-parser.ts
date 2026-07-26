@@ -22,7 +22,7 @@ export interface ParsedCommitmentRow {
 }
 
 const MAP_LOT_LINE_RE =
-  /^\s*((?:\d{2,3}-\d{2,3}(?:-\d{2,3})?(?:-[A-Z][A-Z0-9-]*)?)|(?:\d{2}-\d{2}-\d{1,3}(?:-[A-Z])?)|(?:[A-Z]\d-0[A-Z]\d-[A-Z0-9]+(?:\/[A-Z0-9]+)?))\s*$/i;
+  /^\s*((?:\d{2,3}-\d{2,3}(?:-\d{2,3})?(?:-[A-Z][A-Z0-9-]*)?)|(?:\d{2}-\d{2,3}(?:-\d{1,3})?(?:-[A-Z])?)|(?:[RU]\d{1,2}-\d{1,3}(?:-\d{1,3})?(?:-[A-Z])?)|(?:[A-G]-\d{3,4}(?:-[A-Z0-9]+)?)|(?:[A-Z]\d-0[A-Z]\d-[A-Z0-9]+(?:\/[A-Z0-9]+)?)|(?:[A-G]-\d{3,4}(?:-[A-Z0-9]+)?(?:\+\d{2,4}(?:-[A-Z0-9]+)?)*)|(?:\d{2}-\d{2,3}(?:-\d{1,3})?(?:\+\d{1,3})+))\s*$/i;
 
 const CUTLER_HEADER_RE =
   /^(\d{2}-\d{2}-\d{1,3}(?:-[A-Z])?)\s+(\d{2,4})\s+(.+)$/i;
@@ -67,7 +67,7 @@ function parseMoneyToken(value: string): string | null {
 function isStreetOnly(text: string): boolean {
   const upper = text.toUpperCase();
   const hasStreet =
-    /\b(ROAD|RD|ST|STREET|LN|LANE|DRIVE|DR|AVE|COVE|WAY|AVENUE|CIRCLE|COURT|PLACE|TRAIL|BOULEVARD|ROUTE|POINT)\b/.test(
+    /\b(ROAD|RD|ST|STREET|LN|LANE|DRIVE|DR|AVE|COVE|WAY|AVENUE|CIRCLE|COURT|CT|PLACE|TRAIL|BOULEVARD|ROUTE|POINT|APT|APARTMENT)\b/.test(
       upper,
     );
   const hasPersonOrEntity = hasPersonOrEntitySignal(text);
@@ -115,7 +115,11 @@ function parseHeaderLine(accountNumber: string, rest: string): Omit<AccountBlock
 }
 
 function isTabValueRow(line: string): boolean {
-  return /^[\d,]+\s+[\d,]+\s+[\d,]+\s+[\d,]+\s*$/.test(line.trim());
+  const trimmed = line.trim();
+  return (
+    /^[\d,]+\s+[\d,]+\s+[\d,]+\s+[\d,]+\s*$/.test(trimmed) ||
+    /^[\d,]+\s+[\d,]+\s+[\d,]+\s*$/.test(trimmed)
+  );
 }
 
 function isMailOrAddressLine(line: string): boolean {
@@ -156,9 +160,41 @@ function segmentAccountBlocks(text: string): AccountBlock[] {
       continue;
     }
 
-    const headerMatch =
-      trimmed.match(/^(\d{2,4})[\t ]+(.+)$/) ??
-      trimmed.match(/^[\d,]+[\t ]+(\d{2,4})[\t ]+(.+)$/);
+    const landFirstMatch = trimmed.match(
+      /^(\d{1,3}(?:,\d{3})+)[\t ]+(\d{2,4})[\t ]+(.+)$/,
+    );
+    if (
+      landFirstMatch &&
+      isValidAccountHeader(landFirstMatch[2]!, landFirstMatch[3]!)
+    ) {
+      if (current) blocks.push(current);
+      const parsed = parseHeaderLine(landFirstMatch[2]!, landFirstMatch[3]!);
+      const leadingLand = cleanMoney(landFirstMatch[1]!);
+      // Land-first MRS layouts often trail building/exempt/assessment (3 money tokens).
+      const threeMoney = landFirstMatch[3]!.match(
+        /^(.+?)\s+([\d,]+)\s+([\d,]+)\s+([\d,]+)\s*$/,
+      );
+      if (threeMoney && !parsed.headerAssessment) {
+        current = {
+          ...parsed,
+          ownerRaw: threeMoney[1]!.trim(),
+          headerLand: leadingLand,
+          headerBuilding: cleanMoney(threeMoney[2]!),
+          headerExempt: cleanMoney(threeMoney[3]!),
+          headerAssessment: cleanMoney(threeMoney[4]!),
+          bodyLines: [],
+        };
+      } else {
+        current = {
+          ...parsed,
+          headerLand: parsed.headerLand ?? leadingLand,
+          bodyLines: [],
+        };
+      }
+      continue;
+    }
+
+    const headerMatch = trimmed.match(/^(\d{2,4})[\t ]+(.+)$/);
     if (headerMatch && isValidAccountHeader(headerMatch[1]!, headerMatch[2]!)) {
       if (current) blocks.push(current);
       current = {
@@ -187,36 +223,93 @@ function segmentAccountBlocks(text: string): AccountBlock[] {
   return blocks;
 }
 
+function expandCompoundMapLots(raw: string): string[] {
+  const cleaned = raw.trim().replace(/\++$/g, "");
+  if (!cleaned.includes("+")) return [cleaned];
+
+  const parts = cleaned.split("+").map((p) => p.trim()).filter(Boolean);
+  if (parts.length < 2) return [cleaned];
+
+  const first = parts[0]!;
+  const mapPrefix = first.includes("-")
+    ? first.slice(0, first.indexOf("-") + 1)
+    : "";
+
+  const expanded: string[] = [];
+  for (let i = 0; i < parts.length; i++) {
+    const part = parts[i]!;
+    if (i === 0 || part.includes("-") || /^[A-G]/i.test(part)) {
+      expanded.push(part);
+      continue;
+    }
+    // Bare lot continuation: 09-010+13 → 09-013; G-0211-9+10 → G-0211-10
+    if (mapPrefix && /^\d+[A-Z]?$/i.test(part)) {
+      if (/^[A-G]-\d+/i.test(first)) {
+        const base = first.match(/^([A-G]-\d{3,4})(?:-.*)?$/i);
+        expanded.push(base ? `${base[1]}-${part}` : `${mapPrefix}${part}`);
+      } else {
+        const map = first.split("-")[0];
+        expanded.push(`${map}-${part}`);
+      }
+      continue;
+    }
+    expanded.push(part);
+  }
+  return expanded.length > 0 ? expanded : [cleaned];
+}
+
 function findMapLotsInBlock(block: AccountBlock): Array<{ raw: string; normalized: string; index: number }> {
   const lots: Array<{ raw: string; normalized: string; index: number }> = [];
-  if (block.leadingMapLot) {
-    const normalized = normalizeMapBkLot(block.leadingMapLot);
-    if (normalized) {
-      lots.push({ raw: block.leadingMapLot, normalized, index: -1 });
+  const pushLot = (raw: string, index: number) => {
+    for (const piece of expandCompoundMapLots(raw)) {
+      const normalized = normalizeMapBkLot(piece);
+      if (!normalized) continue;
+      lots.push({ raw: piece, normalized, index });
     }
+  };
+
+  if (block.leadingMapLot) {
+    pushLot(block.leadingMapLot, -1);
   }
   for (let i = 0; i < block.bodyLines.length; i++) {
     const line = block.bodyLines[i]!;
     const match = line.match(MAP_LOT_LINE_RE);
     if (!match?.[1]) continue;
-    const normalized = normalizeMapBkLot(match[1]);
-    if (!normalized) continue;
-    lots.push({ raw: match[1], normalized, index: i });
+    pushLot(match[1], i);
   }
   return lots;
 }
 
-function extractTabValueRow(lines: string[]): LotValues | null {
+function extractTabValueRow(lines: string[], headerLand?: string | null): LotValues | null {
   for (const line of lines) {
     const trimmed = line.trim();
-    const tabMatch = trimmed.match(/^([\d,]+)\s+([\d,]+)\s+([\d,]+)\s+([\d,]+)\s*$/);
-    if (!tabMatch) continue;
-    const land = cleanMoney(tabMatch[1]);
-    const building = cleanMoney(tabMatch[2]);
-    const exempt = cleanMoney(tabMatch[3]);
-    const assessment = cleanMoney(tabMatch[4]);
-    if (isValidMoney(land) || isValidMoney(building) || isValidMoney(assessment)) {
-      return { land, building, exempt, assessment, source: "tab_row" };
+    const four = trimmed.match(/^([\d,]+)\s+([\d,]+)\s+([\d,]+)\s+([\d,]+)\s*$/);
+    if (four) {
+      const land = cleanMoney(four[1]);
+      const building = cleanMoney(four[2]);
+      const exempt = cleanMoney(four[3]);
+      const assessment = cleanMoney(four[4]);
+      if (isValidMoney(land) || isValidMoney(building) || isValidMoney(assessment)) {
+        return { land, building, exempt, assessment, source: "tab_row" };
+      }
+    }
+    // Land already on header; body has building / exempt / assessment.
+    if (headerLand) {
+      const three = trimmed.match(/^([\d,]+)\s+([\d,]+)\s+([\d,]+)\s*$/);
+      if (three) {
+        const building = cleanMoney(three[1]);
+        const exempt = cleanMoney(three[2]);
+        const assessment = cleanMoney(three[3]);
+        if (isValidMoney(assessment) || isValidMoney(building)) {
+          return {
+            land: headerLand,
+            building,
+            exempt,
+            assessment,
+            source: "tab_row_land_first",
+          };
+        }
+      }
     }
   }
   return null;
@@ -304,11 +397,11 @@ function extractLotValues(
     };
   }
 
-  const tab = extractTabValueRow(span);
+  const tab = extractTabValueRow(span, block.headerLand);
   if (tab) return tab;
 
   const preLotSpan = block.bodyLines.slice(0, start);
-  const preTab = extractTabValueRow(preLotSpan);
+  const preTab = extractTabValueRow(preLotSpan, block.headerLand);
   if (preTab) return preTab;
 
   const columnar = extractColumnarValues(span);

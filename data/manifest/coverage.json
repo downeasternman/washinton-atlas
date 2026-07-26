@@ -1,7 +1,7 @@
 {
   "version": 1,
   "description": "Per-municipality coverage status for parcel geometry, ownership, and tax data",
-  "updatedAt": "2026-07-26T21:14:01.466Z",
+  "updatedAt": "2026-07-26T22:31:20.577Z",
   "municipalities": {
     "addison": {
       "name": "Addison",
@@ -14,11 +14,12 @@
     },
     "alexander": {
       "name": "Alexander",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 840,
+      "notes": "Organized town; tax from commitment book (446/840 joined).",
+      "taxParseRate": 0.530952380952381
     },
     "beals": {
       "name": "Beals",
@@ -102,11 +103,12 @@
     },
     "cherryfield": {
       "name": "Cherryfield",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 1018,
+      "notes": "Organized town; tax from commitment book (949/1018 joined).",
+      "taxParseRate": 0.9322200392927309
     },
     "codyville-twp": {
       "name": "Codyville Twp",
@@ -127,11 +129,12 @@
     },
     "columbia-falls": {
       "name": "Columbia Falls",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 515,
+      "notes": "Organized town; tax from commitment book (408/515 joined).",
+      "taxParseRate": 0.7922330097087379
     },
     "cooper": {
       "name": "Cooper",
@@ -352,11 +355,12 @@
     },
     "machiasport": {
       "name": "Machiasport",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 1226,
+      "notes": "Organized town; tax from commitment book (1002/1226 joined).",
+      "taxParseRate": 0.8172920065252854
     },
     "marion-twp": {
       "name": "Marion Twp",
@@ -369,11 +373,12 @@
     },
     "marshfield": {
       "name": "Marshfield",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 425,
+      "notes": "Organized town; tax from commitment book (395/425 joined).",
+      "taxParseRate": 0.9294117647058824
     },
     "meddybemps": {
       "name": "Meddybemps",
@@ -664,19 +669,21 @@
     },
     "wesley": {
       "name": "Wesley",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 828,
+      "notes": "Organized town; tax from commitment book (574/828 joined).",
+      "taxParseRate": 0.6932367149758454
     },
     "whiting": {
       "name": "Whiting",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 904,
+      "notes": "Organized town; tax from commitment book (745/904 joined).",
+      "taxParseRate": 0.8241150442477876
     },
     "whitneyville": {
       "name": "Whitneyville",
