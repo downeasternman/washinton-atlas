@@ -6,9 +6,11 @@ import { getOrganizedTown } from "@/lib/tax/organized-municipalities";
 import {
   buildOrganizedTaxLookups,
   geometryOrganizedMapJoinKey,
+  hasValidOwner,
   joinOrganizedTaxToGeometry,
   type OrganizedGeometryStub,
 } from "@/lib/tax/organized-join";
+import { isValidAccountNumber } from "@/lib/tax/owner-validate";
 import type { ParsedCommitmentRow } from "@/lib/tax/commitment-parser";
 import { ensureDirs, readJson, writeJson } from "../paths";
 import { requireTownArg } from "./cli";
@@ -91,16 +93,22 @@ async function main() {
   const sourceId = `org-${townId}-commitment-${town.taxYear ?? "unknown"}`;
   const geomById = new Map(geometry.map((g) => [g.id, g]));
   let joinedCount = 0;
+  let ownerJoinCount = 0;
+  let qualityJoinCount = 0;
   const townParcels: JoinedParcel[] = joined.map((p) => {
     const geom = geomById.get(p.id);
-    const hasTax = p.taxRecordId != null && p.ownerName != null;
+    const hasOwner = p.taxRecordId != null && hasValidOwner({ ownerName: p.ownerName });
+    const hasTax =
+      hasOwner && p.assessedTotalValue != null;
+    if (hasOwner) ownerJoinCount++;
     if (hasTax) joinedCount++;
+    if (hasOwner && p.assessedTotalValue != null) qualityJoinCount++;
     return {
       id: p.id,
       sourceParcelId: p.sourceParcelId,
       municipalityId: p.municipalityId,
       taxMunicipalityId: p.municipalityId,
-      accountNumber: p.accountNumber,
+      accountNumber: isValidAccountNumber(p.accountNumber) ? p.accountNumber : null,
       propertyId: null,
       ownerName: p.ownerName,
       ownerNameNormalized: p.ownerName?.toLowerCase() ?? null,
@@ -116,9 +124,9 @@ async function main() {
       tpl: null,
       joinConfidence: p.joinConfidence,
       joinMethod: p.joinMethod,
-      taxSourceId: hasTax ? sourceId : null,
+      taxSourceId: hasOwner ? sourceId : null,
       geometrySourceId: "megis-organized-parcels",
-      sourceId: hasTax ? sourceId : "megis-organized-parcels",
+      sourceId: hasOwner ? sourceId : "megis-organized-parcels",
       attrsRaw: p.attrsRaw,
       updatedAt: new Date().toISOString(),
       territoryType: "organized",
@@ -139,6 +147,12 @@ async function main() {
   await writeJson(ORGANIZED_PARCELS_JOINED_JSON, mergedOrganized);
   console.log(
     `  ${town.name}: ${joinedCount}/${geometry.length} geometry parcels with tax (${((joinedCount / Math.max(geometry.length, 1)) * 100).toFixed(1)}%)`,
+  );
+  console.log(
+    `  Owner joins: ${ownerJoinCount}/${geometry.length} (${((ownerJoinCount / Math.max(geometry.length, 1)) * 100).toFixed(1)}%)`,
+  );
+  console.log(
+    `  Quality joins (owner + assessment): ${qualityJoinCount}/${geometry.length} (${((qualityJoinCount / Math.max(geometry.length, 1)) * 100).toFixed(1)}%)`,
   );
   console.log(`  wrote ${ORGANIZED_PARCELS_JOINED_JSON} (${mergedOrganized.length} organized total)`);
 

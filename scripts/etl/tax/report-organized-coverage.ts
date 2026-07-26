@@ -3,6 +3,7 @@
  */
 import path from "node:path";
 import { getOrganizedTown, loadOrganizedTownsManifest } from "@/lib/tax/organized-municipalities";
+import { isValidOwnerName, isValidMoney } from "@/lib/tax/owner-validate";
 import { readJson } from "../paths";
 import { parseTownArg } from "./cli";
 import {
@@ -10,6 +11,12 @@ import {
   ORGANIZED_PARCELS_JOINED_JSON,
   organizedTaxRecordsJson,
 } from "./paths";
+
+type TaxRecord = {
+  ownerName: string | null;
+  assessedTotalValue: string | null;
+  parseConfidence: number | null;
+};
 
 async function reportTown(townId: string) {
   const town = await getOrganizedTown(townId);
@@ -22,34 +29,67 @@ async function reportTown(townId: string) {
     (f) => String(f.properties?.municipalityId ?? "") === townId,
   ).length;
 
-  let taxCount = 0;
+  let taxRecords: TaxRecord[] = [];
   try {
-    const taxRecords = await readJson<unknown[]>(organizedTaxRecordsJson(townId));
-    taxCount = taxRecords.length;
+    taxRecords = await readJson<TaxRecord[]>(organizedTaxRecordsJson(townId));
   } catch {
-    taxCount = 0;
+    taxRecords = [];
   }
 
-  let joined = 0;
+  const parsedRows = taxRecords.length;
+  const validOwnerRows = taxRecords.filter((r) => isValidOwnerName(r.ownerName)).length;
+  const validAssessmentRows = taxRecords.filter((r) =>
+    isValidMoney(r.assessedTotalValue),
+  ).length;
+  const badOwnerRows = taxRecords.filter(
+    (r) => r.ownerName != null && !isValidOwnerName(r.ownerName),
+  ).length;
+
+  let ownerJoin = 0;
+  let dirtyOwner = 0;
   let total = 0;
   try {
     const parcels = await readJson<
-      Array<{ municipalityId: string; assessedTotalValue: string | null }>
+      Array<{
+        municipalityId: string;
+        assessedTotalValue: string | null;
+        ownerName: string | null;
+      }>
     >(ORGANIZED_PARCELS_JOINED_JSON);
     const townParcels = parcels.filter((p) => p.municipalityId === townId);
     total = townParcels.length;
     joined = townParcels.filter((p) => p.assessedTotalValue != null).length;
+    ownerJoin = townParcels.filter((p) => isValidOwnerName(p.ownerName)).length;
+    dirtyOwner = townParcels.filter(
+      (p) => p.ownerName != null && !isValidOwnerName(p.ownerName),
+    ).length;
+    qualityJoin = townParcels.filter(
+      (p) => isValidOwnerName(p.ownerName) && isValidMoney(p.assessedTotalValue),
+    ).length;
   } catch {
     joined = 0;
+    ownerJoin = 0;
+    dirtyOwner = 0;
+    qualityJoin = 0;
     total = 0;
   }
 
   const rate = geomCount > 0 ? (joined / geomCount) * 100 : 0;
+  const ownerRate = geomCount > 0 ? (ownerJoin / geomCount) * 100 : 0;
+  const qualityRate = geomCount > 0 ? (qualityJoin / geomCount) * 100 : 0;
   console.log(`\n=== ${town.name} (${townId}) ===`);
-  console.log(`  Geometry parcels:     ${geomCount}`);
-  console.log(`  Tax records (parsed):   ${taxCount}`);
-  console.log(`  Parcels with tax:     ${joined}`);
-  console.log(`  Join rate (tax/geom): ${rate.toFixed(1)}%`);
+  console.log(`  Geometry parcels:       ${geomCount}`);
+  console.log(`  Parsed tax rows:        ${parsedRows}`);
+  console.log(`  Valid owner rows:       ${validOwnerRows}`);
+  console.log(`  Valid assessment rows:  ${validAssessmentRows}`);
+  console.log(`  Bad owner rows (parse): ${badOwnerRows}`);
+  console.log(`  Owner joins (geometry): ${ownerJoin}`);
+  console.log(`  Dirty owner rows (geom):${dirtyOwner}`);
+  console.log(`  Parcels with tax:       ${joined}`);
+  console.log(`  Quality joins:          ${qualityJoin}`);
+  console.log(`  Owner rate:             ${ownerRate.toFixed(1)}%`);
+  console.log(`  Join rate (tax/geom):   ${rate.toFixed(1)}%`);
+  console.log(`  Quality rate:           ${qualityRate.toFixed(1)}%`);
 }
 
 async function main() {

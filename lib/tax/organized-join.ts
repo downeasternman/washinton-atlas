@@ -1,5 +1,16 @@
 import type { JoinMethod } from "./crosswalk";
-import { normalizeMapBkLot, organizedMapJoinKey } from "./map-lot-normalize";
+import { cleanOwnerForDisplay } from "./owner-normalize";
+import {
+  hasValidAssessment,
+  hasValidOwner,
+  isQualityTaxRecord,
+  isValidMoney,
+} from "./owner-validate";
+import {
+  mapLotJoinCandidates,
+  normalizeMapBkLot,
+  organizedMapJoinKey,
+} from "./map-lot-normalize";
 import type { ParsedCommitmentRow } from "./commitment-parser";
 
 export interface OrganizedGeometryStub {
@@ -33,14 +44,63 @@ export interface JoinedOrganizedParcel {
   attrsRaw: Record<string, unknown> | null;
 }
 
+export { hasValidOwner, hasValidAssessment, isQualityTaxRecord };
+
 export function buildOrganizedTaxLookups(
   records: Array<ParsedCommitmentRow & { id: string }>,
 ) {
   const byMapJoinKey = new Map<string, (typeof records)[number]>();
   for (const record of records) {
-    byMapJoinKey.set(record.mapJoinKey.toUpperCase(), record);
+    const key = record.mapJoinKey.toUpperCase();
+    const existing = byMapJoinKey.get(key);
+    if (!existing || record.parseConfidence > existing.parseConfidence) {
+      byMapJoinKey.set(key, record);
+    }
   }
   return { byMapJoinKey };
+}
+
+export function parentMapJoinKeys(geocode: string, mapLot: string | null): string[] {
+  const candidates = mapLotJoinCandidates(mapLot);
+  const exact = candidates[0];
+  return candidates
+    .slice(1)
+    .map((lot) => organizedMapJoinKey(geocode, lot)?.toUpperCase() ?? "")
+    .filter((key) => key && key !== organizedMapJoinKey(geocode, exact)?.toUpperCase());
+}
+
+function joinKeysForGeometry(geocode: string, mapBkLot: string | null): string[] {
+  return mapLotJoinCandidates(mapBkLot)
+    .map((lot) => organizedMapJoinKey(geocode, lot)?.toUpperCase() ?? "")
+    .filter(Boolean);
+}
+
+function lookupTaxRecord(
+  geocode: string,
+  mapBkLot: string | null,
+  lookups: ReturnType<typeof buildOrganizedTaxLookups>,
+): {
+  tax: (ParsedCommitmentRow & { id: string }) | undefined;
+  joinMethod: JoinMethod;
+  joinConfidence: number | null;
+} {
+  const keys = joinKeysForGeometry(geocode, mapBkLot);
+
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i]!;
+    const record = lookups.byMapJoinKey.get(key);
+    if (!record || !hasValidOwner(record)) continue;
+
+    const joinMethod: JoinMethod = i === 0 ? "map_lot" : "map_lot_parent";
+    const joinConfidence =
+      joinMethod === "map_lot_parent" && !hasValidAssessment(record)
+        ? 0.55
+        : record.parseConfidence;
+
+    return { tax: record, joinMethod, joinConfidence };
+  }
+
+  return { tax: undefined, joinMethod: "unjoined", joinConfidence: null };
 }
 
 export function joinOrganizedTaxToGeometry(
@@ -48,9 +108,16 @@ export function joinOrganizedTaxToGeometry(
   lookups: ReturnType<typeof buildOrganizedTaxLookups>,
 ): JoinedOrganizedParcel[] {
   return geometry.map((geom) => {
-    const key = geom.mapJoinKey?.toUpperCase() ?? "";
-    const tax = key ? lookups.byMapJoinKey.get(key) : undefined;
-    const joinMethod: JoinMethod = tax ? "map_lot" : "unjoined";
+    const { tax, joinMethod, joinConfidence } = lookupTaxRecord(
+      geom.geocode,
+      geom.mapBkLot,
+      lookups,
+    );
+    const ownerName = cleanOwnerForDisplay(tax?.ownerName ?? null);
+    const assessedTotalValue =
+      tax?.assessedTotalValue && isValidMoney(tax.assessedTotalValue)
+        ? tax.assessedTotalValue
+        : null;
 
     return {
       id: geom.id,
@@ -60,13 +127,13 @@ export function joinOrganizedTaxToGeometry(
       accountNumber: tax?.accountNumber ?? null,
       mapLot: geom.mapBkLot ? normalizeMapBkLot(geom.mapBkLot) : null,
       mapJoinKey: geom.mapJoinKey,
-      ownerName: tax?.ownerName ?? null,
+      ownerName,
       mailAddress: tax?.mailAddress ?? null,
       assessedLandValue: tax?.assessedLandValue ?? null,
       assessedBuildingValue: tax?.assessedBuildingValue ?? null,
-      assessedTotalValue: tax?.assessedTotalValue ?? null,
+      assessedTotalValue,
       taxYear: tax?.taxYear ?? null,
-      joinConfidence: tax ? tax.parseConfidence : null,
+      joinConfidence,
       joinMethod,
       taxRecordId: tax?.id ?? null,
       attrsRaw: tax?.attrsRaw ?? null,

@@ -2,6 +2,7 @@
 
 import type { ParcelWithSources } from "@/lib/types/parcel";
 import { CONFIDENCE_LABELS, scoreToLevel } from "@/lib/tax/confidence";
+import { isValidAccountNumber } from "@/lib/tax/owner-validate";
 import { SourceCitation } from "@/components/source/SourceCitation";
 
 type ParcelDetailPanelProps = {
@@ -81,7 +82,7 @@ export function ParcelDetailPanel({
               <dd className="font-mono text-xs">{parcel.tpl}</dd>
             </div>
           ) : null}
-          {parcel.accountNumber ? (
+          {parcel.accountNumber && isValidAccountNumber(parcel.accountNumber) ? (
             <div>
               <dt className="text-[var(--color-text-secondary)]">Account</dt>
               <dd className="font-mono text-xs">{parcel.accountNumber}</dd>
@@ -110,6 +111,13 @@ export function ParcelDetailPanel({
                 {parcel.taxYear ? ` (${parcel.taxYear})` : ""}
               </dd>
             </div>
+          ) : parcel.ownerName ? (
+            <div>
+              <dt className="text-[var(--color-text-secondary)]">Assessed total</dt>
+              <dd className="font-normal text-[var(--color-text-secondary)]">
+                Not available from tax source
+              </dd>
+            </div>
           ) : null}
           {parcel.assessedLandValue || parcel.assessedBuildingValue ? (
             <div className="grid grid-cols-2 gap-2">
@@ -136,12 +144,15 @@ export function ParcelDetailPanel({
         </dl>
       ) : null}
 
-      {parcel?.joinMethod && parcel.joinMethod !== "unjoined" && parcel.assessedTotalValue ? (
+      {parcel?.joinMethod && parcel.joinMethod !== "unjoined" && parcel.ownerName ? (
         <p className="mt-3 text-xs text-[var(--color-text-secondary)]">
-          {CONFIDENCE_LABELS[confidenceLevel]}
+          {parcel.assessedTotalValue ? CONFIDENCE_LABELS[confidenceLevel] : null}
           {parcel.joinMethod === "property_id" ? " · joined via property ID + map/lot index" : ""}
           {parcel.joinMethod === "map_lot" && parcel.territoryType === "organized"
             ? " · joined via map/lot"
+            : ""}
+          {parcel.joinMethod === "map_lot_parent"
+            ? " · tax record matched via parent map/lot"
             : ""}
         </p>
       ) : null}
@@ -155,9 +166,13 @@ export function ParcelDetailPanel({
         </p>
       ) : null}
 
-      {parcel ? (
+      {parcel?.taxSource && parcel.ownerName ? (
         <div className="mt-4 space-y-1 border-t border-[var(--color-border)] pt-3">
           <SourceCitation label="Tax / ownership" source={parcel.taxSource} />
+          <SourceCitation label="Parcel boundary" source={parcel.geometrySource} />
+        </div>
+      ) : parcel ? (
+        <div className="mt-4 space-y-1 border-t border-[var(--color-border)] pt-3">
           <SourceCitation label="Parcel boundary" source={parcel.geometrySource} />
         </div>
       ) : null}

@@ -98,17 +98,17 @@
       "geocode": "29070",
       "wave": "d2c",
       "tier": 1,
-      "status": "pending",
+      "status": "joined",
       "geometryParcelCount": 2771,
       "sources": {
         "assessorPageUrl": "https://calaismaine.org/departments/assessing/",
-        "commitmentPdfUrl": "https://calaismaine.org/departments/assessing/documents/",
+        "commitmentPdfUrl": "https://storage.googleapis.com/juniper-media-library/63/2025/09/RE%20COMMITMENT%20BOOK.pdf",
         "taxMapsUrl": "https://calaismaine.org/departments/assessing/documents/",
         "mapLotIndexUrl": null
       },
       "taxYear": 2025,
       "asOfDate": "2025-04-01",
-      "notes": null
+      "notes": "2251/2771 owner joins; 1875/2771 quality joins from 2025-26 RE commitment book."
     },
     {
       "id": "charlotte",
@@ -314,17 +314,17 @@
       "geocode": "29210",
       "wave": "d2c",
       "tier": 2,
-      "status": "pending",
+      "status": "joined",
       "geometryParcelCount": 1983,
       "sources": {
-        "assessorPageUrl": null,
-        "commitmentPdfUrl": null,
-        "taxMapsUrl": null,
+        "assessorPageUrl": "https://www.eastport-me.gov/221/Tax-Rate-and-Commitment-Books",
+        "commitmentPdfUrl": "https://www.eastport-me.gov/DocumentCenter/View/225/FY2023-Commitment-Book",
+        "taxMapsUrl": "https://www.eastport-me.gov/221/Tax-Rate-and-Commitment-Books",
         "mapLotIndexUrl": null
       },
-      "taxYear": 2025,
-      "asOfDate": "2025-04-01",
-      "notes": null
+      "taxYear": 2023,
+      "asOfDate": "2023-04-01",
+      "notes": "FY2023 commitment book is latest publicly posted. 1673/1983 owner joins; 1391/1983 quality joins. Grid map-lot IDs."
     },
     {
       "id": "harrington",
@@ -404,17 +404,17 @@
       "geocode": "29270",
       "wave": "d2c",
       "tier": 1,
-      "status": "pending",
+      "status": "joined",
       "geometryParcelCount": 1153,
       "sources": {
         "assessorPageUrl": "https://machiasme.gov/departments-staff/assessing-department/",
-        "commitmentPdfUrl": "https://machiasme.gov/departments-staff/assessing-department/",
+        "commitmentPdfUrl": "https://machiasme.gov/wp-content/uploads/2025-RE-Commitment-Book.pdf",
         "taxMapsUrl": "https://machiasme.gov/departments-staff/assessing-department/tax-maps/",
         "mapLotIndexUrl": null
       },
       "taxYear": 2025,
       "asOfDate": "2025-04-01",
-      "notes": null
+      "notes": "1031/1153 owner joins; 859/1153 quality joins from 2025 RE commitment book."
     },
     {
       "id": "machiasport",

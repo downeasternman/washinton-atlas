@@ -51,10 +51,49 @@
       "urls": [
         "https://lubecme.gov/wp-content/uploads/sites/32/2025/04/2024-real-estate-tax-commitment.pdf"
       ],
-      "parserId": "mrs-commitment-book-v1",
+      "parserId": "mrs-commitment-book-v3",
       "joinMethod": "map_lot",
       "asOfDate": "2024-04-01",
       "notes": "2024 real estate commitment book; 2025 PDF not text-extractable."
+    },
+    {
+      "id": "org-calais-commitment-2025",
+      "territoryType": "organized",
+      "municipalityId": "calais",
+      "name": "City of Calais — 2025-26 Real Estate Tax Commitment",
+      "urls": [
+        "https://storage.googleapis.com/juniper-media-library/63/2025/09/RE%20COMMITMENT%20BOOK.pdf"
+      ],
+      "parserId": "mrs-commitment-book-v3",
+      "joinMethod": "map_lot",
+      "asOfDate": "2025-04-01",
+      "notes": "2025-26 real estate commitment book."
+    },
+    {
+      "id": "org-machias-commitment-2025",
+      "territoryType": "organized",
+      "municipalityId": "machias",
+      "name": "Town of Machias — 2025 Real Estate Tax Commitment",
+      "urls": [
+        "https://machiasme.gov/wp-content/uploads/2025-RE-Commitment-Book.pdf"
+      ],
+      "parserId": "mrs-commitment-book-v3",
+      "joinMethod": "map_lot",
+      "asOfDate": "2025-04-01",
+      "notes": "2025 real estate commitment book."
+    },
+    {
+      "id": "org-eastport-commitment-2023",
+      "territoryType": "organized",
+      "municipalityId": "eastport",
+      "name": "City of Eastport — FY2023 Real Estate Tax Commitment",
+      "urls": [
+        "https://www.eastport-me.gov/DocumentCenter/View/225/FY2023-Commitment-Book"
+      ],
+      "parserId": "mrs-commitment-book-v3",
+      "joinMethod": "map_lot",
+      "asOfDate": "2023-04-01",
+      "notes": "FY2023 commitment book; grid map-lot IDs (e.g. I7-0B4-20). Newer books not yet posted."
     }
   ]
 }

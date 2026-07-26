@@ -7,6 +7,37 @@ and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
 ## [Unreleased]
 
+## [0.0.4] - 2026-07-26
+
+### Added
+
+- Phase D2a-REMEDIATION-2: commitment parser v3 (`mrs-commitment-book-v3`) with owner sanitization, street-name rejection, owner-only joins, and parent-lot fallback
+- Phase D2c: Calais, Eastport, and Machias organized-town tax joins from municipal commitment PDFs
+- Eastport grid map-lot ID support (e.g. `I7-0B4-20`) in commitment parser
+- Owner validation/normalization libs (`owner-validate.ts`, `owner-normalize.ts`, `commitment-preprocess.ts`)
+- Lubec and Eastport parser fixtures; expanded organized-tax unit tests (23 total)
+- `phase:d2c` ETL script; tax source entries for Calais, Eastport, and Machias
+
+### Changed
+
+- Lubec owner joins: 1,585 / 1,894 (83.7%); quality joins: 1,130 / 1,894 (59.7%)
+- Organized parcel count on map: 7,801 across four towns (Lubec, Calais, Eastport, Machias)
+- Total atlas parcels: 13,197 (5,396 UT + 7,801 organized)
+- Parcel detail panel: owner without assessment, parent-lot join note, hide invalid account numbers
+- Coverage and organized-towns manifests updated with v3 metrics per town
+
+### Fixed
+
+- Lubec false owners from money suffixes (`ARCS, ROBERT \t43,100`), street headers, and mail-line address traps
+- `map_lot_parent` join method missing from `Parcel` type (build failure)
+- Forward account-block parser regressions on split headers and homestead lines
+
+### Notes
+
+- Eastport uses FY2023 commitment book (latest publicly posted; grid lot IDs)
+- Calais and Machias use 2025 RE commitment books
+- D2b (Baileyville, Jonesport, Steuben) deferred; D2d–f rollout continues
+
 ## [0.0.3] - 2026-07-26
 
 ### Added

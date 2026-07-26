@@ -6,7 +6,7 @@ An interactive geographic atlas for **Washington County, Maine** — combining p
 
 **Repository:** [downeasternman/washinton-atlas](https://github.com/downeasternman/washinton-atlas)
 
-**Current version:** `0.0.3` — see [CHANGELOG.md](./CHANGELOG.md)
+**Current version:** `0.0.4` — see [CHANGELOG.md](./CHANGELOG.md)
 
 ## Screenshots
 
@@ -18,11 +18,18 @@ An interactive geographic atlas for **Washington County, Maine** — combining p
 
 A hybrid atlas and parcel research tool: explore the county like a map, then inspect ownership and tax attributes where public data is available. Municipal boundaries are a primary browse/filter. Place-name search is the primary jump path.
 
-**Current coverage (v0.0.3):**
+**Current coverage (v0.0.4):**
 
-- **7,290 parcels** with geometry on the map (5,396 unorganized territory + 1,894 Lubec organized)
+- **13,197 parcels** with geometry on the map (5,396 unorganized territory + 7,801 organized across four towns)
 - **UT tax joins:** 3,172 / 5,396 parcels with owner and assessed values from Maine Revenue Services 2025 valuation books
-- **Organized pilot (Lubec):** 1,054 / 1,894 parcels joined to the 2024 real estate tax commitment book
+- **Organized towns (Lubec, Calais, Eastport, Machias):**
+
+| Town | Parcels | Owner joins | Quality joins (owner + assessment) |
+|------|---------|-------------|-------------------------------------|
+| Lubec | 1,894 | 1,585 (83.7%) | 1,130 (59.7%) |
+| Calais | 2,771 | 2,251 (81.2%) | 1,875 (67.7%) |
+| Machias | 1,153 | 1,031 (89.4%) | 859 (74.5%) |
+| Eastport | 1,983 | 1,673 (84.4%) | 1,391 (70.1%) |
 
 ## Data policy
 
@@ -45,8 +52,9 @@ Work proceeds in gated phases. Each phase stops for review before the next begin
 | **C** | Municipality filter + place-name search | Complete |
 | **D1** | Unorganized territory tax/ownership ingestion | Complete |
 | **D2-SCAFFOLD** | Organized-town pipeline + statewide geometry download | Complete |
-| **D2a** | Lubec organized-town pilot | Complete |
-| **D2b–f** | Remaining organized towns (town-by-town rollout) | Planned |
+| **D2a** | Lubec organized-town pilot + remediation (parser v3) | Complete |
+| **D2c** | Calais, Eastport, Machias organized towns | Complete |
+| **D2b, D2d–f** | Remaining organized towns (town-by-town rollout) | Planned |
 | **E** | Coverage honesty, polish, tests | Planned |
 
 ## Stack (v1)
@@ -84,6 +92,7 @@ Phase B basemap tiles and parcel tiles are checked into `public/tiles/`. To rebu
 pnpm phase:b          # boundaries + basemap
 pnpm phase:d1         # UT tax ETL + parcel tiles (requires raw PDFs downloaded)
 pnpm phase:d2a        # Lubec organized-town pilot
+pnpm phase:d2c        # Calais, Eastport, Machias organized towns
 ```
 
 > Tile builds use a Node geojson-vt → MBTiles → PMTiles pipeline (Windows-friendly). Shell wrappers live under `scripts/tiles/`.
@@ -106,6 +115,7 @@ pnpm phase:d2a        # Lubec organized-town pilot
 | `pnpm phase:d1` | UT tax download, parse, join, merge, and parcel tiles |
 | `pnpm phase:d2-scaffold` | Download organized-town parcel geometry statewide |
 | `pnpm phase:d2a` | Lubec commitment PDF → join → merge → tiles |
+| `pnpm phase:d2c` | Calais, Eastport, Machias commitment PDFs → join → merge → tiles |
 
 ## Data sources (high level)
 
@@ -116,7 +126,7 @@ pnpm phase:d2a        # Lubec organized-town pilot
 | UT parcel geometry | Maine Revenue Services GIS | WAP + Day Block layers |
 | UT tax | MRS 2025 valuation books (PDF) | Map/lot index crosswalk |
 | Organized geometry | Maine GeoLibrary parcels | 34,881 features county-wide |
-| Organized tax (Lubec) | Town of Lubec 2024 RE commitment (PDF) | 2025 PDF not text-extractable |
+| Organized tax | Municipal RE commitment PDFs | Lubec 2024; Calais/Machias 2025; Eastport FY2023 (grid lot IDs) |
 
 ## Out of scope for v1
 

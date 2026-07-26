@@ -18,7 +18,13 @@ export interface Parcel {
   tpl: string | null;
   accountNumber: string | null;
   joinConfidence: number | null;
-  joinMethod: "map_lot" | "property_id" | "plat_crosswalk" | "unjoined" | null;
+  joinMethod:
+    | "map_lot"
+    | "map_lot_parent"
+    | "property_id"
+    | "plat_crosswalk"
+    | "unjoined"
+    | null;
   taxMunicipalityId: string | null;
   propertyId: string | null;
   taxSourceId: string | null;

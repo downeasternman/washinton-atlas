@@ -5,6 +5,7 @@ import type { ParsedUtTaxRow } from "./ut-parser";
 
 export type JoinMethod =
   | "map_lot"
+  | "map_lot_parent"
   | "property_id"
   | "plat_crosswalk"
   | "unjoined";

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "description": "Per-municipality coverage status for parcel geometry, ownership, and tax data",
-  "updatedAt": "2026-07-26T16:13:58.194Z",
+  "updatedAt": "2026-07-26T18:03:19.352Z",
   "municipalities": {
     "addison": {
       "name": "Addison",
@@ -64,11 +64,12 @@
     },
     "calais": {
       "name": "Calais",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 2771,
+      "notes": "Organized town; mrs-commitment-book-v3. 2251/2771 owner joins; 1875/2771 quality joins. 2025-26 RE commitment book.",
+      "taxParseRate": 0.6766510285095634
     },
     "cathance-twp": {
       "name": "Cathance Twp",
@@ -214,11 +215,12 @@
     },
     "eastport": {
       "name": "Eastport",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 1983,
+      "notes": "Organized town; mrs-commitment-book-v3. 1673/1983 owner joins; 1391/1983 quality joins. FY2023 commitment book; grid map-lot IDs.",
+      "taxParseRate": 0.7014624306606152
     },
     "edmunds-twp": {
       "name": "Edmunds Twp",
@@ -330,16 +332,17 @@
       "hasOwnership": true,
       "hasTaxAssessment": true,
       "parcelCount": 1894,
-      "notes": "Organized town; tax from commitment book (1054/1894 joined). GIS uses -000 lot padding; 2024 commitment book used (2025 PDF not text-extractable).",
-      "taxParseRate": 0.5564941921858501
+      "notes": "Organized town; tax from commitment book (1130/1894 joined). GIS uses -000 lot padding; 2024 commitment book used (2025 PDF not text-extractable).",
+      "taxParseRate": 0.5966209081309398
     },
     "machias": {
       "name": "Machias",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 1153,
+      "notes": "Organized town; mrs-commitment-book-v3. 1031/1153 owner joins; 859/1153 quality joins. 2025 RE commitment book.",
+      "taxParseRate": 0.7450130095403296
     },
     "machiasport": {
       "name": "Machiasport",

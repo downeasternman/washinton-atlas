@@ -60,7 +60,7 @@ async function main() {
       territoryType: "organized" as const,
       municipalityId: townId,
       sourceId,
-      parserId: "mrs-commitment-book-v1",
+      parserId: "mrs-commitment-book-v3",
       asOfDate: town.asOfDate,
       filePaths: [pdfPath],
       stats: {

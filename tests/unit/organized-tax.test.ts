@@ -6,13 +6,24 @@ import {
   buildOrganizedTaxLookups,
   joinOrganizedTaxToGeometry,
   organizedParcelId,
+  parentMapJoinKeys,
 } from "@/lib/tax/organized-join";
+import { sanitizeOwnerName } from "@/lib/tax/owner-normalize";
+import { isValidOwnerName } from "@/lib/tax/owner-validate";
 import { normalizeMapBkLot, organizedMapJoinKey } from "@/lib/tax/map-lot-normalize";
 
-const lubecSnippet = readFileSync(
-  path.join(process.cwd(), "tests", "fixtures", "lubec-commitment-snippet.txt"),
-  "utf8",
-);
+const fixture = (name: string) =>
+  readFileSync(path.join(process.cwd(), "tests", "fixtures", name), "utf8");
+
+const lubecSnippet = fixture("lubec-commitment-snippet.txt");
+const lubec015 = fixture("lubec-block-015-039.txt");
+const lubec002 = fixture("lubec-block-002-006.txt");
+const lubec026 = fixture("lubec-block-026-024.txt");
+const lubecHomestead = fixture("lubec-block-homestead-trap.txt");
+const lubecSubtotal = fixture("lubec-block-subtotal-trap.txt");
+const lubecMoneySuffix = fixture("lubec-block-money-suffix.txt");
+const lubecStreetTrap = fixture("lubec-block-street-header-trap.txt");
+const eastportCapen = fixture("eastport-block-capen.txt");
 
 describe("normalizeMapBkLot", () => {
   it("preserves padded map-lot segments", () => {
@@ -29,6 +40,79 @@ describe("parseCommitmentText", () => {
     expect(akerley?.ownerName?.toUpperCase()).toContain("AKERLEY");
     expect(akerley?.assessedTotalValue).toBe("94500");
     expect(akerley?.accountNumber).toBe("213");
+  });
+
+  it("parses 015-039 with LOVE AT FIRST LIGHT LLC (not subtotal values)", () => {
+    const rows = parseCommitmentText(lubec015, "29260", 2024);
+    const row = rows.find((r) => r.mapLot === "015-039");
+    expect(row?.ownerName).toMatch(/LOVE AT FIRST LIGHT LLC/i);
+    expect(row?.ownerName).not.toBe("62,500");
+    expect(row?.assessedLandValue).toBe("50300");
+    expect(row?.assessedBuildingValue).toBe("103700");
+    expect(row?.assessedTotalValue).toBe("154000");
+    expect(row?.accountNumber).toBe("860");
+  });
+
+  it("parses 002-006 with FERRITER (not COUNTY RD or Ferris values)", () => {
+    const rows = parseCommitmentText(lubec002, "29260", 2024);
+    const row = rows.find((r) => r.mapLot === "002-006");
+    expect(row?.ownerName?.toUpperCase()).toContain("FERRITER");
+    expect(row?.ownerName).not.toMatch(/COUNTY|RD/i);
+    expect(row?.assessedTotalValue).toBe("28400");
+    expect(row?.accountNumber).toBe("79");
+  });
+
+  it("parses 026-024 Ferris inline tab values", () => {
+    const rows = parseCommitmentText(lubec026, "29260", 2024);
+    const row = rows.find((r) => r.mapLot === "026-024");
+    expect(row?.ownerName?.toUpperCase()).toContain("FERRIS");
+    expect(row?.assessedTotalValue).toBe("112100");
+    expect(row?.accountNumber).toBe("1550");
+  });
+
+  it("rejects homestead and dollar owners", () => {
+    const rows = parseCommitmentText(lubecHomestead, "29260", 2024);
+    const row = rows.find((r) => r.mapLot === "005-001");
+    expect(row?.ownerName?.toUpperCase()).toContain("SMITH");
+    expect(isValidOwnerName("Homestead")).toBe(false);
+    expect(isValidOwnerName("62,500")).toBe(false);
+  });
+
+  it("ignores page subtotal fragments before 015-039", () => {
+    const rows = parseCommitmentText(lubecSubtotal, "29260", 2024);
+    const row = rows.find((r) => r.mapLot === "015-039");
+    expect(row?.ownerName).toMatch(/LOVE AT FIRST LIGHT LLC/i);
+    expect(row?.ownerName).not.toBe("62,500");
+  });
+
+  it("strips trailing land value from owner header", () => {
+    const rows = parseCommitmentText(lubecMoneySuffix, "29260", 2024);
+    const row = rows.find((r) => r.mapLot === "028-030");
+    expect(row?.ownerName).toBe("BOYCE, PETER C");
+    expect(row?.ownerName).not.toMatch(/155,600/);
+    expect(row?.assessedLandValue).toBe("155600");
+  });
+
+  it("does not use street lines as owners", () => {
+    const rows = parseCommitmentText(lubecStreetTrap, "29260", 2024);
+    const row = rows.find((r) => r.mapLot === "014-023");
+    expect(row?.ownerName).toMatch(/193 COUNTY ROAD LLC/i);
+    expect(row?.ownerName).not.toMatch(/BOSLEY AVENUE/i);
+  });
+
+  it("parses Eastport grid map-lot IDs", () => {
+    const rows = parseCommitmentText(eastportCapen, "29210", 2023);
+    const row = rows.find((r) => r.mapLot === "H7-0B4-10A");
+    expect(row?.ownerName).toMatch(/CAPEN AVENUE, LLC/i);
+    expect(row?.assessedTotalValue).toBe("105800");
+  });
+});
+
+describe("sanitizeOwnerName", () => {
+  it("removes tab-suffixed money from owner strings", () => {
+    const result = sanitizeOwnerName("ARCS, ROBERT \t43,100");
+    expect(result.name).toBe("ARCS, ROBERT");
+    expect(result.extractedLand).toBe("43100");
   });
 });
 
@@ -59,5 +143,47 @@ describe("joinOrganizedTaxToGeometry", () => {
 
     expect(joined[0]?.ownerName?.toUpperCase()).toContain("AKERLEY");
     expect(joined[0]?.joinMethod).toBe("map_lot");
+  });
+
+  it("falls back to parent map-lot key with owner only", () => {
+    const parentKey = organizedMapJoinKey("29260", "004-011")!;
+    const taxRows = [
+      {
+        id: "tax-1",
+        accountNumber: "100",
+        mapJoinKey: parentKey,
+        mapLot: "004-011",
+        ownerName: "PARENT OWNER LLC",
+        mailAddress: null,
+        assessedLandValue: null,
+        assessedBuildingValue: null,
+        assessedTotalValue: null,
+        taxYear: 2024,
+        parseConfidence: 0.3,
+        attrsRaw: {},
+      },
+    ];
+    const lookups = buildOrganizedTaxLookups(taxRows);
+    const childKey = organizedMapJoinKey("29260", "004-011-00A")!;
+    const joined = joinOrganizedTaxToGeometry(
+      [
+        {
+          id: "org-lubec-child",
+          municipalityId: "lubec",
+          municipalityName: "Lubec",
+          geocode: "29260",
+          mapBkLot: "004-011-00A",
+          mapJoinKey: childKey,
+          stateId: null,
+          propLoc: null,
+        },
+      ],
+      lookups,
+    );
+
+    expect(joined[0]?.joinMethod).toBe("map_lot_parent");
+    expect(joined[0]?.ownerName).toBe("PARENT OWNER LLC");
+    expect(joined[0]?.assessedTotalValue).toBeNull();
+    expect(parentMapJoinKeys("29260", "004-011-00A")).toContain(parentKey.toUpperCase());
   });
 });
