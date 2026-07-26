@@ -117,6 +117,8 @@ pnpm phase:d2c        # Calais, Eastport, Machias organized towns
 pnpm phase:d2b        # Baileyville, Jonesport, Steuben organized towns
 pnpm phase:d2d        # D2d commitment-book towns
 pnpm phase:d2d-robbinston  # Robbinston owner index + transfer PDFs
+pnpm phase:d2e-roque-bluffs  # Roque Bluffs commitment + tax-map catalog
+pnpm phase:d2f               # Whitneyville + county organized report
 ```
 
 > Tile builds use a Node geojson-vt → MBTiles → PMTiles pipeline (Windows-friendly). Shell wrappers live under `scripts/tiles/`.
@@ -144,6 +146,8 @@ pnpm phase:d2d-robbinston  # Robbinston owner index + transfer PDFs
 | `pnpm phase:d2d` | D2d commitment-book towns → join → merge → tiles |
 | `pnpm phase:d2d-robbinston` | Robbinston owner index + transfer PDFs → join → merge → tiles |
 | `pnpm phase:d2e` | D2e commitment-book towns → join → merge → tiles |
+| `pnpm phase:d2e-roque-bluffs` | Roque Bluffs commitment + tax-map catalog → join → merge → tiles |
+| `pnpm phase:d2f` | D2f Whitneyville commitment → join → merge → tiles + county report |
 
 ## Data sources (high level)
 
@@ -154,7 +158,7 @@ pnpm phase:d2d-robbinston  # Robbinston owner index + transfer PDFs
 | UT parcel geometry | Maine Revenue Services GIS | WAP + Day Block layers |
 | UT tax | MRS 2025 valuation books (PDF) | Map/lot index crosswalk |
 | Organized geometry | Maine GeoLibrary parcels | 34,881 features county-wide |
-| Organized tax | Municipal RE commitment PDFs + Robbinston owner index/transfers | Twenty-two towns joined; see `data/manifest/tax-sources.json` |
+| Organized tax | Municipal RE commitment PDFs + Robbinston owner index/transfers | Twenty-four towns joined; see `data/manifest/tax-sources.json` |
 
 ## Out of scope for v1
 

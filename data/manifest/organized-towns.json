@@ -206,7 +206,7 @@
       "geocode": "29150",
       "wave": "d2f",
       "tier": 3,
-      "status": "pending",
+      "status": "failed",
       "geometryParcelCount": 309,
       "sources": {
         "assessorPageUrl": null,
@@ -216,7 +216,7 @@
       },
       "taxYear": 2025,
       "asOfDate": "2025-04-01",
-      "notes": null
+      "notes": "No public commitment book PDF found; clerk/town office access only."
     },
     {
       "id": "cutler",
@@ -260,7 +260,7 @@
       "geocode": "29180",
       "wave": "d2f",
       "tier": 3,
-      "status": "pending",
+      "status": "failed",
       "geometryParcelCount": 177,
       "sources": {
         "assessorPageUrl": null,
@@ -270,7 +270,7 @@
       },
       "taxYear": 2025,
       "asOfDate": "2025-04-01",
-      "notes": null
+      "notes": "No public commitment book PDF found; clerk/town office access only."
     },
     {
       "id": "dennysville",
@@ -278,7 +278,7 @@
       "geocode": "29190",
       "wave": "d2f",
       "tier": 3,
-      "status": "pending",
+      "status": "failed",
       "geometryParcelCount": 244,
       "sources": {
         "assessorPageUrl": null,
@@ -288,7 +288,7 @@
       },
       "taxYear": 2025,
       "asOfDate": "2025-04-01",
-      "notes": null
+      "notes": "No public commitment book PDF found; clerk/town office access only."
     },
     {
       "id": "east-machias",
@@ -458,7 +458,7 @@
       "geocode": "29300",
       "wave": "d2f",
       "tier": 3,
-      "status": "pending",
+      "status": "failed",
       "geometryParcelCount": 185,
       "sources": {
         "assessorPageUrl": null,
@@ -468,7 +468,7 @@
       },
       "taxYear": 2025,
       "asOfDate": "2025-04-01",
-      "notes": null
+      "notes": "No public commitment book PDF found; clerk/town office access only."
     },
     {
       "id": "milbridge",
@@ -584,17 +584,17 @@
       "geocode": "29390",
       "wave": "d2e",
       "tier": 2,
-      "status": "failed",
+      "status": "joined",
       "geometryParcelCount": 623,
       "sources": {
-        "assessorPageUrl": null,
-        "commitmentPdfUrl": null,
-        "taxMapsUrl": null,
-        "mapLotIndexUrl": null
+        "assessorPageUrl": "https://roquebluffsmaine.us/assessors/",
+        "commitmentPdfUrl": "https://roquebluffsmaine.us/wp-content/uploads/2026/05/2025-Tax-Commitment-Book.pdf",
+        "taxMapsUrl": "https://roquebluffsmaine.us/assessors/",
+        "mapLotIndexUrl": "https://roquebluffsmaine.us/wp-content/uploads/2025/01/Tax-Map-Index.pdf"
       },
       "taxYear": 2025,
       "asOfDate": "2025-04-01",
-      "notes": "No public commitment book PDF found."
+      "notes": "514/623 owner joins; 491/623 quality joins from 2025 RE commitment book; tax map index + sheets 1–11 cataloged (image-only)."
     },
     {
       "id": "steuben",
@@ -620,7 +620,7 @@
       "geocode": "29420",
       "wave": "d2f",
       "tier": 3,
-      "status": "pending",
+      "status": "failed",
       "geometryParcelCount": 252,
       "sources": {
         "assessorPageUrl": null,
@@ -630,7 +630,7 @@
       },
       "taxYear": 2025,
       "asOfDate": "2025-04-01",
-      "notes": null
+      "notes": "No public commitment book PDF found; clerk/town office access only."
     },
     {
       "id": "vanceboro",
@@ -638,7 +638,7 @@
       "geocode": "29430",
       "wave": "d2f",
       "tier": 3,
-      "status": "pending",
+      "status": "failed",
       "geometryParcelCount": 233,
       "sources": {
         "assessorPageUrl": null,
@@ -648,7 +648,7 @@
       },
       "taxYear": 2025,
       "asOfDate": "2025-04-01",
-      "notes": null
+      "notes": "No public commitment book PDF found; clerk/town office access only."
     },
     {
       "id": "waite",
@@ -656,7 +656,7 @@
       "geocode": "29440",
       "wave": "d2f",
       "tier": 3,
-      "status": "pending",
+      "status": "failed",
       "geometryParcelCount": 140,
       "sources": {
         "assessorPageUrl": null,
@@ -666,7 +666,7 @@
       },
       "taxYear": 2025,
       "asOfDate": "2025-04-01",
-      "notes": null
+      "notes": "No public commitment book PDF found; clerk/town office access only."
     },
     {
       "id": "wesley",
@@ -710,17 +710,17 @@
       "geocode": "29470",
       "wave": "d2f",
       "tier": 3,
-      "status": "pending",
+      "status": "joined",
       "geometryParcelCount": 256,
       "sources": {
-        "assessorPageUrl": null,
-        "commitmentPdfUrl": null,
+        "assessorPageUrl": "https://sites.google.com/site/whitneyvilleinfo/boards-services",
+        "commitmentPdfUrl": "https://drive.google.com/uc?id=1K_ntBBi-G2JbSjuNZ3fXvw3rAhS9w2wK&export=download",
         "taxMapsUrl": null,
-        "mapLotIndexUrl": null
+        "mapLotIndexUrl": "https://drive.google.com/file/d/1cHWwU_wVX9gvfBgkwX35S4yxK3wLRwIa/view?usp=sharing"
       },
       "taxYear": 2025,
       "asOfDate": "2025-04-01",
-      "notes": null
+      "notes": "247/256 owner joins; 223/256 quality joins from 2025 RE commitment book (zero-column owner cleanup)."
     }
   ],
   "excluded": [

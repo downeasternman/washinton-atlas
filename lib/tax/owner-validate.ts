@@ -1,7 +1,9 @@
 const EXEMPTION_LABEL_RE = /homestead|veteran|vet-nme|exempt|post ww/i;
 const STREET_WORD_RE =
-  /\b(ROAD|RD|ST|STREET|LN|LANE|DRIVE|DR|AVE|COVE|HIGHWAY|HWY|WAY|AVENUE|CIRCLE|COURT|CT|PLACE|TRAIL|BOULEVARD|ROUTE|POINT|APT|APARTMENT)\b/i;
+  /\b(ROAD|RD|ST|STREET|LN|LANE|DRIVE|DR|AVE|COVE|HIGHWAY|HWY|WAY|AVENUE|CIRCLE|COURT|CT|PLACE|TRAIL|BOULEVARD|ROUTE|POINT|APT|APARTMENT|CAMINO|ESPLENDORA)\b/i;
 const ENTITY_RE = /\b(LLC|INC|TRUST|ESTATE|L\.L\.C\.|HEIRS|LTD|BANK|PLT)\b/i;
+const ADDRESS_FRAGMENT_RE = /^(?:NO\.|N\.|S\.|E\.|W\.|#)\s+/i;
+const TRAILING_ZERO_COLS_RE = /\s+0(?:\s+0)+\s*$/;
 
 export function isValidMoney(value: string | null | undefined): boolean {
   if (!value) return false;
@@ -15,6 +17,7 @@ export function hasPersonOrEntitySignal(name: string): boolean {
   if (/,/.test(name)) return true;
   if (ENTITY_RE.test(name)) return true;
   if (STREET_WORD_RE.test(name)) return false;
+  if (ADDRESS_FRAGMENT_RE.test(name)) return false;
 
   const tokens = name.split(/\s+/).filter(Boolean);
   if (tokens.length >= 2) {
@@ -31,6 +34,11 @@ export function isValidOwnerName(name: string | null | undefined): boolean {
   if (/^[\d,\.\s]+$/.test(trimmed)) return false;
   if (/[\t][\d,]/.test(trimmed)) return false;
   if (/\s[\d,]{3,}$/.test(trimmed)) return false;
+  if (TRAILING_ZERO_COLS_RE.test(trimmed)) return false;
+  if (ADDRESS_FRAGMENT_RE.test(trimmed)) return false;
+  if (/^\d+\s+[A-Z]/.test(trimmed) && !ENTITY_RE.test(trimmed) && !/,/.test(trimmed)) {
+    return false;
+  }
   if (EXEMPTION_LABEL_RE.test(trimmed)) return false;
   if (/\b(soft|mixed|hard|acres)\b/i.test(trimmed)) return false;
   if (STREET_WORD_RE.test(trimmed) && !hasPersonOrEntitySignal(trimmed)) return false;
@@ -41,7 +49,7 @@ export function isValidOwnerName(name: string | null | undefined): boolean {
 export function isValidAccountNumber(account: string | null | undefined): boolean {
   if (!account) return false;
   const trimmed = account.trim();
-  if (!/^\d{2,4}$/.test(trimmed)) return false;
+  if (!/^\d{1,4}$/.test(trimmed)) return false;
   if (trimmed === "0") return false;
   return true;
 }

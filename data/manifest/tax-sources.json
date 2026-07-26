@@ -330,6 +330,69 @@
       "joinMethod": "map_lot",
       "asOfDate": "2025-10-13",
       "notes": "2025 RE commitment book (text); letter-grid IDs join to bare GeoLibrary keys."
+    },
+    {
+      "id": "org-whitneyville-commitment-2025",
+      "territoryType": "organized",
+      "municipalityId": "whitneyville",
+      "name": "Town of Whitneyville — 2025 Real Estate Tax Commitment",
+      "urls": [
+        "https://drive.google.com/uc?id=1K_ntBBi-G2JbSjuNZ3fXvw3rAhS9w2wK&export=download"
+      ],
+      "parserId": "mrs-commitment-book-v3",
+      "joinMethod": "map_lot",
+      "asOfDate": "2025-04-01",
+      "notes": "2025 RE commitment book from Town of Whitneyville Google Sites / Drive."
+    },
+    {
+      "id": "org-roque-bluffs-commitment-2025",
+      "territoryType": "organized",
+      "municipalityId": "roque-bluffs",
+      "name": "Town of Roque Bluffs — 2025 Real Estate Tax Commitment",
+      "urls": [
+        "https://roquebluffsmaine.us/wp-content/uploads/2026/05/2025-Tax-Commitment-Book.pdf"
+      ],
+      "parserId": "mrs-commitment-book-v3",
+      "joinMethod": "map_lot",
+      "asOfDate": "2025-04-01",
+      "notes": "Primary. Fallback: 2024 Tax Commitment PDF if 2025 unavailable/non-text."
+    },
+    {
+      "id": "org-roque-bluffs-commitment-2024",
+      "territoryType": "organized",
+      "municipalityId": "roque-bluffs",
+      "name": "Town of Roque Bluffs — 2024 Real Estate Tax Commitment",
+      "urls": [
+        "https://roquebluffsmaine.us/wp-content/uploads/2025/02/2024-Tax-Commitment.pdf"
+      ],
+      "parserId": "mrs-commitment-book-v3",
+      "joinMethod": "map_lot",
+      "asOfDate": "2024-04-01",
+      "notes": "Fallback commitment book when 2025 download or text extract fails."
+    },
+    {
+      "id": "org-roque-bluffs-tax-maps-2025",
+      "territoryType": "organized",
+      "municipalityId": "roque-bluffs",
+      "name": "Town of Roque Bluffs — Tax Map Index and Sheets 1–11",
+      "urls": [
+        "https://roquebluffsmaine.us/wp-content/uploads/2025/01/Tax-Map-Index.pdf",
+        "https://roquebluffsmaine.us/wp-content/uploads/2025/01/Tax-Map-1.pdf",
+        "https://roquebluffsmaine.us/wp-content/uploads/2025/01/Tax-Map-2.pdf",
+        "https://roquebluffsmaine.us/wp-content/uploads/2025/01/Tax-Map-3.pdf",
+        "https://roquebluffsmaine.us/wp-content/uploads/2025/01/Tax-Map-4.pdf",
+        "https://roquebluffsmaine.us/wp-content/uploads/2025/01/Tax-Map-5.pdf",
+        "https://roquebluffsmaine.us/wp-content/uploads/2025/01/Tax-Map-6.pdf",
+        "https://roquebluffsmaine.us/wp-content/uploads/2025/01/Tax-Map-7.pdf",
+        "https://roquebluffsmaine.us/wp-content/uploads/2025/01/Tax-Map-8.pdf",
+        "https://roquebluffsmaine.us/wp-content/uploads/2025/01/Tax-Map-9.pdf",
+        "https://roquebluffsmaine.us/wp-content/uploads/2025/01/Tax-Map-10.pdf",
+        "https://roquebluffsmaine.us/wp-content/uploads/2025/01/Tax-Map-11.pdf"
+      ],
+      "parserId": "map-catalog-v1",
+      "joinMethod": "none",
+      "asOfDate": "2025-01-01",
+      "notes": "Visual tax maps/index; inventory only — not used for ownership joins."
     }
   ]
 }

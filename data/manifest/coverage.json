@@ -1,7 +1,7 @@
 {
   "version": 1,
   "description": "Per-municipality coverage status for parcel geometry, ownership, and tax data",
-  "updatedAt": "2026-07-26T22:31:20.577Z",
+  "updatedAt": "2026-07-26T23:32:12.933Z",
   "municipalities": {
     "addison": {
       "name": "Addison",
@@ -147,11 +147,11 @@
     },
     "crawford": {
       "name": "Crawford",
-      "hasParcelGeometry": false,
+      "hasParcelGeometry": true,
       "hasOwnership": false,
       "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "parcelCount": 309,
+      "notes": "Organized parcel geometry available; no public commitment book PDF (clerk/town office only)."
     },
     "cutler": {
       "name": "Cutler",
@@ -181,19 +181,19 @@
     },
     "deblois": {
       "name": "Deblois",
-      "hasParcelGeometry": false,
+      "hasParcelGeometry": true,
       "hasOwnership": false,
       "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "parcelCount": 177,
+      "notes": "Organized parcel geometry available; no public commitment book PDF (clerk/town office only)."
     },
     "dennysville": {
       "name": "Dennysville",
-      "hasParcelGeometry": false,
+      "hasParcelGeometry": true,
       "hasOwnership": false,
       "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "parcelCount": 244,
+      "notes": "Organized parcel geometry available; no public commitment book PDF (clerk/town office only)."
     },
     "devereaux-twp": {
       "name": "Devereaux Twp",
@@ -382,11 +382,11 @@
     },
     "meddybemps": {
       "name": "Meddybemps",
-      "hasParcelGeometry": false,
+      "hasParcelGeometry": true,
       "hasOwnership": false,
       "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "parcelCount": 185,
+      "notes": "Organized parcel geometry available; no public commitment book PDF (clerk/town office only)."
     },
     "milbridge": {
       "name": "Milbridge",
@@ -450,11 +450,12 @@
     },
     "roque-bluffs": {
       "name": "Roque Bluffs",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 623,
+      "notes": "Organized town; tax from commitment book (491/623 joined).",
+      "taxParseRate": 0.7881219903691814
     },
     "sakom-twp": {
       "name": "Sakom Twp",
@@ -628,11 +629,11 @@
     },
     "topsfield": {
       "name": "Topsfield",
-      "hasParcelGeometry": false,
+      "hasParcelGeometry": true,
       "hasOwnership": false,
       "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "parcelCount": 252,
+      "notes": "Organized parcel geometry available; no public commitment book PDF (clerk/town office only)."
     },
     "trescott-twp": {
       "name": "Trescott Twp",
@@ -645,19 +646,19 @@
     },
     "vanceboro": {
       "name": "Vanceboro",
-      "hasParcelGeometry": false,
+      "hasParcelGeometry": true,
       "hasOwnership": false,
       "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "parcelCount": 233,
+      "notes": "Organized parcel geometry available; no public commitment book PDF (clerk/town office only)."
     },
     "waite": {
       "name": "Waite",
-      "hasParcelGeometry": false,
+      "hasParcelGeometry": true,
       "hasOwnership": false,
       "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "parcelCount": 140,
+      "notes": "Organized parcel geometry available; no public commitment book PDF (clerk/town office only)."
     },
     "washington-county-island": {
       "name": "Washington County Island",
@@ -687,11 +688,12 @@
     },
     "whitneyville": {
       "name": "Whitneyville",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 256,
+      "notes": "Organized town; tax from commitment book (223/256 joined).",
+      "taxParseRate": 0.87109375
     },
     "baring-plt": {
       "name": "Baring Plt",

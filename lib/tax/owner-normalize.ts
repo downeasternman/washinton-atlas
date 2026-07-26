@@ -6,6 +6,9 @@ export interface SanitizedOwner {
 }
 
 const COLUMNAR_DEBRIS_RE = /\t(?:Soft|Mixed|Hard|Acres)\s*:/i;
+/** Trailing Trio zero columns: "NAME 0 0" or "NAME 0 0 16,300". */
+const ZERO_COLS_WITH_ASSESSMENT_RE = /^(.+?)\s+0(?:\s+0)+\s+([\d,]{3,})\s*$/;
+const TRAILING_ZERO_COLS_RE = /\s+0(?:\s+0)+\s*$/;
 
 function cleanMoneyToken(value: string): string | null {
   const cleaned = value.replace(/,/g, "").trim();
@@ -40,6 +43,13 @@ export function sanitizeOwnerName(raw: string | null | undefined): SanitizedOwne
     if (land && isValidMoney(land)) extractedLand = land;
   }
 
+  const zeroColsAssessment = text.match(ZERO_COLS_WITH_ASSESSMENT_RE);
+  if (zeroColsAssessment) {
+    text = zeroColsAssessment[1]!.trim();
+    const land = cleanMoneyToken(zeroColsAssessment[2]!);
+    if (land && isValidMoney(land)) extractedLand = land;
+  }
+
   const trailingMoney = text.match(/^(.+?)[\t ]+([\d,]{3,})\s*$/);
   if (trailingMoney) {
     text = trailingMoney[1]!.trim();
@@ -48,6 +58,7 @@ export function sanitizeOwnerName(raw: string | null | undefined): SanitizedOwne
   }
 
   text = text.replace(/[\t ]+[\d,]{3,}.*$/, "").trim();
+  text = text.replace(TRAILING_ZERO_COLS_RE, "").trim();
   text = text.replace(/\s+-\s*$/, "").trim();
 
   if (!isValidOwnerName(text)) {

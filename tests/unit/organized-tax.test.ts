@@ -146,6 +146,28 @@ describe("parseCommitmentText", () => {
     expect(u16?.assessedTotalValue).toBe("98350");
     expect(u05?.assessedTotalValue).toBe("74200");
   });
+
+  it("strips trailing zero land/building columns from Roque Bluffs headers", () => {
+    const rows = parseCommitmentText(fixture("roque-bluffs-block-zero-cols.txt"), "29390", 2025);
+    const ahern = rows.find((r) => r.mapLot === "10-138");
+    expect(ahern?.ownerName).toBe("AHERN, BRIAN");
+    expect(ahern?.ownerName).not.toMatch(/0 0/);
+    expect(ahern?.assessedTotalValue).toBe("74200");
+    const llc = rows.find((r) => r.mapLot === "06-016");
+    expect(llc?.ownerName).toBe("324 GREAT COVE ROAD LLC");
+    expect(llc?.assessedTotalValue).toBe("494100");
+    const ackerman = rows.find((r) => r.mapLot === "003-062");
+    expect(ackerman?.ownerName).toBe("ACKERMAN, ELISABETH");
+    expect(ackerman?.ownerName).not.toMatch(/0 0/);
+  });
+
+  it("does not use NO. CAMINO address fragments as Roque Bluffs owners", () => {
+    const rows = parseCommitmentText(fixture("roque-bluffs-block-street-trap.txt"), "29390", 2025);
+    const row = rows.find((r) => r.mapLot === "08-023");
+    expect(row?.ownerName?.toUpperCase()).toContain("ACETO");
+    expect(row?.ownerName).not.toMatch(/CAMINO/i);
+    expect(row?.assessedTotalValue).toBe("849400");
+  });
 });
 
 describe("sanitizeOwnerName", () => {
@@ -153,6 +175,17 @@ describe("sanitizeOwnerName", () => {
     const result = sanitizeOwnerName("ARCS, ROBERT \t43,100");
     expect(result.name).toBe("ARCS, ROBERT");
     expect(result.extractedLand).toBe("43100");
+  });
+
+  it("strips trailing zero columns from owner strings", () => {
+    expect(sanitizeOwnerName("AHERN, BRIAN 0 0").name).toBe("AHERN, BRIAN");
+    const withAssessment = sanitizeOwnerName("ACKERMAN, ELISABETH 0 0 16,300");
+    expect(withAssessment.name).toBe("ACKERMAN, ELISABETH");
+    expect(withAssessment.extractedLand).toBe("16300");
+  });
+
+  it("rejects address-fragment owners", () => {
+    expect(sanitizeOwnerName("NO. CAMINO").name).toBeNull();
   });
 });
 

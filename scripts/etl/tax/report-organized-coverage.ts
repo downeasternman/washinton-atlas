@@ -45,6 +45,8 @@ async function reportTown(townId: string) {
     (r) => r.ownerName != null && !isValidOwnerName(r.ownerName),
   ).length;
 
+  let joined = 0;
+  let qualityJoin = 0;
   let ownerJoin = 0;
   let dirtyOwner = 0;
   let total = 0;
@@ -104,6 +106,37 @@ async function main() {
   for (const town of manifest.towns) {
     await reportTown(town.id);
   }
+
+  const geojson = await readJson<GeoJSON.FeatureCollection>(ORGANIZED_PARCELS_GEOJSON);
+  const totalGeom = geojson.features.length;
+  let joinedLayerCount = 0;
+  let totalWithTax = 0;
+  let totalWithOwner = 0;
+  try {
+    const parcels = await readJson<
+      Array<{ assessedTotalValue: string | null; ownerName: string | null }>
+    >(ORGANIZED_PARCELS_JOINED_JSON);
+    joinedLayerCount = parcels.length;
+    totalWithTax = parcels.filter((p) => isValidMoney(p.assessedTotalValue)).length;
+    totalWithOwner = parcels.filter((p) => isValidOwnerName(p.ownerName)).length;
+  } catch {
+    joinedLayerCount = 0;
+    totalWithTax = 0;
+    totalWithOwner = 0;
+  }
+  const joinedTowns = manifest.towns.filter((t) => t.status === "joined").length;
+  const failedTowns = manifest.towns.filter((t) => t.status === "failed").length;
+  const pendingTowns = manifest.towns.filter((t) => t.status === "pending").length;
+  console.log("\n=== County organized summary ===");
+  console.log(`  Organized towns (manifest): ${manifest.towns.length}`);
+  console.log(`  Joined / failed / pending:  ${joinedTowns} / ${failedTowns} / ${pendingTowns}`);
+  console.log(`  Geometry parcels (GeoJSON): ${totalGeom}`);
+  console.log(`  Joined layer parcels:       ${joinedLayerCount}`);
+  console.log(`  Owner joins (joined layer): ${totalWithOwner}`);
+  console.log(`  Tax joins (joined layer):   ${totalWithTax}`);
+  console.log(
+    `  County tax join % (tax/geom): ${totalGeom > 0 ? ((totalWithTax / totalGeom) * 100).toFixed(1) : "0.0"}%`,
+  );
   console.log(`\nExcluded: ${manifest.excluded.map((e) => e.id).join(", ")}`);
 }
 

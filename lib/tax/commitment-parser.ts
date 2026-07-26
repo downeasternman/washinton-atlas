@@ -67,9 +67,9 @@ function parseMoneyToken(value: string): string | null {
 function isStreetOnly(text: string): boolean {
   const upper = text.toUpperCase();
   const hasStreet =
-    /\b(ROAD|RD|ST|STREET|LN|LANE|DRIVE|DR|AVE|COVE|WAY|AVENUE|CIRCLE|COURT|CT|PLACE|TRAIL|BOULEVARD|ROUTE|POINT|APT|APARTMENT)\b/.test(
+    /\b(ROAD|RD|ST|STREET|LN|LANE|DRIVE|DR|AVE|COVE|WAY|AVENUE|CIRCLE|COURT|CT|PLACE|TRAIL|BOULEVARD|ROUTE|POINT|APT|APARTMENT|CAMINO|ESPLENDORA)\b/.test(
       upper,
-    );
+    ) || /^(?:NO\.|N\.|S\.|E\.|W\.|#)\s+/i.test(text);
   const hasPersonOrEntity = hasPersonOrEntitySignal(text);
   return hasStreet && !hasPersonOrEntity;
 }
@@ -90,6 +90,9 @@ function isValidAccountHeader(_accountNumber: string, rest: string): boolean {
 function extractOwnerFromHeaderRest(rest: string): string | null {
   const inline = rest.match(/^(.+?)\s+([\d,]+)\s+([\d,]+)\s+([\d,]+)\s+([\d,]+)\s*$/);
   if (inline) return inline[1]!.trim() || null;
+  // Land/building/exempt often appear as "NAME 0 0 16,300" or "NAME 325,300 0 494,100".
+  const threeMoney = rest.match(/^(.+?)\s+([\d,]+)\s+([\d,]+)\s+([\d,]+)\s*$/);
+  if (threeMoney) return threeMoney[1]!.trim() || null;
   const moneyIdx = rest.search(/\s[\d,]{3,}\s+[\d,]/);
   if (moneyIdx > 0) return rest.slice(0, moneyIdx).trim() || null;
   const singleTrailing = rest.match(/^(.+?)[\t ]+([\d,]{3,})\s*$/);
@@ -161,7 +164,7 @@ function segmentAccountBlocks(text: string): AccountBlock[] {
     }
 
     const landFirstMatch = trimmed.match(
-      /^(\d{1,3}(?:,\d{3})+)[\t ]+(\d{2,4})[\t ]+(.+)$/,
+      /^(\d{1,3}(?:,\d{3})+)[\t ]+(\d{1,4})[\t ]+(.+)$/,
     );
     if (
       landFirstMatch &&
@@ -194,7 +197,7 @@ function segmentAccountBlocks(text: string): AccountBlock[] {
       continue;
     }
 
-    const headerMatch = trimmed.match(/^(\d{2,4})[\t ]+(.+)$/);
+    const headerMatch = trimmed.match(/^(\d{1,4})[\t ]+(.+)$/);
     if (headerMatch && isValidAccountHeader(headerMatch[1]!, headerMatch[2]!)) {
       if (current) blocks.push(current);
       current = {
@@ -433,10 +436,24 @@ function resolveBlockOwner(block: AccountBlock): {
   extractedLand: string | null;
 } {
   const fromHeader = sanitizeOwnerName(block.headerRest);
-  if (fromHeader.name) return { ownerName: fromHeader.name, extractedLand: fromHeader.extractedLand };
+
+  if (block.ownerRaw) {
+    const fromOwnerRaw = sanitizeOwnerName(block.ownerRaw);
+    if (fromOwnerRaw.name) {
+      return {
+        ownerName: fromOwnerRaw.name,
+        extractedLand: fromOwnerRaw.extractedLand ?? fromHeader.extractedLand,
+      };
+    }
+  }
+
+  if (fromHeader.name) {
+    return { ownerName: fromHeader.name, extractedLand: fromHeader.extractedLand };
+  }
 
   for (const line of block.mailLines) {
     if (!isOwnerCandidateLine(line)) continue;
+    if (isStreetOnly(line)) continue;
     const sanitized = sanitizeOwnerName(line);
     if (sanitized.name) {
       return { ownerName: sanitized.name, extractedLand: sanitized.extractedLand };

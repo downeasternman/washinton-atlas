@@ -7,6 +7,29 @@ and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
 ## [Unreleased]
 
+## [0.0.8] - 2026-07-26
+
+### Added
+
+- Phase D2f: Whitneyville commitment join; remaining D2f towns marked failed (clerk/office-only)
+- Roque Bluffs remediation: 2025 commitment join + 2024 fallback download; tax map index + sheets 1–11 catalog
+- `phase:d2f` and `phase:d2e-roque-bluffs` ETL scripts
+- Commitment owner cleanup for trailing `0 0` columns and address-fragment false owners
+
+### Changed
+
+- Organized towns with ownership joins: 24
+- Total atlas parcels: 31,567 (5,396 UT + 26,171 organized)
+- Roque Bluffs: 514 / 623 owner joins; 491 quality joins
+- Whitneyville: 247 / 256 owner joins; 223 quality joins (after cleanup)
+
+### Notes
+
+- D2f failed (no public commitment PDF): Crawford, Deblois, Dennysville, Meddybemps, Topsfield, Vanceboro, Waite
+- Roque Bluffs tax maps are image-only; cataloged, not used for ownership
+- Still failed from earlier waves: Beals, Beddington, Columbia, Danforth, East Machias, Harrington, Jonesboro, Northfield, Princeton
+- Phase E remains next gate
+
 ## [0.0.7] - 2026-07-26
 
 ### Added
