@@ -6,19 +6,32 @@ An interactive geographic atlas for **Washington County, Maine** — combining p
 
 **Repository:** [downeasternman/washinton-atlas](https://github.com/downeasternman/washinton-atlas)
 
-**Current version:** `0.0.2` — see [CHANGELOG.md](./CHANGELOG.md)
+**Current version:** `0.0.3` — see [CHANGELOG.md](./CHANGELOG.md)
+
+## Screenshots
+
+| County overview | Place search | Parcel detail |
+|-----------------|--------------|---------------|
+| ![Washington County map overview](./docs/screenshots/map-overview.png) | ![Place-name search](./docs/screenshots/place-search.png) | ![Parcel detail panel with tax data](./docs/screenshots/parcel-detail.png) |
 
 ## What this is
 
 A hybrid atlas and parcel research tool: explore the county like a map, then inspect ownership and tax attributes where public data is available. Municipal boundaries are a primary browse/filter. Place-name search is the primary jump path.
+
+**Current coverage (v0.0.3):**
+
+- **7,290 parcels** with geometry on the map (5,396 unorganized territory + 1,894 Lubec organized)
+- **UT tax joins:** 3,172 / 5,396 parcels with owner and assessed values from Maine Revenue Services 2025 valuation books
+- **Organized pilot (Lubec):** 1,054 / 1,894 parcels joined to the 2024 real estate tax commitment book
 
 ## Data policy
 
 - Only **publicly obtainable, no-cost** sources are used.
 - Every dataset displays **source name** and **as-of date**.
 - Tax/ownership data comes from:
-  - **Unorganized territories (UT):** state-published PDFs (Phase D1)
-  - **Organized towns/cities:** local municipal websites and PDFs (Phase D2)
+  - **Unorganized territories (UT):** Maine Revenue Services state PDFs (Phase D1)
+  - **Organized towns/cities:** local municipal commitment PDFs and Maine GeoLibrary parcel geometry (Phase D2)
+- Parsed tax values are never invented — null on parse or join failure.
 - Regulatory overlays (flood, wetlands, soils, zoning) are informational only when added later.
 
 ## Development gates
@@ -28,18 +41,21 @@ Work proceeds in gated phases. Each phase stops for review before the next begin
 | Phase | Scope | Status |
 |-------|-------|--------|
 | **A** | Scaffold — app shell, map stub, schema stubs | Complete |
-| **B** | Boundaries & basemap tiles — accurate, polished county map | Gate B review |
-| **C** | Municipality filter + place-name search | Planned |
-| **D1** | Unorganized territory tax/ownership ingestion | Planned |
-| **D2** | Organized town tax/ownership ingestion | Planned |
+| **B** | Boundaries & basemap tiles — accurate, polished county map | Complete |
+| **C** | Municipality filter + place-name search | Complete |
+| **D1** | Unorganized territory tax/ownership ingestion | Complete |
+| **D2-SCAFFOLD** | Organized-town pipeline + statewide geometry download | Complete |
+| **D2a** | Lubec organized-town pilot | Complete |
+| **D2b–f** | Remaining organized towns (town-by-town rollout) | Planned |
 | **E** | Coverage honesty, polish, tests | Planned |
 
 ## Stack (v1)
 
 - Next.js (App Router) + TypeScript + React
-- Tailwind CSS
-- MapLibre GL + react-map-gl
-- PostgreSQL + PostGIS + Drizzle ORM
+- Tailwind CSS v4
+- MapLibre GL v5 + react-map-gl
+- PMTiles for vector tiles
+- PostgreSQL + PostGIS + Drizzle ORM (schema stubs; file-backed data in early phases)
 - pnpm
 
 ## Getting started
@@ -48,7 +64,7 @@ Work proceeds in gated phases. Each phase stops for review before the next begin
 
 - Node.js 20+
 - pnpm 10+
-- PostgreSQL 16 + PostGIS 3 (required from Phase C/D onward for search & tax)
+- PostgreSQL 16 + PostGIS 3 (optional in early phases; required for full search & tax persistence later)
 - Optional: `tools/pmtiles-bin/pmtiles.exe` (go-pmtiles) for rebuilding tiles
 
 ### Setup
@@ -62,10 +78,12 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-Phase B basemap tiles are checked into `public/tiles/`. To rebuild them:
+Phase B basemap tiles and parcel tiles are checked into `public/tiles/`. To rebuild them:
 
 ```bash
-pnpm phase:b
+pnpm phase:b          # boundaries + basemap
+pnpm phase:d1         # UT tax ETL + parcel tiles (requires raw PDFs downloaded)
+pnpm phase:d2a        # Lubec organized-town pilot
 ```
 
 > Tile builds use a Node geojson-vt → MBTiles → PMTiles pipeline (Windows-friendly). Shell wrappers live under `scripts/tiles/`.
@@ -84,6 +102,21 @@ pnpm phase:b
 | `pnpm etl:osm` | Download county-clipped OSM (roads, water, places) |
 | `pnpm tiles:all` | Build `public/tiles/{basemap,boundaries}.pmtiles` |
 | `pnpm phase:b` | Run full Phase B ETL + tile pipeline |
+| `pnpm phase:c` | Normalize place-name search index |
+| `pnpm phase:d1` | UT tax download, parse, join, merge, and parcel tiles |
+| `pnpm phase:d2-scaffold` | Download organized-town parcel geometry statewide |
+| `pnpm phase:d2a` | Lubec commitment PDF → join → merge → tiles |
+
+## Data sources (high level)
+
+| Layer | Source | Notes |
+|-------|--------|-------|
+| Municipal boundaries | Maine GeoLibrary | County clip |
+| Roads, water, places | OpenStreetMap | County clip |
+| UT parcel geometry | Maine Revenue Services GIS | WAP + Day Block layers |
+| UT tax | MRS 2025 valuation books (PDF) | Map/lot index crosswalk |
+| Organized geometry | Maine GeoLibrary parcels | 34,881 features county-wide |
+| Organized tax (Lubec) | Town of Lubec 2024 RE commitment (PDF) | 2025 PDF not text-extractable |
 
 ## Out of scope for v1
 

@@ -1,0 +1,740 @@
+{
+  "version": 1,
+  "updatedAt": "2026-07-26T15:43:40.812Z",
+  "towns": [
+    {
+      "id": "addison",
+      "name": "Addison",
+      "geocode": "29010",
+      "wave": "d2d",
+      "tier": 2,
+      "status": "pending",
+      "geometryParcelCount": 1419,
+      "sources": {
+        "assessorPageUrl": "https://addisonmaine.org/property-taxes-%26-maps",
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": "https://addisonmaine.org/property-taxes-%26-maps",
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "alexander",
+      "name": "Alexander",
+      "geocode": "29020",
+      "wave": "d2e",
+      "tier": 2,
+      "status": "pending",
+      "geometryParcelCount": 840,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "baileyville",
+      "name": "Baileyville",
+      "geocode": "29030",
+      "wave": "d2b",
+      "tier": 1,
+      "status": "pending",
+      "geometryParcelCount": 1361,
+      "sources": {
+        "assessorPageUrl": "https://www.baileyville.org/1202/Assessors-Office",
+        "commitmentPdfUrl": "https://www.baileyville.org/DocumentCenter/View/293/RE-Commit-Book-2024-to-2025-PDF",
+        "taxMapsUrl": "https://www.baileyville.org/1202/Assessors-Office",
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "beals",
+      "name": "Beals",
+      "geocode": "29050",
+      "wave": "d2d",
+      "tier": 2,
+      "status": "pending",
+      "geometryParcelCount": 707,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "beddington",
+      "name": "Beddington",
+      "geocode": "29060",
+      "wave": "d2e",
+      "tier": 2,
+      "status": "pending",
+      "geometryParcelCount": 430,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "calais",
+      "name": "Calais",
+      "geocode": "29070",
+      "wave": "d2c",
+      "tier": 1,
+      "status": "pending",
+      "geometryParcelCount": 2771,
+      "sources": {
+        "assessorPageUrl": "https://calaismaine.org/departments/assessing/",
+        "commitmentPdfUrl": "https://calaismaine.org/departments/assessing/documents/",
+        "taxMapsUrl": "https://calaismaine.org/departments/assessing/documents/",
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "charlotte",
+      "name": "Charlotte",
+      "geocode": "29090",
+      "wave": "d2d",
+      "tier": 1,
+      "status": "pending",
+      "geometryParcelCount": 466,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "cherryfield",
+      "name": "Cherryfield",
+      "geocode": "29100",
+      "wave": "d2e",
+      "tier": 2,
+      "status": "pending",
+      "geometryParcelCount": 1018,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "columbia",
+      "name": "Columbia",
+      "geocode": "29120",
+      "wave": "d2e",
+      "tier": 2,
+      "status": "pending",
+      "geometryParcelCount": 800,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "columbia-falls",
+      "name": "Columbia Falls",
+      "geocode": "29130",
+      "wave": "d2e",
+      "tier": 2,
+      "status": "pending",
+      "geometryParcelCount": 515,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "cooper",
+      "name": "Cooper",
+      "geocode": "29140",
+      "wave": "d2d",
+      "tier": 1,
+      "status": "pending",
+      "geometryParcelCount": 370,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "crawford",
+      "name": "Crawford",
+      "geocode": "29150",
+      "wave": "d2f",
+      "tier": 3,
+      "status": "pending",
+      "geometryParcelCount": 309,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "cutler",
+      "name": "Cutler",
+      "geocode": "29160",
+      "wave": "d2d",
+      "tier": 1,
+      "status": "pending",
+      "geometryParcelCount": 624,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "danforth",
+      "name": "Danforth",
+      "geocode": "29170",
+      "wave": "d2e",
+      "tier": 2,
+      "status": "pending",
+      "geometryParcelCount": 1042,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "deblois",
+      "name": "Deblois",
+      "geocode": "29180",
+      "wave": "d2f",
+      "tier": 3,
+      "status": "pending",
+      "geometryParcelCount": 177,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "dennysville",
+      "name": "Dennysville",
+      "geocode": "29190",
+      "wave": "d2f",
+      "tier": 3,
+      "status": "pending",
+      "geometryParcelCount": 244,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "east-machias",
+      "name": "East Machias",
+      "geocode": "29200",
+      "wave": "d2e",
+      "tier": 2,
+      "status": "pending",
+      "geometryParcelCount": 1254,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "eastport",
+      "name": "Eastport",
+      "geocode": "29210",
+      "wave": "d2c",
+      "tier": 2,
+      "status": "pending",
+      "geometryParcelCount": 1983,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "harrington",
+      "name": "Harrington",
+      "geocode": "29230",
+      "wave": "d2e",
+      "tier": 2,
+      "status": "pending",
+      "geometryParcelCount": 1087,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "jonesboro",
+      "name": "Jonesboro",
+      "geocode": "29240",
+      "wave": "d2e",
+      "tier": 2,
+      "status": "pending",
+      "geometryParcelCount": 653,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "jonesport",
+      "name": "Jonesport",
+      "geocode": "29250",
+      "wave": "d2b",
+      "tier": 1,
+      "status": "pending",
+      "geometryParcelCount": 1579,
+      "sources": {
+        "assessorPageUrl": "https://www.townofjonesport.com/office/property-and-taxes.php",
+        "commitmentPdfUrl": "https://www.townofjonesport.com/_cmsupl/tax-maps/commitmentbook-2025.pdf",
+        "taxMapsUrl": "https://www.townofjonesport.com/office/documents.php",
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "lubec",
+      "name": "Lubec",
+      "geocode": "29260",
+      "wave": "d2a",
+      "tier": 1,
+      "status": "joined",
+      "geometryParcelCount": 1894,
+      "sources": {
+        "assessorPageUrl": "https://lubecme.gov/departments/assessors-office/",
+        "commitmentPdfUrl": "https://lubecme.gov/wp-content/uploads/sites/32/2025/04/2024-real-estate-tax-commitment.pdf",
+        "taxMapsUrl": "https://lubecme.gov/resources/tax-maps/",
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2024,
+      "asOfDate": "2024-04-01",
+      "notes": "2025 RE commitment PDF not text-extractable; using 2024 real estate commitment book."
+    },
+    {
+      "id": "machias",
+      "name": "Machias",
+      "geocode": "29270",
+      "wave": "d2c",
+      "tier": 1,
+      "status": "pending",
+      "geometryParcelCount": 1153,
+      "sources": {
+        "assessorPageUrl": "https://machiasme.gov/departments-staff/assessing-department/",
+        "commitmentPdfUrl": "https://machiasme.gov/departments-staff/assessing-department/",
+        "taxMapsUrl": "https://machiasme.gov/departments-staff/assessing-department/tax-maps/",
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "machiasport",
+      "name": "Machiasport",
+      "geocode": "29280",
+      "wave": "d2e",
+      "tier": 2,
+      "status": "pending",
+      "geometryParcelCount": 1226,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "marshfield",
+      "name": "Marshfield",
+      "geocode": "29290",
+      "wave": "d2e",
+      "tier": 2,
+      "status": "pending",
+      "geometryParcelCount": 425,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "meddybemps",
+      "name": "Meddybemps",
+      "geocode": "29300",
+      "wave": "d2f",
+      "tier": 3,
+      "status": "pending",
+      "geometryParcelCount": 185,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "milbridge",
+      "name": "Milbridge",
+      "geocode": "29310",
+      "wave": "d2d",
+      "tier": 1,
+      "status": "pending",
+      "geometryParcelCount": 1692,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "northfield",
+      "name": "Northfield",
+      "geocode": "29320",
+      "wave": "d2e",
+      "tier": 2,
+      "status": "pending",
+      "geometryParcelCount": 458,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "pembroke",
+      "name": "Pembroke",
+      "geocode": "29350",
+      "wave": "d2d",
+      "tier": 1,
+      "status": "pending",
+      "geometryParcelCount": 1006,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "perry",
+      "name": "Perry",
+      "geocode": "29360",
+      "wave": "d2d",
+      "tier": 1,
+      "status": "pending",
+      "geometryParcelCount": 1006,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "princeton",
+      "name": "Princeton",
+      "geocode": "29370",
+      "wave": "d2e",
+      "tier": 2,
+      "status": "pending",
+      "geometryParcelCount": 739,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "robbinston",
+      "name": "Robbinston",
+      "geocode": "29380",
+      "wave": "d2d",
+      "tier": 1,
+      "status": "pending",
+      "geometryParcelCount": 607,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "roque-bluffs",
+      "name": "Roque Bluffs",
+      "geocode": "29390",
+      "wave": "d2e",
+      "tier": 2,
+      "status": "pending",
+      "geometryParcelCount": 623,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "steuben",
+      "name": "Steuben",
+      "geocode": "29400",
+      "wave": "d2b",
+      "tier": 1,
+      "status": "pending",
+      "geometryParcelCount": 1605,
+      "sources": {
+        "assessorPageUrl": "https://townofsteuben.com/real-estate/",
+        "commitmentPdfUrl": "https://townofsteuben.com/real-estate/",
+        "taxMapsUrl": "https://townofsteuben.com/real-estate/",
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "topsfield",
+      "name": "Topsfield",
+      "geocode": "29420",
+      "wave": "d2f",
+      "tier": 3,
+      "status": "pending",
+      "geometryParcelCount": 252,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "vanceboro",
+      "name": "Vanceboro",
+      "geocode": "29430",
+      "wave": "d2f",
+      "tier": 3,
+      "status": "pending",
+      "geometryParcelCount": 233,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "waite",
+      "name": "Waite",
+      "geocode": "29440",
+      "wave": "d2f",
+      "tier": 3,
+      "status": "pending",
+      "geometryParcelCount": 140,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "wesley",
+      "name": "Wesley",
+      "geocode": "29450",
+      "wave": "d2e",
+      "tier": 2,
+      "status": "pending",
+      "geometryParcelCount": 828,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "whiting",
+      "name": "Whiting",
+      "geocode": "29460",
+      "wave": "d2e",
+      "tier": 2,
+      "status": "pending",
+      "geometryParcelCount": 904,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    },
+    {
+      "id": "whitneyville",
+      "name": "Whitneyville",
+      "geocode": "29470",
+      "wave": "d2f",
+      "tier": 3,
+      "status": "pending",
+      "geometryParcelCount": 256,
+      "sources": {
+        "assessorPageUrl": null,
+        "commitmentPdfUrl": null,
+        "taxMapsUrl": null,
+        "mapLotIndexUrl": null
+      },
+      "taxYear": 2025,
+      "asOfDate": "2025-04-01",
+      "notes": null
+    }
+  ],
+  "excluded": [
+    {
+      "id": "talmadge",
+      "reason": "No GeoLibrary parcel geometry"
+    },
+    {
+      "id": "pleasant-point",
+      "reason": "Tribal jurisdiction; no GeoLibrary geometry"
+    },
+    {
+      "id": "washington-county-island",
+      "reason": "Not a municipality"
+    }
+  ]
+}

@@ -25,6 +25,30 @@
         "roads": 17657,
         "places": 149
       }
+    },
+    {
+      "id": "mrs-ut-parcels",
+      "name": "Maine Revenue Services — Unorganized Territory Parcels",
+      "url": "https://gis.maine.gov/mapservices/rest/services/mrs/Maine_Parcels_Unorganized_Territory/MapServer",
+      "phase": "D1",
+      "notes": "UT parcel polygon geometry for Washington County",
+      "asOfDate": "2026-07-26"
+    },
+    {
+      "id": "mrs-ut-valuation-2025",
+      "name": "Maine Revenue Services — 2025 Washington County Valuation Book",
+      "url": "https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/2025%20Washington%20County_Valuation%20Book.pdf",
+      "phase": "D1",
+      "notes": "State UT tax/ownership assessment roll",
+      "asOfDate": "2025-01-01"
+    },
+    {
+      "id": "megis-organized-parcels",
+      "name": "Maine GeoLibrary — Organized Town Parcels",
+      "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Parcels_Organized_Towns/FeatureServer",
+      "phase": "D2",
+      "notes": "Organized-town parcel polygon geometry for Washington County",
+      "asOfDate": "2026-07-26"
     }
   ]
 }

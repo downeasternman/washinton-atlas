@@ -1,13 +1,19 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import maplibregl from "maplibre-gl";
 import { Protocol } from "pmtiles";
-import Map, { NavigationControl } from "react-map-gl/maplibre";
+import Map, { NavigationControl, type MapRef } from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { WASHINGTON_COUNTY_BBOX } from "@/lib/geo/county";
 import { bboxToFitBounds } from "@/lib/geo/bbox";
 import { buildAtlasStyle } from "@/lib/map/style";
+import { applyMunicipalityEmphasis } from "@/lib/map/municipality-emphasis";
+import {
+  highlightSelectedParcel,
+  setupParcelClickHandler,
+} from "@/lib/map/interactions";
+import type { MapFlyTarget } from "@/lib/types/explorer";
 import { MapAttribution } from "./MapAttribution";
 
 let protocolRegistered = false;
@@ -19,31 +25,87 @@ function ensurePmtilesProtocol() {
   protocolRegistered = true;
 }
 
-export function AtlasMap() {
+type AtlasMapProps = {
+  selectedMunicipalityId: string | null;
+  selectedParcelId: string | null;
+  flyTarget: MapFlyTarget | null;
+  onParcelSelect: (parcelId: string) => void;
+};
+
+export function AtlasMap({
+  selectedMunicipalityId,
+  selectedParcelId,
+  flyTarget,
+  onParcelSelect,
+}: AtlasMapProps) {
+  const mapRef = useRef<MapRef>(null);
   const [asOfDate, setAsOfDate] = useState<string | null>(null);
-  const [origin, setOrigin] = useState<string | null>(null);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+  const [mapReady, setMapReady] = useState(false);
 
   useEffect(() => {
     ensurePmtilesProtocol();
-    setOrigin(window.location.origin);
     fetch("/api/meta/map-sources")
       .then((r) => (r.ok ? r.json() : null))
       .then((data: { asOfDate?: string } | null) => {
         if (data?.asOfDate) setAsOfDate(data.asOfDate);
       })
-      .catch(() => {
-        // optional metadata endpoint
-      });
+      .catch(() => {});
   }, []);
 
-  const style = useMemo(
-    () => (origin ? buildAtlasStyle(origin) : null),
-    [origin],
-  );
+  const style = useMemo(() => {
+    if (!mounted) return null;
+    return buildAtlasStyle(window.location.origin);
+  }, [mounted]);
   const initialBounds = useMemo(
     () => bboxToFitBounds(WASHINGTON_COUNTY_BBOX),
     [],
   );
+
+  const onMapLoad = useCallback(() => {
+    setMapReady(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mapReady) return;
+    const map = mapRef.current?.getMap();
+    if (!map) return;
+    applyMunicipalityEmphasis(map, selectedMunicipalityId);
+  }, [mapReady, selectedMunicipalityId]);
+
+  useEffect(() => {
+    if (!mapReady) return;
+    const map = mapRef.current?.getMap();
+    if (!map) return;
+    highlightSelectedParcel(map, selectedParcelId);
+  }, [mapReady, selectedParcelId]);
+
+  useEffect(() => {
+    if (!mapReady) return;
+    const map = mapRef.current?.getMap();
+    if (!map) return;
+    return setupParcelClickHandler(map, onParcelSelect);
+  }, [mapReady, onParcelSelect]);
+
+  useEffect(() => {
+    if (!mapReady || !flyTarget) return;
+    const map = mapRef.current?.getMap();
+    if (!map) return;
+
+    if (flyTarget.bounds) {
+      map.fitBounds(flyTarget.bounds, { padding: 48, duration: 900 });
+    } else if (flyTarget.center) {
+      map.flyTo({
+        center: flyTarget.center,
+        zoom: flyTarget.zoom ?? 11,
+        duration: 900,
+      });
+    }
+  }, [mapReady, flyTarget]);
 
   if (!style) {
     return (
@@ -56,6 +118,7 @@ export function AtlasMap() {
   return (
     <div className="relative h-full w-full motion-fade-in">
       <Map
+        ref={mapRef}
         initialViewState={{
           bounds: initialBounds,
           fitBoundsOptions: { padding: 40 },
@@ -63,6 +126,7 @@ export function AtlasMap() {
         style={{ width: "100%", height: "100%" }}
         mapStyle={style}
         attributionControl={false}
+        onLoad={onMapLoad}
       >
         <NavigationControl position="top-right" showCompass={false} />
       </Map>

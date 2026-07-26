@@ -14,12 +14,24 @@ export interface Parcel {
   taxYear: number | null;
   acreage: string | null;
   landUse: string | null;
+  mapLot: string | null;
+  tpl: string | null;
+  accountNumber: string | null;
+  joinConfidence: number | null;
+  joinMethod: "map_lot" | "property_id" | "plat_crosswalk" | "unjoined" | null;
+  taxMunicipalityId: string | null;
+  propertyId: string | null;
+  taxSourceId: string | null;
+  geometrySourceId: string | null;
+  territoryType: "ut" | "organized" | null;
   sourceId: string | null;
   attrsRaw: Record<string, unknown> | null;
   updatedAt: string | null;
 }
 
-export interface ParcelWithSource extends Parcel {
-  source: Source | null;
+export interface ParcelWithSources extends Parcel {
+  taxSource: Source | null;
   geometrySource: Source | null;
+  municipalityName: string | null;
+  taxMunicipalityName: string | null;
 }

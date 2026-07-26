@@ -13,6 +13,73 @@ function resolveTilesBase(origin?: string): string {
   return normalized;
 }
 
+function parcelLayers(): StyleSpecification["layers"] {
+  return [
+    {
+      id: LAYER_IDS.PARCEL_FILL,
+      type: "fill",
+      source: SOURCE_IDS.PARCELS,
+      "source-layer": "parcels",
+      minzoom: 10,
+      paint: {
+        "fill-color": [
+          "case",
+          ["==", ["get", "hasTax"], 1],
+          "#c9a227",
+          "#8aa4b0",
+        ],
+        "fill-opacity": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          10,
+          0.08,
+          13,
+          0.22,
+        ],
+      },
+    },
+    {
+      id: LAYER_IDS.PARCEL_LINE,
+      type: "line",
+      source: SOURCE_IDS.PARCELS,
+      "source-layer": "parcels",
+      minzoom: 10,
+      paint: {
+        "line-color": [
+          "case",
+          ["==", ["get", "hasTax"], 1],
+          "#8a7020",
+          "#4a6a72",
+        ],
+        "line-width": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          10,
+          0.3,
+          14,
+          1.4,
+        ],
+        "line-opacity": 0.85,
+      },
+    },
+    {
+      id: LAYER_IDS.PARCEL_SELECTED,
+      type: "line",
+      source: SOURCE_IDS.PARCELS,
+      "source-layer": "parcels",
+      minzoom: 10,
+      filter: ["==", ["get", "id"], ""],
+      paint: {
+        "line-color": "#1a3a4a",
+        "line-width": 3,
+        "line-opacity": 1,
+      },
+    },
+  ];
+}
+
 /**
  * Coastal Maine atlas style backed by local PMTiles.
  * Pass `origin` (e.g. window.location.origin) so pmtiles:// URLs are absolute.
@@ -21,11 +88,12 @@ export function buildAtlasStyle(origin?: string): StyleSpecification {
   const tilesBase = resolveTilesBase(origin);
   const basemapUrl = `pmtiles://${tilesBase}/basemap.pmtiles`;
   const boundariesUrl = `pmtiles://${tilesBase}/boundaries.pmtiles`;
+  const parcelsUrl = `pmtiles://${tilesBase}/parcels.pmtiles`;
 
   return {
     version: 8,
     name: "washington-county-atlas",
-    glyphs: "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+    glyphs: "https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf",
     sources: {
       [SOURCE_IDS.BASEMAP]: {
         type: "vector",
@@ -36,6 +104,11 @@ export function buildAtlasStyle(origin?: string): StyleSpecification {
         type: "vector",
         url: boundariesUrl,
         attribution: "Maine GeoLibrary (METWP / CNTY24P)",
+      },
+      [SOURCE_IDS.PARCELS]: {
+        type: "vector",
+        url: parcelsUrl,
+        attribution: "Maine Revenue Services UT Parcels",
       },
     },
     layers: [
@@ -203,7 +276,7 @@ export function buildAtlasStyle(origin?: string): StyleSpecification {
         minzoom: 8,
         layout: {
           "text-field": ["get", "name"],
-          "text-font": ["Open Sans Regular"],
+          "text-font": ["Noto Sans Regular"],
           "text-size": [
             "interpolate",
             ["linear"],
@@ -233,7 +306,7 @@ export function buildAtlasStyle(origin?: string): StyleSpecification {
         minzoom: 9,
         layout: {
           "text-field": ["get", "name"],
-          "text-font": ["Open Sans Regular"],
+          "text-font": ["Noto Sans Regular"],
           "text-size": 11,
           "text-optional": true,
           "text-padding": 16,
@@ -244,6 +317,7 @@ export function buildAtlasStyle(origin?: string): StyleSpecification {
           "text-halo-width": 1.2,
         },
       },
+      ...parcelLayers(),
     ],
   };
 }

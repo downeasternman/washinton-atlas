@@ -1,25 +1,53 @@
-import type { Map as MaplibreMap } from "maplibre-gl";
+import type { Map as MaplibreMap, MapLayerMouseEvent, FilterSpecification } from "maplibre-gl";
 import { LAYER_IDS } from "./layers";
 
-/**
- * Map interaction handlers.
- * Phase A: stubs only. Wired in Phase C/D.
- */
-
 export function setupParcelClickHandler(
-  _map: MaplibreMap,
-  _onParcelSelect: (parcelId: string) => void,
+  map: MaplibreMap,
+  onParcelSelect: (parcelId: string) => void,
 ): () => void {
-  // Phase D: wire parcel click → onParcelSelect
-  return () => {};
+  const layers = [LAYER_IDS.PARCEL_FILL, LAYER_IDS.PARCEL_LINE].filter((id) =>
+    map.getLayer(id),
+  );
+  if (layers.length === 0) return () => {};
+
+  const onClick = (e: MapLayerMouseEvent) => {
+    const feature = e.features?.[0];
+    const id = feature?.properties?.id;
+    if (typeof id === "string" && id) {
+      onParcelSelect(id);
+    }
+  };
+
+  const onMouseEnter = () => {
+    map.getCanvas().style.cursor = "pointer";
+  };
+  const onMouseLeave = () => {
+    map.getCanvas().style.cursor = "";
+  };
+
+  for (const layer of layers) {
+    map.on("click", layer, onClick);
+    map.on("mouseenter", layer, onMouseEnter);
+    map.on("mouseleave", layer, onMouseLeave);
+  }
+
+  return () => {
+    for (const layer of layers) {
+      map.off("click", layer, onClick);
+      map.off("mouseenter", layer, onMouseEnter);
+      map.off("mouseleave", layer, onMouseLeave);
+    }
+  };
 }
 
-export function setupParcelHoverHandler(_map: MaplibreMap): () => void {
-  // Phase D: wire parcel hover cursor change
-  return () => {};
-}
+export function highlightSelectedParcel(map: MaplibreMap, parcelId: string | null): void {
+  if (!map.getLayer(LAYER_IDS.PARCEL_LINE)) return;
 
-export function highlightSelectedParcel(_map: MaplibreMap, _parcelId: string | null): void {
-  // Phase D: set feature-state on LAYER_IDS.PARCEL_FILL
-  void LAYER_IDS.PARCEL_SELECTED;
+  const filter: FilterSpecification = parcelId
+    ? ["==", ["get", "id"], parcelId]
+    : ["==", ["get", "id"], ""];
+
+  if (map.getLayer(LAYER_IDS.PARCEL_SELECTED)) {
+    map.setFilter(LAYER_IDS.PARCEL_SELECTED, filter);
+  }
 }

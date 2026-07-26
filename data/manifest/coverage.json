@@ -1,7 +1,7 @@
 {
   "version": 1,
   "description": "Per-municipality coverage status for parcel geometry, ownership, and tax data",
-  "updatedAt": "2026-07-26T11:22:19.111Z",
+  "updatedAt": "2026-07-26T16:13:58.194Z",
   "municipalities": {
     "addison": {
       "name": "Addison",
@@ -37,27 +37,30 @@
     },
     "berry-twp": {
       "name": "Berry Twp",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 33,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (32/33 joined)",
+      "taxParseRate": 0.9696969696969697
     },
     "big-lake-twp": {
       "name": "Big Lake Twp",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 256,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (246/256 joined)",
+      "taxParseRate": 0.9609375
     },
     "brookton-twp": {
       "name": "Brookton Twp",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 182,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (180/182 joined)",
+      "taxParseRate": 0.989010989010989
     },
     "calais": {
       "name": "Calais",
@@ -69,19 +72,21 @@
     },
     "cathance-twp": {
       "name": "Cathance Twp",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 259,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (250/259 joined)",
+      "taxParseRate": 0.9652509652509652
     },
     "centerville-twp": {
       "name": "Centerville Twp",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 72,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (60/72 joined)",
+      "taxParseRate": 0.8333333333333334
     },
     "charlotte": {
       "name": "Charlotte",
@@ -101,11 +106,12 @@
     },
     "codyville-twp": {
       "name": "Codyville Twp",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 50,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (43/50 joined)",
+      "taxParseRate": 0.86
     },
     "columbia": {
       "name": "Columbia",
@@ -157,11 +163,12 @@
     },
     "day-block-twp": {
       "name": "Day Block Twp",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 23,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (23/23 joined)",
+      "taxParseRate": 1
     },
     "deblois": {
       "name": "Deblois",
@@ -181,19 +188,21 @@
     },
     "devereaux-twp": {
       "name": "Devereaux Twp",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 57,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (54/57 joined)",
+      "taxParseRate": 0.9473684210526315
     },
     "dyer-twp": {
       "name": "Dyer Twp",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 12,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (12/12 joined)",
+      "taxParseRate": 1
     },
     "east-machias": {
       "name": "East Machias",
@@ -213,51 +222,57 @@
     },
     "edmunds-twp": {
       "name": "Edmunds Twp",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 329,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (326/329 joined)",
+      "taxParseRate": 0.9908814589665653
     },
     "forest-city-twp": {
       "name": "Forest City Twp",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 144,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (139/144 joined)",
+      "taxParseRate": 0.9652777777777778
     },
     "forest-twp": {
       "name": "Forest Twp",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 62,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (60/62 joined)",
+      "taxParseRate": 0.967741935483871
     },
     "fowler-twp": {
       "name": "Fowler Twp",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 14,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (13/14 joined)",
+      "taxParseRate": 0.9285714285714286
     },
     "grand-lake-stream-plt": {
       "name": "Grand Lake Stream Plt",
-      "hasParcelGeometry": false,
+      "hasParcelGeometry": true,
       "hasOwnership": false,
       "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "parcelCount": 251,
+      "notes": "UT parcel geometry available; tax join pending",
+      "taxParseRate": 0
     },
     "greenlaw-chopping-twp": {
       "name": "Greenlaw Chopping Twp",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 92,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (90/92 joined)",
+      "taxParseRate": 0.9782608695652174
     },
     "harrington": {
       "name": "Harrington",
@@ -293,27 +308,30 @@
     },
     "kossuth-twp": {
       "name": "Kossuth Twp",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 62,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (60/62 joined)",
+      "taxParseRate": 0.967741935483871
     },
     "lambert-lake-twp": {
       "name": "Lambert Lake Twp",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 105,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (104/105 joined)",
+      "taxParseRate": 0.9904761904761905
     },
     "lubec": {
       "name": "Lubec",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 1894,
+      "notes": "Organized town; tax from commitment book (1054/1894 joined). GIS uses -000 lot padding; 2024 commitment book used (2025 PDF not text-extractable).",
+      "taxParseRate": 0.5564941921858501
     },
     "machias": {
       "name": "Machias",
@@ -333,11 +351,12 @@
     },
     "marion-twp": {
       "name": "Marion Twp",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 321,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (300/321 joined)",
+      "taxParseRate": 0.9345794392523364
     },
     "marshfield": {
       "name": "Marshfield",
@@ -421,11 +440,12 @@
     },
     "sakom-twp": {
       "name": "Sakom Twp",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 78,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (78/78 joined)",
+      "taxParseRate": 1
     },
     "steuben": {
       "name": "Steuben",
@@ -437,131 +457,147 @@
     },
     "t11-r3-nbpp": {
       "name": "T11 R3 NBPP",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 22,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (22/22 joined)",
+      "taxParseRate": 1
     },
     "t18-md-bpp": {
       "name": "T18 MD BPP",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 94,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (90/94 joined)",
+      "taxParseRate": 0.9574468085106383
     },
     "t19-ed-bpp": {
       "name": "T19 ED BPP",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 7,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (7/7 joined)",
+      "taxParseRate": 1
     },
     "t19-md-bpp": {
       "name": "T19 MD BPP",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 33,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (33/33 joined)",
+      "taxParseRate": 1
     },
     "t24-md-bpp": {
       "name": "T24 MD BPP",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 77,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (76/77 joined)",
+      "taxParseRate": 0.987012987012987
     },
     "t25-md-bpp": {
       "name": "T25 MD BPP",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 24,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (24/24 joined)",
+      "taxParseRate": 1
     },
     "t26-ed-bpp": {
       "name": "T26 ED BPP",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 67,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (61/67 joined)",
+      "taxParseRate": 0.9104477611940298
     },
     "t30-md-bpp": {
       "name": "T30 MD BPP",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 20,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (19/20 joined)",
+      "taxParseRate": 0.95
     },
     "t36-md-bpp": {
       "name": "T36 MD BPP",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 7,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (7/7 joined)",
+      "taxParseRate": 1
     },
     "t37-md-bpp": {
       "name": "T37 MD BPP",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 18,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (17/18 joined)",
+      "taxParseRate": 0.9444444444444444
     },
     "t42-md-bpp": {
       "name": "T42 MD BPP",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 8,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (8/8 joined)",
+      "taxParseRate": 1
     },
     "t43-md-bpp": {
       "name": "T43 MD BPP",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 16,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (16/16 joined)",
+      "taxParseRate": 1
     },
     "t6-nd-bpp": {
       "name": "T6 ND BPP",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 89,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (87/89 joined)",
+      "taxParseRate": 0.9775280898876404
     },
     "t6-r1-nbpp": {
       "name": "T6 R1 NBPP",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 17,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (17/17 joined)",
+      "taxParseRate": 1
     },
     "t8-r3-nbpp": {
       "name": "T8 R3 NBPP",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 3,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (3/3 joined)",
+      "taxParseRate": 1
     },
     "t8-r4-nbpp": {
       "name": "T8 R4 NBPP",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 3,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (3/3 joined)",
+      "taxParseRate": 1
     },
     "talmadge": {
       "name": "Talmadge",
@@ -581,11 +617,12 @@
     },
     "trescott-twp": {
       "name": "Trescott Twp",
-      "hasParcelGeometry": false,
-      "hasOwnership": false,
-      "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "hasParcelGeometry": true,
+      "hasOwnership": true,
+      "hasTaxAssessment": true,
+      "parcelCount": 646,
+      "notes": "UT parcels from MRS; tax from 2025 valuation book (612/646 joined)",
+      "taxParseRate": 0.9473684210526315
     },
     "vanceboro": {
       "name": "Vanceboro",
@@ -637,11 +674,12 @@
     },
     "baring-plt": {
       "name": "Baring Plt",
-      "hasParcelGeometry": false,
+      "hasParcelGeometry": true,
       "hasOwnership": false,
       "hasTaxAssessment": false,
-      "parcelCount": 0,
-      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+      "parcelCount": 186,
+      "notes": "Baring GIS uses WAP plat numbering (186 parcels); valuation book uses WA011/WA029 map sheets. 4 tax-linked parcels with Baring mail address (see Day Block / Edmunds geometry).",
+      "taxParseRate": 0
     },
     "baileyville": {
       "name": "Baileyville",

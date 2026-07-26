@@ -1,6 +1,60 @@
 {
   "version": 1,
   "description": "Registry of tax/ownership PDF and web sources by territory type",
-  "ut": [],
-  "organized": []
+  "ut": [
+    {
+      "id": "mrs-ut-valuation-2025",
+      "territoryType": "ut",
+      "municipalityId": null,
+      "name": "Maine Revenue Services — 2025 Washington County Valuation Book",
+      "urls": [
+        "https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/2025%20Washington%20County_Valuation%20Book.pdf"
+      ],
+      "parserId": "mrs-washington-valuation-2025",
+      "joinMethod": "map_lot",
+      "asOfDate": "2025-01-01",
+      "notes": "State UT assessment roll for Washington County; joined to MRS parcel geometry by township + plan/lot."
+    },
+    {
+      "id": "mrs-ut-map-lot-index-2024",
+      "territoryType": "ut",
+      "municipalityId": null,
+      "name": "Maine Revenue Services — 2024 Washington County Map/Lot Index",
+      "urls": [
+        "https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/2024%20Washington%20County%20Map%20Lot%20index.pdf"
+      ],
+      "parserId": "mrs-washington-map-lot-index-2024",
+      "joinMethod": "map_lot",
+      "asOfDate": "2024-01-01",
+      "notes": "Reference index for UT map/lot keys; downloaded for audit; primary tax values from 2025 valuation book."
+    },
+    {
+      "id": "mrs-ut-parcels",
+      "territoryType": "ut",
+      "municipalityId": null,
+      "name": "Maine Revenue Services — Unorganized Territory Parcels",
+      "urls": [
+        "https://gis.maine.gov/mapservices/rest/services/mrs/Maine_Parcels_Unorganized_Territory/MapServer"
+      ],
+      "parserId": null,
+      "joinMethod": "map_lot",
+      "asOfDate": "2026-07-26",
+      "notes": "Parcel polygon geometry for UT townships; clipped to Washington County bbox."
+    }
+  ],
+  "organized": [
+    {
+      "id": "org-lubec-commitment-2024",
+      "territoryType": "organized",
+      "municipalityId": "lubec",
+      "name": "Town of Lubec — 2024 Real Estate Tax Commitment",
+      "urls": [
+        "https://lubecme.gov/wp-content/uploads/sites/32/2025/04/2024-real-estate-tax-commitment.pdf"
+      ],
+      "parserId": "mrs-commitment-book-v1",
+      "joinMethod": "map_lot",
+      "asOfDate": "2024-04-01",
+      "notes": "2024 real estate commitment book; 2025 PDF not text-extractable."
+    }
+  ]
 }
