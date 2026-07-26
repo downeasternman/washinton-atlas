@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "description": "Per-municipality coverage status for parcel geometry, ownership, and tax data",
+  "updatedAt": null,
+  "municipalities": {}
+}

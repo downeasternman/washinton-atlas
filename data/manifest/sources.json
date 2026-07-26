@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "description": "Registry of free public data sources for Washington County Atlas",
+  "sources": [
+    {
+      "id": "me-geolibrary-boundaries",
+      "name": "Maine GeoLibrary Administrative Boundaries",
+      "url": "https://geolibrary-maine.opendata.arcgis.com/",
+      "phase": "B",
+      "notes": "County and municipal boundary polygons"
+    },
+    {
+      "id": "osm-maine-extract",
+      "name": "OpenStreetMap Maine Extract",
+      "url": "https://download.geofabrik.de/north-america/us/maine.html",
+      "phase": "B",
+      "notes": "Roads, hydrography, place labels clipped to Washington County"
+    }
+  ]
+}
