@@ -5,6 +5,29 @@ All notable changes to Washington County Atlas are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [0.0.2] - 2026-07-26
+
+### Added
+
+- Phase B basemap: Maine GeoLibrary municipal/county boundaries + OSM roads/water/places
+- PMTiles archives in `public/tiles/` (`basemap.pmtiles`, `boundaries.pmtiles`)
+- Coastal MapLibre style with land, water, roads, municipal outlines, and labels
+- Map attribution chrome with source as-of dates
+- ETL scripts: `etl:boundaries`, `etl:osm`, `tiles:*`, `phase:b`
+- `/api/meta/map-sources` endpoint for map source metadata
+- Windows-friendly Node geojson-vt → MBTiles → PMTiles tile pipeline
+
+### Changed
+
+- Washington County bbox refined from Maine GeoLibrary county boundary download
+- Map loads PMTiles via absolute `pmtiles://` URLs after client origin is known
+
+### Fixed
+
+- PMTiles fetch 404s from relative `pmtiles:///tiles/...` URLs
+
 ## [0.0.1] - 2026-07-26
 
 ### Added

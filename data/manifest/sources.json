@@ -5,16 +5,26 @@
     {
       "id": "me-geolibrary-boundaries",
       "name": "Maine GeoLibrary Administrative Boundaries",
-      "url": "https://geolibrary-maine.opendata.arcgis.com/",
+      "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/ArcGIS/rest/services/METWP_dissolved/FeatureServer",
       "phase": "B",
-      "notes": "County and municipal boundary polygons"
+      "notes": "County and municipal boundary polygons",
+      "asOfDate": "2026-07-26",
+      "countyUrl": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/ArcGIS/rest/services/Maine_County_Boundary_Polygons/FeatureServer",
+      "featureCount": 81
     },
     {
       "id": "osm-maine-extract",
       "name": "OpenStreetMap Maine Extract",
-      "url": "https://download.geofabrik.de/north-america/us/maine.html",
+      "url": "https://overpass-api.de/api/interpreter",
       "phase": "B",
-      "notes": "Roads, hydrography, place labels clipped to Washington County"
+      "notes": "County-clipped OSM via Overpass (roads, water, places). Same free OSM data as Geofabrik extract.",
+      "asOfDate": "2026-07-26",
+      "method": "overpass-bbox",
+      "counts": {
+        "water": 8200,
+        "roads": 17657,
+        "places": 149
+      }
     }
   ]
 }

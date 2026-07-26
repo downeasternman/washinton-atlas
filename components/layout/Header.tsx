@@ -13,7 +13,7 @@ export function Header() {
           </p>
         </div>
         <div className="text-xs text-[var(--color-text-secondary)]">
-          Phase A scaffold
+          Maine
         </div>
       </div>
     </header>

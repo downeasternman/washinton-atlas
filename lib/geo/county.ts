@@ -1,10 +1,10 @@
 /**
  * Washington County, Maine bounding box.
  * [west, south, east, north] in WGS84 decimal degrees.
- * Approximate extent; will be refined from Maine GeoLibrary boundary in Phase B.
+ * Refined from Maine GeoLibrary county boundary download (Phase B).
  */
 export const WASHINGTON_COUNTY_BBOX: [number, number, number, number] = [
-  -67.95, 44.45, -67.0, 45.35,
+  -68.105, 44.3169, -66.8854, 45.6892,
 ];
 
 export const WASHINGTON_COUNTY_NAME = "Washington County";

@@ -38,6 +38,10 @@ yarn-error.log*
 /data/raw/
 /data/processed/
 
+# local tile tooling binaries
+/tools/pmtiles-bin/
+/tools/*.zip
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

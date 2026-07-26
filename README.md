@@ -6,7 +6,7 @@ An interactive geographic atlas for **Washington County, Maine** — combining p
 
 **Repository:** [downeasternman/washinton-atlas](https://github.com/downeasternman/washinton-atlas)
 
-**Current version:** `0.0.1` — see [CHANGELOG.md](./CHANGELOG.md)
+**Current version:** `0.0.2` — see [CHANGELOG.md](./CHANGELOG.md)
 
 ## What this is
 
@@ -27,8 +27,8 @@ Work proceeds in gated phases. Each phase stops for review before the next begin
 
 | Phase | Scope | Status |
 |-------|-------|--------|
-| **A** | Scaffold — app shell, map stub, schema stubs | In progress / Gate A |
-| **B** | Boundaries & basemap tiles — accurate, polished county map | Planned |
+| **A** | Scaffold — app shell, map stub, schema stubs | Complete |
+| **B** | Boundaries & basemap tiles — accurate, polished county map | Gate B review |
 | **C** | Municipality filter + place-name search | Planned |
 | **D1** | Unorganized territory tax/ownership ingestion | Planned |
 | **D2** | Organized town tax/ownership ingestion | Planned |
@@ -48,7 +48,8 @@ Work proceeds in gated phases. Each phase stops for review before the next begin
 
 - Node.js 20+
 - pnpm 10+
-- PostgreSQL 16 + PostGIS 3 (required from Phase B onward)
+- PostgreSQL 16 + PostGIS 3 (required from Phase C/D onward for search & tax)
+- Optional: `tools/pmtiles-bin/pmtiles.exe` (go-pmtiles) for rebuilding tiles
 
 ### Setup
 
@@ -61,6 +62,14 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+Phase B basemap tiles are checked into `public/tiles/`. To rebuild them:
+
+```bash
+pnpm phase:b
+```
+
+> Tile builds use a Node geojson-vt → MBTiles → PMTiles pipeline (Windows-friendly). Shell wrappers live under `scripts/tiles/`.
+
 ### Scripts
 
 | Command | Description |
@@ -71,6 +80,10 @@ Open [http://localhost:3000](http://localhost:3000).
 | `pnpm format` | Format with Prettier |
 | `pnpm test` | Run unit tests (Vitest) |
 | `pnpm test:e2e` | Run end-to-end tests (Playwright) |
+| `pnpm etl:boundaries` | Download Maine GeoLibrary county/muni boundaries |
+| `pnpm etl:osm` | Download county-clipped OSM (roads, water, places) |
+| `pnpm tiles:all` | Build `public/tiles/{basemap,boundaries}.pmtiles` |
+| `pnpm phase:b` | Run full Phase B ETL + tile pipeline |
 
 ## Out of scope for v1
 

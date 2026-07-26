@@ -1,9 +1,3 @@
-import type { StyleSpecification } from "maplibre-gl";
-
-/**
- * Layer ID constants for the atlas map.
- * Populated in Phase B when vector tiles are wired.
- */
 export const LAYER_IDS = {
   BASEMAP_LAND: "basemap-land",
   BASEMAP_WATER: "basemap-water",

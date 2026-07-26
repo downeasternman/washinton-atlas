@@ -1,6 +1,655 @@
 {
   "version": 1,
   "description": "Per-municipality coverage status for parcel geometry, ownership, and tax data",
-  "updatedAt": null,
-  "municipalities": {}
+  "updatedAt": "2026-07-26T11:22:19.111Z",
+  "municipalities": {
+    "addison": {
+      "name": "Addison",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "alexander": {
+      "name": "Alexander",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "beals": {
+      "name": "Beals",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "beddington": {
+      "name": "Beddington",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "berry-twp": {
+      "name": "Berry Twp",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "big-lake-twp": {
+      "name": "Big Lake Twp",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "brookton-twp": {
+      "name": "Brookton Twp",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "calais": {
+      "name": "Calais",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "cathance-twp": {
+      "name": "Cathance Twp",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "centerville-twp": {
+      "name": "Centerville Twp",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "charlotte": {
+      "name": "Charlotte",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "cherryfield": {
+      "name": "Cherryfield",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "codyville-twp": {
+      "name": "Codyville Twp",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "columbia": {
+      "name": "Columbia",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "columbia-falls": {
+      "name": "Columbia Falls",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "cooper": {
+      "name": "Cooper",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "crawford": {
+      "name": "Crawford",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "cutler": {
+      "name": "Cutler",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "danforth": {
+      "name": "Danforth",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "day-block-twp": {
+      "name": "Day Block Twp",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "deblois": {
+      "name": "Deblois",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "dennysville": {
+      "name": "Dennysville",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "devereaux-twp": {
+      "name": "Devereaux Twp",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "dyer-twp": {
+      "name": "Dyer Twp",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "east-machias": {
+      "name": "East Machias",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "eastport": {
+      "name": "Eastport",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "edmunds-twp": {
+      "name": "Edmunds Twp",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "forest-city-twp": {
+      "name": "Forest City Twp",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "forest-twp": {
+      "name": "Forest Twp",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "fowler-twp": {
+      "name": "Fowler Twp",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "grand-lake-stream-plt": {
+      "name": "Grand Lake Stream Plt",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "greenlaw-chopping-twp": {
+      "name": "Greenlaw Chopping Twp",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "harrington": {
+      "name": "Harrington",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "indian-twp-res": {
+      "name": "Indian Twp Res",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "jonesboro": {
+      "name": "Jonesboro",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "jonesport": {
+      "name": "Jonesport",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "kossuth-twp": {
+      "name": "Kossuth Twp",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "lambert-lake-twp": {
+      "name": "Lambert Lake Twp",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "lubec": {
+      "name": "Lubec",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "machias": {
+      "name": "Machias",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "machiasport": {
+      "name": "Machiasport",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "marion-twp": {
+      "name": "Marion Twp",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "marshfield": {
+      "name": "Marshfield",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "meddybemps": {
+      "name": "Meddybemps",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "milbridge": {
+      "name": "Milbridge",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "northfield": {
+      "name": "Northfield",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "pembroke": {
+      "name": "Pembroke",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "perry": {
+      "name": "Perry",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "pleasant-point": {
+      "name": "Pleasant Point",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "princeton": {
+      "name": "Princeton",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "robbinston": {
+      "name": "Robbinston",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "roque-bluffs": {
+      "name": "Roque Bluffs",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "sakom-twp": {
+      "name": "Sakom Twp",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "steuben": {
+      "name": "Steuben",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "t11-r3-nbpp": {
+      "name": "T11 R3 NBPP",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "t18-md-bpp": {
+      "name": "T18 MD BPP",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "t19-ed-bpp": {
+      "name": "T19 ED BPP",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "t19-md-bpp": {
+      "name": "T19 MD BPP",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "t24-md-bpp": {
+      "name": "T24 MD BPP",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "t25-md-bpp": {
+      "name": "T25 MD BPP",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "t26-ed-bpp": {
+      "name": "T26 ED BPP",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "t30-md-bpp": {
+      "name": "T30 MD BPP",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "t36-md-bpp": {
+      "name": "T36 MD BPP",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "t37-md-bpp": {
+      "name": "T37 MD BPP",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "t42-md-bpp": {
+      "name": "T42 MD BPP",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "t43-md-bpp": {
+      "name": "T43 MD BPP",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "t6-nd-bpp": {
+      "name": "T6 ND BPP",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "t6-r1-nbpp": {
+      "name": "T6 R1 NBPP",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "t8-r3-nbpp": {
+      "name": "T8 R3 NBPP",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "t8-r4-nbpp": {
+      "name": "T8 R4 NBPP",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "talmadge": {
+      "name": "Talmadge",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "topsfield": {
+      "name": "Topsfield",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "trescott-twp": {
+      "name": "Trescott Twp",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "vanceboro": {
+      "name": "Vanceboro",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "waite": {
+      "name": "Waite",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "washington-county-island": {
+      "name": "Washington County Island",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "wesley": {
+      "name": "Wesley",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "whiting": {
+      "name": "Whiting",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "whitneyville": {
+      "name": "Whitneyville",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "baring-plt": {
+      "name": "Baring Plt",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    },
+    "baileyville": {
+      "name": "Baileyville",
+      "hasParcelGeometry": false,
+      "hasOwnership": false,
+      "hasTaxAssessment": false,
+      "parcelCount": 0,
+      "notes": "Boundary geometry available; ownership/tax pending Phase D"
+    }
+  }
 }
