@@ -44,7 +44,7 @@
       "geocode": "29030",
       "wave": "d2b",
       "tier": 1,
-      "status": "pending",
+      "status": "joined",
       "geometryParcelCount": 1361,
       "sources": {
         "assessorPageUrl": "https://www.baileyville.org/1202/Assessors-Office",
@@ -54,7 +54,7 @@
       },
       "taxYear": 2025,
       "asOfDate": "2025-04-01",
-      "notes": null
+      "notes": "1236/1361 owner joins; 1040/1361 quality joins from 2024-25 RE commitment book."
     },
     {
       "id": "beals",
@@ -368,7 +368,7 @@
       "geocode": "29250",
       "wave": "d2b",
       "tier": 1,
-      "status": "pending",
+      "status": "joined",
       "geometryParcelCount": 1579,
       "sources": {
         "assessorPageUrl": "https://www.townofjonesport.com/office/property-and-taxes.php",
@@ -378,7 +378,7 @@
       },
       "taxYear": 2025,
       "asOfDate": "2025-04-01",
-      "notes": null
+      "notes": "1227/1579 owner joins; 1028/1579 quality joins from 2025 RE commitment book."
     },
     {
       "id": "lubec",
@@ -602,17 +602,17 @@
       "geocode": "29400",
       "wave": "d2b",
       "tier": 1,
-      "status": "pending",
+      "status": "joined",
       "geometryParcelCount": 1605,
       "sources": {
         "assessorPageUrl": "https://townofsteuben.com/real-estate/",
-        "commitmentPdfUrl": "https://townofsteuben.com/real-estate/",
+        "commitmentPdfUrl": "https://storage.googleapis.com/juniper-media-library/174/2025/08/2025%20CommitmentBook.pdf",
         "taxMapsUrl": "https://townofsteuben.com/real-estate/",
         "mapLotIndexUrl": null
       },
       "taxYear": 2025,
       "asOfDate": "2025-04-01",
-      "notes": null
+      "notes": "1321/1605 owner joins; 1145/1605 quality joins from 2025 RE commitment book."
     },
     {
       "id": "topsfield",

@@ -1,6 +1,6 @@
 {
   "name": "washington-county-atlas",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -36,7 +36,8 @@
     "etl:merge:parcels": "tsx scripts/etl/tax/merge-parcel-datasets.ts",
     "phase:d2-scaffold": "pnpm etl:org:geometry",
     "phase:d2a": "pnpm etl:org:download --town=lubec && pnpm etl:org:parse --town=lubec && pnpm etl:org:join --town=lubec && pnpm etl:merge:parcels && pnpm tiles:parcels && pnpm etl:org:report --town=lubec",
-    "phase:d2c": "pnpm etl:org:download --town=calais && pnpm etl:org:parse --town=calais && pnpm etl:org:join --town=calais && pnpm etl:org:download --town=machias && pnpm etl:org:parse --town=machias && pnpm etl:org:join --town=machias && pnpm etl:org:download --town=eastport && pnpm etl:org:parse --town=eastport && pnpm etl:org:join --town=eastport && pnpm etl:merge:parcels && pnpm tiles:parcels && pnpm etl:org:report --town=calais && pnpm etl:org:report --town=machias && pnpm etl:org:report --town=eastport"
+    "phase:d2c": "pnpm etl:org:download --town=calais && pnpm etl:org:parse --town=calais && pnpm etl:org:join --town=calais && pnpm etl:org:download --town=machias && pnpm etl:org:parse --town=machias && pnpm etl:org:join --town=machias && pnpm etl:org:download --town=eastport && pnpm etl:org:parse --town=eastport && pnpm etl:org:join --town=eastport && pnpm etl:merge:parcels && pnpm tiles:parcels && pnpm etl:org:report --town=calais && pnpm etl:org:report --town=machias && pnpm etl:org:report --town=eastport",
+    "phase:d2b": "pnpm etl:org:download --town=baileyville && pnpm etl:org:parse --town=baileyville && pnpm etl:org:join --town=baileyville && pnpm etl:org:download --town=jonesport && pnpm etl:org:parse --town=jonesport && pnpm etl:org:join --town=jonesport && pnpm etl:org:download --town=steuben && pnpm etl:org:parse --town=steuben && pnpm etl:org:join --town=steuben && pnpm etl:merge:parcels && pnpm tiles:parcels && pnpm etl:org:report --town=baileyville && pnpm etl:org:report --town=jonesport && pnpm etl:org:report --town=steuben"
   },
   "dependencies": {
     "@types/geojson": "^7946.0.16",

@@ -94,6 +94,45 @@
       "joinMethod": "map_lot",
       "asOfDate": "2023-04-01",
       "notes": "FY2023 commitment book; grid map-lot IDs (e.g. I7-0B4-20). Newer books not yet posted."
+    },
+    {
+      "id": "org-baileyville-commitment-2025",
+      "territoryType": "organized",
+      "municipalityId": "baileyville",
+      "name": "Town of Baileyville — 2024-25 Real Estate Tax Commitment",
+      "urls": [
+        "https://www.baileyville.org/DocumentCenter/View/293/RE-Commit-Book-2024-to-2025-PDF"
+      ],
+      "parserId": "mrs-commitment-book-v3",
+      "joinMethod": "map_lot",
+      "asOfDate": "2025-04-01",
+      "notes": "2024-25 real estate commitment book."
+    },
+    {
+      "id": "org-jonesport-commitment-2025",
+      "territoryType": "organized",
+      "municipalityId": "jonesport",
+      "name": "Town of Jonesport — 2025 Real Estate Tax Commitment",
+      "urls": [
+        "https://www.townofjonesport.com/_cmsupl/tax-maps/commitmentbook-2025.pdf"
+      ],
+      "parserId": "mrs-commitment-book-v3",
+      "joinMethod": "map_lot",
+      "asOfDate": "2025-04-01",
+      "notes": "2025 real estate commitment book."
+    },
+    {
+      "id": "org-steuben-commitment-2025",
+      "territoryType": "organized",
+      "municipalityId": "steuben",
+      "name": "Town of Steuben — 2025 Real Estate Tax Commitment",
+      "urls": [
+        "https://storage.googleapis.com/juniper-media-library/174/2025/08/2025%20CommitmentBook.pdf"
+      ],
+      "parserId": "mrs-commitment-book-v3",
+      "joinMethod": "map_lot",
+      "asOfDate": "2025-04-01",
+      "notes": "2025 real estate commitment book."
     }
   ]
 }

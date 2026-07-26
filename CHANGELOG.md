@@ -7,6 +7,26 @@ and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
 ## [Unreleased]
 
+## [0.0.5] - 2026-07-26
+
+### Added
+
+- Phase D2b: Baileyville, Jonesport, and Steuben organized-town tax joins from municipal commitment PDFs
+- `phase:d2b` ETL script; tax source entries for Baileyville, Jonesport, and Steuben
+
+### Changed
+
+- Organized parcel count on map: 12,346 across seven towns
+- Total atlas parcels: 17,742 (5,396 UT + 12,346 organized)
+- Baileyville: 1,236 / 1,361 owner joins; 1,040 quality joins (2024-25 RE commitment book)
+- Jonesport: 1,227 / 1,579 owner joins; 1,028 quality joins (2025 RE commitment book)
+- Steuben: 1,321 / 1,605 owner joins; 1,145 quality joins (2025 RE commitment book)
+
+### Notes
+
+- Steuben commitment PDF resolved via Town Web storage URL scrape
+- D2d–f organized-town rollout continues
+
 ## [0.0.4] - 2026-07-26
 
 ### Added
