@@ -1,7 +1,7 @@
 {
   "version": 1,
   "description": "Per-municipality coverage status for parcel geometry, ownership, and tax data",
-  "updatedAt": "2026-07-26T23:32:12.933Z",
+  "updatedAt": "2026-07-27T01:28:05.970Z",
   "municipalities": {
     "addison": {
       "name": "Addison",
@@ -359,8 +359,8 @@
       "hasOwnership": true,
       "hasTaxAssessment": true,
       "parcelCount": 1226,
-      "notes": "Organized town; tax from commitment book (1002/1226 joined).",
-      "taxParseRate": 0.8172920065252854
+      "notes": "Organized town; tax from commitment book (449/1226 joined).",
+      "taxParseRate": 0.366231647634584
     },
     "marion-twp": {
       "name": "Marion Twp",

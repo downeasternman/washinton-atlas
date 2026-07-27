@@ -30,7 +30,9 @@ async function main() {
   const text = parsed.text ?? "";
   console.log(`  extracted ${text.length} characters from ${parsed.pages?.length ?? "?"} pages`);
 
-  const rows = parseCommitmentText(text, town.geocode, town.taxYear);
+  const rows = parseCommitmentText(text, town.geocode, town.taxYear, {
+    layout: town.commitmentLayout ?? "by-name",
+  });
   const batchId = `org-batch-${townId}-${todayIsoDate()}`;
   const sourceId = `org-${townId}-commitment-${town.taxYear ?? "unknown"}`;
 
@@ -48,6 +50,8 @@ async function main() {
     assessedLandValue: row.assessedLandValue,
     assessedBuildingValue: row.assessedBuildingValue,
     assessedTotalValue: row.assessedTotalValue,
+    assessedExemptionValue: row.assessedExemptionValue,
+    hasTreeGrowth: row.hasTreeGrowth,
     taxYear: row.taxYear,
     parseConfidence: row.parseConfidence,
     attrsRaw: row.attrsRaw,

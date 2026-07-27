@@ -37,6 +37,8 @@ export interface JoinedOrganizedParcel {
   assessedLandValue: string | null;
   assessedBuildingValue: string | null;
   assessedTotalValue: string | null;
+  assessedExemptionValue: string | null;
+  hasTreeGrowth: boolean;
   taxYear: number | null;
   joinConfidence: number | null;
   joinMethod: JoinMethod;
@@ -140,6 +142,8 @@ export function joinOrganizedTaxToGeometry(
       assessedLandValue: tax?.assessedLandValue ?? null,
       assessedBuildingValue: tax?.assessedBuildingValue ?? null,
       assessedTotalValue,
+      assessedExemptionValue: tax?.assessedExemptionValue ?? null,
+      hasTreeGrowth: tax?.hasTreeGrowth ?? false,
       taxYear: tax?.taxYear ?? null,
       joinConfidence,
       joinMethod,

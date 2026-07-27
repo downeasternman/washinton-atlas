@@ -1,7 +1,7 @@
 # Washington County Atlas — State of Project
 
-**As of:** 2026-07-26  
-**Released version on `main`:** `0.0.8` (D2f + Roque Bluffs remediation)  
+**As of:** 2026-07-27  
+**Released version on `main`:** `0.0.9` (E1 symbology + Machiasport remediation)  
 **Working tree:** post-release snapshot
 
 This document is a review snapshot for human perusal: what ships today, gaps, and next gates.
@@ -13,8 +13,9 @@ This document is a review snapshot for human perusal: what ships today, gaps, an
 | Area | Status |
 |------|--------|
 | Phases A → D2f | **Released** through `0.0.8` |
-| Roque Bluffs (D2e correction) | **Joined** in `0.0.8` |
-| Phase E | **Not started** |
+| Phase E1 (coverage symbology) | **Released** in `0.0.9` |
+| Machiasport owner remediation | **Released** in `0.0.9` |
+| Phase E (remainder) | **In progress** |
 | Product identity | Hybrid atlas + parcel detail; Washington County ME only; free public data |
 
 **Atlas parcel count:** **31,567** total  
@@ -30,8 +31,9 @@ This document is a review snapshot for human perusal: what ships today, gaps, an
 |-------|--------|-------------|
 | A → D2d | Scaffold through Robbinston | Complete / released |
 | D2e | Tier-2 wave | Complete / released (`0.0.7`); Roque Bluffs corrected in `0.0.8` |
-| **D2f** | Remaining small towns | **Complete / released (`0.0.8`)** |
-| E | Polish / coverage honesty / tests | Pending |
+| D2f | Remaining small towns | Complete / released (`0.0.8`) |
+| **E1** | Parcel coverage symbology + legend | **Complete / released (`0.0.9`)** |
+| E | Polish / coverage honesty / tests (remainder) | Pending |
 
 ---
 
@@ -39,12 +41,9 @@ This document is a review snapshot for human perusal: what ships today, gaps, an
 
 ### Joined — 24 towns
 
-Prior 22 from D2a–D2e, plus:
+Prior 22 from D2a–D2e, plus D2f Whitneyville and D2e-fix Roque Bluffs.
 
-| Wave | Town | Geometry | Owner joins | Quality joins | Source notes |
-|------|------|----------|-------------|---------------|--------------|
-| D2e fix | Roque Bluffs | 623 | 514 | 491 | 2025 RE from [assessors](https://roquebluffsmaine.us/assessors/); 2024 fallback wired; tax maps cataloged (image-only) |
-| D2f | Whitneyville | 256 | 247 | 223 | 2025 RE from Google Sites/Drive; zero-column owner cleanup |
+**Machiasport (`0.0.9` remediation):** map-lot layout parser; 1128/1226 owner joins; 449/1226 quality joins (honest assessment match rate).
 
 Full joined list remains in `organized-towns.json` (`status: "joined"`).
 
@@ -62,12 +61,12 @@ None for D2 organized ownership rollout.
 
 ---
 
-## 4. Recent quality work (`0.0.8`)
+## 4. Recent quality work (`0.0.9`)
 
-- Strip trailing Trio `0 0` land/building debris from owners (`sanitizeOwnerName` + parser).
-- Reject address-fragment false owners (e.g. `NO. CAMINO`).
-- Allow 1-digit account numbers (Roque Bluffs Trio books).
-- Whitneyville re-parsed after cleanup: **0** dirty `0 0` owners on geometry.
+- Parcel map symbology by coverage tier and program (exemption, Tree Growth); low-confidence muted fill
+- Machiasport: resolve owners from mail lines instead of situs/map headers; institutional `&` names; situs label in detail panel
+- Owner validation: geographic place-feature detection (HILL, ISLAND, etc.) without rejecting person names
+- UT + organized parsers emit exemption and forest enrollment fields for tile classification
 
 ---
 
@@ -87,6 +86,7 @@ None for D2 organized ownership rollout.
 |---------|---------|
 | `pnpm phase:d2e-roque-bluffs` | Roque commitment + tax-map catalog → join → merge → tiles |
 | `pnpm phase:d2f` | Whitneyville → merge → tiles → county report |
+| `pnpm etl:org:parse --town=machiasport` | Re-parse Machiasport with map-lot layout |
 | `pnpm etl:org:report` | Full organized coverage + county summary |
 | `pnpm test` / `pnpm build` | Verify |
 
@@ -94,9 +94,10 @@ None for D2 organized ownership rollout.
 
 ## 7. Next gate
 
-**Phase E** — polish, coverage honesty in UI, tests, deferred product items as scoped in project rules.
+**Phase E (remainder)** — wedge-fix at low zoom (on hold), organized-town re-parse for exemption/Tree Growth colors county-wide, deferred product items as scoped in project rules.
 
 Review checklist:
-- [x] D2f complete (Whitneyville joined; 7 small towns failed honestly)
-- [x] Roque Bluffs onboarded from public assessors PDFs
-- [ ] Phase E plan / execute when ready
+- [x] E1 symbology and legend shipped
+- [x] Machiasport map-lot owner remediation
+- [ ] Low-zoom parcel wedge fix (planned, on hold)
+- [ ] County-wide organized re-parse for program colors

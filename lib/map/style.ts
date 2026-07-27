@@ -1,5 +1,9 @@
 import type { StyleSpecification } from "maplibre-gl";
 import { LAYER_IDS, SOURCE_IDS } from "./layers";
+import {
+  parcelCoverageFillExpression,
+  parcelCoverageLineExpression,
+} from "./parcel-coverage";
 
 function resolveTilesBase(origin?: string): string {
   const path =
@@ -22,20 +26,25 @@ function parcelLayers(): StyleSpecification["layers"] {
       "source-layer": "parcels",
       minzoom: 10,
       paint: {
-        "fill-color": [
-          "case",
-          ["==", ["get", "hasTax"], 1],
-          "#c9a227",
-          "#8aa4b0",
-        ],
+        "fill-color": parcelCoverageFillExpression(),
         "fill-opacity": [
           "interpolate",
           ["linear"],
           ["zoom"],
           10,
-          0.08,
+          [
+            "case",
+            ["==", ["get", "joinLow"], 1],
+            0.06,
+            0.08,
+          ],
           13,
-          0.22,
+          [
+            "case",
+            ["==", ["get", "joinLow"], 1],
+            0.18,
+            0.22,
+          ],
         ],
       },
     },
@@ -46,12 +55,7 @@ function parcelLayers(): StyleSpecification["layers"] {
       "source-layer": "parcels",
       minzoom: 10,
       paint: {
-        "line-color": [
-          "case",
-          ["==", ["get", "hasTax"], 1],
-          "#8a7020",
-          "#4a6a72",
-        ],
+        "line-color": parcelCoverageLineExpression(),
         "line-width": [
           "interpolate",
           ["linear"],

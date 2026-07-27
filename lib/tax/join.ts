@@ -30,6 +30,8 @@ export interface JoinedUtParcel {
   assessedLandValue: string | null;
   assessedBuildingValue: string | null;
   assessedTotalValue: string | null;
+  assessedExemptionValue: string | null;
+  hasTreeGrowth: boolean;
   taxYear: number | null;
   acreage: string | null;
   joinConfidence: number | null;
@@ -84,6 +86,8 @@ export function joinUtTaxToGeometry(
       assessedLandValue: tax?.assessedLandValue ?? null,
       assessedBuildingValue: tax?.assessedBuildingValue ?? null,
       assessedTotalValue: tax?.assessedTotalValue ?? null,
+      assessedExemptionValue: tax?.assessedExemptionValue ?? null,
+      hasTreeGrowth: false,
       taxYear: tax?.taxYear ?? null,
       acreage: tax?.acreage ?? geom.acreage,
       joinConfidence: tax ? tax.parseConfidence : null,

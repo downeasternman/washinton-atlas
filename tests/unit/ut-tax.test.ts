@@ -33,7 +33,18 @@ describe("parseUtValuationText", () => {
     const t26 = rows.find((r) => r.mapJoinKey === mapJoinKey("WA003", "01", "5"));
     expect(t26?.ownerName).toContain("SPRAGUE");
     expect(t26?.assessedTotalValue).toBe("106320.00");
+    expect(t26?.assessedExemptionValue).toBeNull();
     expect(t26?.propertyId).toBeTruthy();
+  });
+
+  it("parses total exemptions from UT valuation blocks", () => {
+    const withExemption = valuationSnippet.replace(
+      "Total Exemptions\t0.00",
+      "Total Exemptions\t12,500.00",
+    );
+    const rows = parseUtValuationText(withExemption, 2025);
+    const t26 = rows.find((r) => r.mapJoinKey === mapJoinKey("WA003", "01", "5"));
+    expect(t26?.assessedExemptionValue).toBe("12500.00");
   });
 });
 

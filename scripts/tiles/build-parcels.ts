@@ -2,6 +2,7 @@
  * Build parcel PMTiles from joined UT + organized parcel GeoJSON.
  */
 import path from "node:path";
+import { classifyParcelSymbology } from "@/lib/map/parcel-coverage";
 import { buildPmtilesFromLayers, readBbox, readGeoJson } from "./build-pmtiles";
 import { ORGANIZED_PARCELS_GEOJSON, UT_PARCELS_GEOJSON } from "../etl/tax/paths";
 import { PROCESSED_DIR, TILES_DIR, ensureDirs, readJson } from "../etl/paths";
@@ -31,7 +32,16 @@ async function main() {
   const organizedGeojson = await loadOrganizedGeoJson();
   const geojson = mergeGeoJson(utGeojson, organizedGeojson);
   const parcels = await readJson<
-    Array<{ id: string; municipalityId: string; ownerName: string | null; assessedTotalValue: string | null }>
+    Array<{
+      id: string;
+      municipalityId: string;
+      ownerName: string | null;
+      assessedTotalValue: string | null;
+      assessedExemptionValue?: string | null;
+      hasTreeGrowth?: boolean | null;
+      joinConfidence?: number | null;
+      attrsRaw?: Record<string, unknown> | null;
+    }>
   >(path.join(PROCESSED_DIR, "parcels.json"));
 
   const parcelMeta = new Map(parcels.map((p) => [p.id, p]));
@@ -41,6 +51,14 @@ async function main() {
     features: geojson.features.map((f) => {
       const id = String(f.properties?.id ?? "");
       const meta = parcelMeta.get(id);
+      const symbology = classifyParcelSymbology({
+        ownerName: meta?.ownerName,
+        assessedTotalValue: meta?.assessedTotalValue,
+        assessedExemptionValue: meta?.assessedExemptionValue,
+        hasTreeGrowth: meta?.hasTreeGrowth,
+        attrsRaw: meta?.attrsRaw,
+        joinConfidence: meta?.joinConfidence,
+      });
       return {
         type: "Feature",
         properties: {
@@ -50,8 +68,9 @@ async function main() {
             f.properties?.mapBkLot ?? f.properties?.planLot ?? meta?.mapLot ?? "",
           ),
           tpl: f.properties?.tpl != null ? String(f.properties.tpl) : "",
-          hasTax: meta?.assessedTotalValue != null ? 1 : 0,
-          hasOwner: meta?.ownerName != null ? 1 : 0,
+          coverageTier: symbology.coverageTier,
+          program: symbology.program,
+          joinLow: symbology.joinLow,
         },
         geometry: f.geometry!,
       };

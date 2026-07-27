@@ -44,6 +44,8 @@ type JoinedParcel = {
   assessedLandValue: string | null;
   assessedBuildingValue: string | null;
   assessedTotalValue: string | null;
+  assessedExemptionValue: string | null;
+  hasTreeGrowth: boolean;
   taxYear: number | null;
   acreage: string | null;
   landUse: string | null;
@@ -125,6 +127,8 @@ async function main() {
       assessedLandValue: p.assessedLandValue,
       assessedBuildingValue: p.assessedBuildingValue,
       assessedTotalValue: p.assessedTotalValue,
+      assessedExemptionValue: p.assessedExemptionValue,
+      hasTreeGrowth: p.hasTreeGrowth,
       taxYear: p.taxYear,
       acreage: null,
       landUse: null,

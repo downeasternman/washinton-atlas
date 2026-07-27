@@ -2,6 +2,7 @@
 
 import type { ParcelWithSources } from "@/lib/types/parcel";
 import { CONFIDENCE_LABELS, scoreToLevel } from "@/lib/tax/confidence";
+import { forestEnrollmentFromAttrs } from "@/lib/tax/tree-growth";
 import { isValidAccountNumber } from "@/lib/tax/owner-validate";
 import { SourceCitation } from "@/components/source/SourceCitation";
 
@@ -23,6 +24,28 @@ function formatCurrency(value: string | null): string | null {
   }).format(num);
 }
 
+function formatForestEnrollment(parcel: ParcelWithSources): string | null {
+  const enrollment = forestEnrollmentFromAttrs(parcel.attrsRaw);
+  if (!enrollment && !parcel.hasTreeGrowth) return null;
+
+  const parts: string[] = [];
+  if (enrollment?.softAcres && enrollment.softAcres > 0) {
+    parts.push(`${enrollment.softAcres} ac softwood`);
+  }
+  if (enrollment?.mixedAcres && enrollment.mixedAcres > 0) {
+    parts.push(`${enrollment.mixedAcres} ac mixed wood`);
+  }
+  if (enrollment?.hardAcres && enrollment.hardAcres > 0) {
+    parts.push(`${enrollment.hardAcres} ac hardwood`);
+  }
+
+  if (parts.length === 0) {
+    return parcel.hasTreeGrowth ? "Enrolled (acreage not parsed)" : null;
+  }
+
+  return parts.join(" · ");
+}
+
 export function ParcelDetailPanel({
   parcel,
   loading,
@@ -32,6 +55,8 @@ export function ParcelDetailPanel({
   if (!loading && !parcel && !error) return null;
 
   const confidenceLevel = scoreToLevel(parcel?.joinConfidence ?? null);
+  const forestSummary = parcel ? formatForestEnrollment(parcel) : null;
+  const homesteadLabel = parcel?.attrsRaw?.homesteadLabel === true;
 
   return (
     <aside
@@ -102,6 +127,12 @@ export function ParcelDetailPanel({
                 {parcel.mailAddress}
               </dd>
             ) : null}
+            {parcel.attrsRaw?.situsLabel &&
+            typeof parcel.attrsRaw.situsLabel === "string" ? (
+              <dd className="mt-1 text-xs text-[var(--color-text-secondary)]">
+                Location label (tax book): {parcel.attrsRaw.situsLabel}
+              </dd>
+            ) : null}
           </div>
           {parcel.assessedTotalValue ? (
             <div>
@@ -133,6 +164,25 @@ export function ParcelDetailPanel({
                   <dd>{formatCurrency(parcel.assessedBuildingValue)}</dd>
                 </div>
               ) : null}
+            </div>
+          ) : null}
+          {parcel.assessedExemptionValue ? (
+            <div>
+              <dt className="text-[var(--color-text-secondary)]">Tax exemption</dt>
+              <dd className="font-medium">
+                {formatCurrency(parcel.assessedExemptionValue)}
+                {homesteadLabel ? (
+                  <span className="ml-1 text-xs font-normal text-[var(--color-text-secondary)]">
+                    (homestead)
+                  </span>
+                ) : null}
+              </dd>
+            </div>
+          ) : null}
+          {forestSummary ? (
+            <div>
+              <dt className="text-[var(--color-text-secondary)]">Tree Growth</dt>
+              <dd>{forestSummary}</dd>
             </div>
           ) : null}
           {parcel.acreage ? (

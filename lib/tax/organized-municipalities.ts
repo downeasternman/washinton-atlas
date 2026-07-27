@@ -10,6 +10,8 @@ export type OrganizedTownStatus =
   | "failed"
   | "excluded";
 
+export type CommitmentLayout = "by-name" | "map-lot";
+
 export interface OrganizedTownSources {
   assessorPageUrl: string | null;
   commitmentPdfUrl: string | null;
@@ -28,6 +30,7 @@ export interface OrganizedTownEntry {
   sources: OrganizedTownSources;
   taxYear: number | null;
   asOfDate: string | null;
+  commitmentLayout?: CommitmentLayout;
   notes: string | null;
 }
 

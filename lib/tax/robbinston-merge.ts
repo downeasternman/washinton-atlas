@@ -55,6 +55,8 @@ export function mergeRobbinstonOwnership(
       assessedLandValue: null,
       assessedBuildingValue: null,
       assessedTotalValue: null,
+      assessedExemptionValue: null,
+      hasTreeGrowth: false,
       taxYear,
       parseConfidence: 0.3,
       attrsRaw: {
@@ -106,6 +108,8 @@ export function mergeRobbinstonOwnership(
         assessedLandValue: null,
         assessedBuildingValue: null,
         assessedTotalValue: null,
+        assessedExemptionValue: null,
+        hasTreeGrowth: false,
         taxYear,
         parseConfidence: 0.3,
         attrsRaw: {

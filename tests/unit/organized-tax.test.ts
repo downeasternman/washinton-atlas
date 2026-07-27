@@ -10,6 +10,7 @@ import {
 } from "@/lib/tax/organized-join";
 import { sanitizeOwnerName } from "@/lib/tax/owner-normalize";
 import { isValidOwnerName } from "@/lib/tax/owner-validate";
+import { hasTreeGrowthEnrollment } from "@/lib/tax/tree-growth";
 import { normalizeMapBkLot, organizedMapJoinKey, mapLotJoinCandidates } from "@/lib/tax/map-lot-normalize";
 
 const fixture = (name: string) =>
@@ -26,6 +27,7 @@ const lubecStreetTrap = fixture("lubec-block-street-header-trap.txt");
 const eastportCapen = fixture("eastport-block-capen.txt");
 const cutlerAbrams = fixture("cutler-block-abrams.txt");
 const cherryfieldRu = fixture("cherryfield-block-ru-lots.txt");
+const newportTreeGrowth = fixture("newport-block-tree-growth.txt");
 
 describe("normalizeMapBkLot", () => {
   it("preserves padded map-lot segments", () => {
@@ -144,7 +146,17 @@ describe("parseCommitmentText", () => {
     expect(u16?.ownerName?.toUpperCase()).toContain("ALBEE");
     expect(u05?.ownerName?.toUpperCase()).toContain("FOSTER");
     expect(u16?.assessedTotalValue).toBe("98350");
+    expect(u16?.assessedExemptionValue).toBe("23750");
+    expect(u16?.attrsRaw.homesteadLabel).toBe(true);
     expect(u05?.assessedTotalValue).toBe("74200");
+  });
+
+  it("detects tree growth forest enrollment from soft/mixed/hard lines", () => {
+    const rows = parseCommitmentText(newportTreeGrowth, "29180", 2025);
+    const row = rows.find((r) => r.mapLot === "018-022-001");
+    expect(row?.ownerName?.toUpperCase()).toContain("ARROWSMITH");
+    expect(row?.hasTreeGrowth).toBe(true);
+    expect(hasTreeGrowthEnrollment(row?.attrsRaw.forestEnrollment as never)).toBe(true);
   });
 
   it("strips trailing zero land/building columns from Roque Bluffs headers", () => {
@@ -231,6 +243,8 @@ describe("joinOrganizedTaxToGeometry", () => {
         assessedLandValue: null,
         assessedBuildingValue: null,
         assessedTotalValue: null,
+        assessedExemptionValue: null,
+        hasTreeGrowth: false,
         taxYear: 2024,
         parseConfidence: 0.3,
         attrsRaw: {},

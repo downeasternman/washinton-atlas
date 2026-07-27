@@ -1,3 +1,4 @@
+import { normalizeExemptionValue } from "./exemption";
 import { mapJoinKey } from "./plan-lot";
 import { mailMunicipalityHintFromAddress } from "./mail-municipality";
 
@@ -12,6 +13,7 @@ export interface ParsedUtTaxRow {
   assessedLandValue: string | null;
   assessedBuildingValue: string | null;
   assessedTotalValue: string | null;
+  assessedExemptionValue: string | null;
   acreage: string | null;
   taxYear: number | null;
   propertyId: string | null;
@@ -77,6 +79,10 @@ export function parseUtValuationText(
     const land = cleanMoney(block.match(/Land Value\s+([\d,]+(?:\.\d{2})?)/)?.[1]);
     const building = cleanMoney(block.match(/Building Value\s+([\d,]+(?:\.\d{2})?)/)?.[1]);
     const taxable = cleanMoney(block.match(/Taxable Value\s+([\d,]+(?:\.\d{2})?)/)?.[1]);
+    const exemptions = cleanMoney(
+      block.match(/Total Exemptions\s+([\d,]+(?:\.\d{2})?)/)?.[1],
+    );
+    const assessedExemptionValue = normalizeExemptionValue(exemptions);
     const acres = cleanMoney(block.match(/Acres\s+([\d,]+(?:\.\d{2})?)/)?.[1]);
     const divisionName =
       block.match(/\nWashington\s*\n([^\n]+)\nMAP/i)?.[1]?.trim() ?? null;
@@ -106,6 +112,7 @@ export function parseUtValuationText(
         assessedLandValue: land,
         assessedBuildingValue: building,
         assessedTotalValue: taxable,
+        assessedExemptionValue,
         acreage: acres,
         taxYear: defaultTaxYear,
         propertyId,

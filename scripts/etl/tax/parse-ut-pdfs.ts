@@ -45,6 +45,7 @@ async function main() {
     assessedLandValue: row.assessedLandValue,
     assessedBuildingValue: row.assessedBuildingValue,
     assessedTotalValue: row.assessedTotalValue,
+    assessedExemptionValue: row.assessedExemptionValue,
     taxYear: row.taxYear,
     attrsRaw: row.attrsRaw,
     parseConfidence: row.parseConfidence,

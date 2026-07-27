@@ -6,7 +6,7 @@ An interactive geographic atlas for **Washington County, Maine** — combining p
 
 **Repository:** [downeasternman/washinton-atlas](https://github.com/downeasternman/washinton-atlas)
 
-**Current version:** `0.0.7` — see [CHANGELOG.md](./CHANGELOG.md)
+**Current version:** `0.0.9` — see [CHANGELOG.md](./CHANGELOG.md)
 
 ## Screenshots
 

@@ -11,6 +11,8 @@ export interface Parcel {
   assessedLandValue: string | null;
   assessedBuildingValue: string | null;
   assessedTotalValue: string | null;
+  assessedExemptionValue: string | null;
+  hasTreeGrowth: boolean | null;
   taxYear: number | null;
   acreage: string | null;
   landUse: string | null;

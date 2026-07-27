@@ -7,6 +7,27 @@ and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
 ## [Unreleased]
 
+## [0.0.9] - 2026-07-27
+
+### Added
+
+- Phase E1 parcel coverage symbology: full / owner-only / boundary-only tiers plus tax exemption (coral) and Tree Growth program colors
+- Map legend (`ParcelCoverageLegend`) and muted shades for low-confidence joins
+- UT and organized parsers persist `assessedExemptionValue`, `hasTreeGrowth`, and forest enrollment acreage
+- Machiasport map-lot commitment layout: mail-line owner resolution, situs labels, institutional `&` entity names
+- Fixtures and unit tests for exemption, tree growth, parcel coverage, and Machiasport blocks
+
+### Changed
+
+- Machiasport owner joins: 1128/1226 (92.0%); quality joins recounted honestly at 449/1226 (36.6%)
+- Parcel detail panel shows tax exemption, Tree Growth enrollment, and tax-book situs labels
+- PMTiles emit `coverageTier`, `program`, and `joinLow` instead of binary `hasTax`/`hasOwner`
+
+### Notes
+
+- Exemption and Tree Growth map colors require re-parsing organized towns to populate new fields county-wide; tier colors work from existing data
+- Machiasport quality rate reflects sparse assessment values in the map-lot PDF, not owner parse regression
+
 ## [0.0.8] - 2026-07-26
 
 ### Added

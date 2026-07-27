@@ -5,7 +5,18 @@ import {
   isValidMoney,
   isValidOwnerName,
 } from "./owner-validate";
+import { detectHomesteadLabel, normalizeExemptionValue } from "./exemption";
 import { normalizeMapBkLot, organizedMapJoinKey } from "./map-lot-normalize";
+import {
+  isAssessmentConsistent,
+  resolveCommitmentBlockOwner,
+  type CommitmentLayout,
+} from "./owner-resolve";
+import {
+  hasTreeGrowthEnrollment,
+  parseForestEnrollmentFromLines,
+  type ForestEnrollment,
+} from "./tree-growth";
 
 export interface ParsedCommitmentRow {
   accountNumber: string;
@@ -16,6 +27,8 @@ export interface ParsedCommitmentRow {
   assessedLandValue: string | null;
   assessedBuildingValue: string | null;
   assessedTotalValue: string | null;
+  assessedExemptionValue: string | null;
+  hasTreeGrowth: boolean;
   taxYear: number | null;
   parseConfidence: number;
   attrsRaw: Record<string, unknown>;
@@ -74,11 +87,16 @@ function isStreetOnly(text: string): boolean {
   return hasStreet && !hasPersonOrEntity;
 }
 
-function isValidAccountHeader(_accountNumber: string, rest: string): boolean {
+function isValidAccountHeader(
+  _accountNumber: string,
+  rest: string,
+  layout: CommitmentLayout = "by-name",
+): boolean {
   const trimmed = rest.trim();
   if (!trimmed || !/^[A-Z0-9]/.test(trimmed)) return false;
-  if (isStreetOnly(trimmed)) return false;
+  if (isStreetOnly(trimmed) && layout !== "map-lot") return false;
   if (/acres/i.test(trimmed) && !/,/.test(trimmed)) return false;
+  if (layout === "map-lot") return true;
   const sanitized = sanitizeOwnerName(trimmed);
   if (sanitized.name) return true;
   if (/\b(LLC|INC|TRUST|ESTATE|HEIRS|BANK)\b/i.test(trimmed) && hasPersonOrEntitySignal(trimmed)) {
@@ -139,7 +157,7 @@ function isMailOrAddressLine(line: string): boolean {
   return true;
 }
 
-function segmentAccountBlocks(text: string): AccountBlock[] {
+function segmentAccountBlocks(text: string, layout: CommitmentLayout = "by-name"): AccountBlock[] {
   const lines = text.split("\n");
   const blocks: AccountBlock[] = [];
   let current: AccountBlock | null = null;
@@ -152,7 +170,7 @@ function segmentAccountBlocks(text: string): AccountBlock[] {
     const cutlerHeaderMatch = trimmed.match(CUTLER_HEADER_RE);
     if (
       cutlerHeaderMatch &&
-      isValidAccountHeader(cutlerHeaderMatch[2]!, cutlerHeaderMatch[3]!)
+      isValidAccountHeader(cutlerHeaderMatch[2]!, cutlerHeaderMatch[3]!, layout)
     ) {
       if (current) blocks.push(current);
       current = {
@@ -168,7 +186,7 @@ function segmentAccountBlocks(text: string): AccountBlock[] {
     );
     if (
       landFirstMatch &&
-      isValidAccountHeader(landFirstMatch[2]!, landFirstMatch[3]!)
+      isValidAccountHeader(landFirstMatch[2]!, landFirstMatch[3]!, layout)
     ) {
       if (current) blocks.push(current);
       const parsed = parseHeaderLine(landFirstMatch[2]!, landFirstMatch[3]!);
@@ -198,7 +216,7 @@ function segmentAccountBlocks(text: string): AccountBlock[] {
     }
 
     const headerMatch = trimmed.match(/^(\d{1,4})[\t ]+(.+)$/);
-    if (headerMatch && isValidAccountHeader(headerMatch[1]!, headerMatch[2]!)) {
+    if (headerMatch && isValidAccountHeader(headerMatch[1]!, headerMatch[2]!, layout)) {
       if (current) blocks.push(current);
       current = {
         ...parseHeaderLine(headerMatch[1]!, headerMatch[2]!),
@@ -380,15 +398,38 @@ function extractColumnarValues(lines: string[]): LotValues | null {
   return null;
 }
 
+function getLotSpanLines(block: AccountBlock, lotIndex: number): string[] {
+  const start = lotIndex;
+  const nextLotIdx = block.bodyLines.findIndex(
+    (line, idx) => idx > start && MAP_LOT_LINE_RE.test(line),
+  );
+  return block.bodyLines.slice(start + 1, nextLotIdx >= 0 ? nextLotIdx : undefined);
+}
+
+function getLotContextLines(block: AccountBlock, lotIndex: number): string[] {
+  if (lotIndex < 0) {
+    return getLotSpanLines(block, lotIndex);
+  }
+
+  let previousLotIndex = -1;
+  for (let i = lotIndex - 1; i >= 0; i--) {
+    if (MAP_LOT_LINE_RE.test(block.bodyLines[i]!)) {
+      previousLotIndex = i;
+      break;
+    }
+  }
+
+  const before = block.bodyLines.slice(previousLotIndex + 1, lotIndex);
+  return [...before, ...getLotSpanLines(block, lotIndex)];
+}
+
 function extractLotValues(
   block: AccountBlock,
   lotIndex: number,
   lotCount: number,
   headerExtractedLand: string | null,
 ): LotValues | null {
-  const start = lotIndex;
-  const nextLotIdx = block.bodyLines.findIndex((line, idx) => idx > start && MAP_LOT_LINE_RE.test(line));
-  const span = block.bodyLines.slice(start + 1, nextLotIdx >= 0 ? nextLotIdx : undefined);
+  const span = getLotSpanLines(block, lotIndex);
 
   if (lotCount === 1 && block.headerAssessment && isValidMoney(block.headerAssessment)) {
     return {
@@ -403,7 +444,8 @@ function extractLotValues(
   const tab = extractTabValueRow(span, block.headerLand);
   if (tab) return tab;
 
-  const preLotSpan = block.bodyLines.slice(0, start);
+  const preLotSpan =
+    lotIndex >= 0 ? block.bodyLines.slice(0, lotIndex) : block.bodyLines.slice(0, -1);
   const preTab = extractTabValueRow(preLotSpan, block.headerLand);
   if (preTab) return preTab;
 
@@ -423,55 +465,33 @@ function extractLotValues(
   return null;
 }
 
-function isOwnerCandidateLine(line: string): boolean {
-  const trimmed = line.trim();
-  if (!trimmed) return false;
-  if (/,/.test(trimmed)) return true;
-  if (/\b(LLC|INC|TRUST|ESTATE|HEIRS|LTD|BANK)\b/i.test(trimmed)) return true;
-  return false;
-}
-
-function resolveBlockOwner(block: AccountBlock): {
-  ownerName: string | null;
-  extractedLand: string | null;
-} {
-  const fromHeader = sanitizeOwnerName(block.headerRest);
-
-  if (block.ownerRaw) {
-    const fromOwnerRaw = sanitizeOwnerName(block.ownerRaw);
-    if (fromOwnerRaw.name) {
-      return {
-        ownerName: fromOwnerRaw.name,
-        extractedLand: fromOwnerRaw.extractedLand ?? fromHeader.extractedLand,
-      };
-    }
-  }
-
-  if (fromHeader.name) {
-    return { ownerName: fromHeader.name, extractedLand: fromHeader.extractedLand };
-  }
-
-  for (const line of block.mailLines) {
-    if (!isOwnerCandidateLine(line)) continue;
-    if (isStreetOnly(line)) continue;
-    const sanitized = sanitizeOwnerName(line);
-    if (sanitized.name) {
-      return { ownerName: sanitized.name, extractedLand: sanitized.extractedLand };
-    }
-  }
-
-  return { ownerName: null, extractedLand: null };
+function resolveBlockOwner(block: AccountBlock, layout: CommitmentLayout) {
+  return resolveCommitmentBlockOwner(block, layout);
 }
 
 function scoreRow(
   ownerName: string | null,
   assessment: string | null,
   mapLot: string,
+  land: string | null,
+  building: string | null,
+  ownerSource: string | null,
+  layout: CommitmentLayout,
 ): number {
   if (!mapLot) return 0.1;
   if (!ownerName && !assessment) return 0.2;
   if (!ownerName || !isValidMoney(assessment)) return 0.3;
-  return 0.9;
+
+  let confidence = 0.9;
+  if (layout === "map-lot" && ownerSource === "header") confidence = 0.5;
+  if (layout === "map-lot" && ownerSource === "mail-line") confidence = 0.85;
+  if (layout === "map-lot" && ownerSource === "entity-line") confidence = 0.88;
+  if (!isAssessmentConsistent(land, building, assessment)) confidence -= 0.15;
+  return Math.max(0.2, confidence);
+}
+
+export interface ParseCommitmentOptions {
+  layout?: CommitmentLayout;
 }
 
 /**
@@ -481,13 +501,15 @@ export function parseCommitmentText(
   text: string,
   geocode: string,
   taxYear: number | null,
+  options: ParseCommitmentOptions = {},
 ): ParsedCommitmentRow[] {
+  const layout = options.layout ?? "by-name";
   const cleaned = preprocessCommitmentText(text);
-  const blocks = segmentAccountBlocks(cleaned);
+  const blocks = segmentAccountBlocks(cleaned, layout);
   const rowByKey = new Map<string, ParsedCommitmentRow>();
 
   for (const block of blocks) {
-    const resolvedOwner = resolveBlockOwner(block);
+    const resolvedOwner = resolveBlockOwner(block, layout);
     const ownerName = resolvedOwner.ownerName;
     const mailAddress = block.mailLines.length > 0 ? block.mailLines.join(", ") : null;
     const lots = findMapLotsInBlock(block);
@@ -506,7 +528,22 @@ export function parseCommitmentText(
       const assessedLandValue = values?.land ?? null;
       const assessedBuildingValue = values?.building ?? null;
       const assessedTotalValue = values?.assessment ?? null;
-      const parseConfidence = scoreRow(ownerName, assessedTotalValue, lot.normalized);
+      const assessedExemptionValue = normalizeExemptionValue(values?.exempt ?? null);
+      const lotSpanLines = getLotContextLines(block, lot.index);
+      const forestEnrollment: ForestEnrollment =
+        parseForestEnrollmentFromLines(lotSpanLines);
+      const lotSpanText = lotSpanLines.join("\n");
+      const hasTreeGrowth = hasTreeGrowthEnrollment(forestEnrollment, lotSpanText);
+      const homesteadLabel = detectHomesteadLabel(lotSpanLines);
+      const parseConfidence = scoreRow(
+        ownerName,
+        assessedTotalValue,
+        lot.normalized,
+        assessedLandValue,
+        assessedBuildingValue,
+        resolvedOwner.ownerSource,
+        layout,
+      );
 
       const row: ParsedCommitmentRow = {
         accountNumber: block.accountNumber,
@@ -517,6 +554,8 @@ export function parseCommitmentText(
         assessedLandValue,
         assessedBuildingValue,
         assessedTotalValue,
+        assessedExemptionValue,
+        hasTreeGrowth,
         taxYear,
         parseConfidence,
         attrsRaw: {
@@ -524,6 +563,10 @@ export function parseCommitmentText(
           accountLine: block.headerLine,
           valueSource: values?.source ?? null,
           mailLines: block.mailLines,
+          forestEnrollment,
+          homesteadLabel,
+          ownerSource: resolvedOwner.ownerSource,
+          situsLabel: resolvedOwner.situsLabel,
         },
       };
 

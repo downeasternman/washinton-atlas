@@ -432,7 +432,8 @@
       },
       "taxYear": 2025,
       "asOfDate": "2025-04-01",
-      "notes": "1131/1226 owner joins; 1002/1226 quality joins from 2025 RE commitment book by map/lot."
+      "commitmentLayout": "map-lot",
+      "notes": "1128/1226 owner joins; 449/1226 quality joins from 2025 RE commitment book (map-lot layout)."
     },
     {
       "id": "marshfield",

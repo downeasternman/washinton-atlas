@@ -41,6 +41,7 @@ type TaxRecordJson = {
   assessedTotalValue: string | null;
   taxYear: number | null;
   parseConfidence: number | null;
+  assessedExemptionValue?: string | null;
   attrsRaw: Record<string, unknown> | null;
 };
 
@@ -93,6 +94,7 @@ async function main() {
     assessedLandValue: r.assessedLandValue,
     assessedBuildingValue: r.assessedBuildingValue,
     assessedTotalValue: r.assessedTotalValue,
+    assessedExemptionValue: r.assessedExemptionValue ?? null,
     acreage: null,
     taxYear: r.taxYear,
     propertyId: r.propertyId ?? (r.attrsRaw?.propertyId as string | undefined) ?? null,
@@ -125,6 +127,8 @@ async function main() {
       assessedLandValue: p.assessedLandValue,
       assessedBuildingValue: p.assessedBuildingValue,
       assessedTotalValue: p.assessedTotalValue,
+      assessedExemptionValue: p.assessedExemptionValue ?? null,
+      hasTreeGrowth: p.hasTreeGrowth ?? false,
       taxYear: p.taxYear,
       acreage: p.acreage,
       landUse: null,
